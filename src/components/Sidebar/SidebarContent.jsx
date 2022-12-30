@@ -3,18 +3,18 @@ import { Box } from '@chakra-ui/react';
 import {
   FiCompass,
   FiHome,
-  FiSettings,
+  // FiSettings,
   FiStar,
   FiTrendingUp,
 } from 'react-icons/fi';
 import NavItem from './NavItem';
 
 const LinkItems = [
-  { name: 'Dashboard', icon: FiHome, to: 'home' },
+  { name: 'Dashboard', icon: FiHome, to: '/' },
   { name: 'My Posts', icon: FiTrendingUp, to: 'my' },
   { name: 'Add Posts', icon: FiCompass, to: 'add' },
   { name: 'Offers', icon: FiStar, to: 'offers' },
-  { name: 'Other', icon: FiSettings, to: '/' },
+  // { name: 'Other', icon: FiSettings, to: 'other' },
 ];
 
 const SidebarContent = ({ ...rest }) => {

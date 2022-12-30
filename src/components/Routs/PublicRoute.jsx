@@ -13,7 +13,7 @@ function PublicRoute() {
 
     if (!isAuth && !isLoading) return <Outlet />;
 
-    if (isAuth && !isLoading) return <Navigate to={path ? path : '/home'} />;
+    if (isAuth && !isLoading) return <Navigate to={path ? path : '/'} />;
   } catch (error) {
     console.log(error);
   }

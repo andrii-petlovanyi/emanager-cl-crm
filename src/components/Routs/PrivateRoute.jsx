@@ -14,7 +14,7 @@ function PrivateRoute() {
 
     if (isAuth && !isLoading) return <Outlet />;
 
-    if (!isAuth && !isLoading) return <Navigate to="/login" />;
+    if (!isAuth && !isLoading) return <Navigate to="login" />;
   } catch (error) {
     console.log(error);
   }

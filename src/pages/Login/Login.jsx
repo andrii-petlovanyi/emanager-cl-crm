@@ -36,7 +36,7 @@ export default function Login() {
 
       dispatch(logIn(data));
       setValue({ username: '', password: '' });
-      navigate('/home');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }

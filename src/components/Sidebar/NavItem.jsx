@@ -4,7 +4,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 const NavItem = ({ icon, to, children, ...rest }) => {
   const location = useLocation();
-  const isActive = location.pathname === `/${to}`;
+  const linkPathname = to === '/' ? '/' : '/' + to;
+  const isActive = location.pathname === linkPathname;
 
   return (
     <Link as={NavLink} to={to} variant="activeLink">
