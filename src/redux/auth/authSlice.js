@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -18,7 +19,6 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     logIn: (state, { payload }) => {
-      console.log(payload.user);
       state.userName = payload.user.username;
       state.postsId = payload.user.posts;
       state.token = payload.token;

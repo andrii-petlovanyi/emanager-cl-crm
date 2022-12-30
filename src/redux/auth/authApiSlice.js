@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const authApiSlice = createApi({
-  reducePath: 'authApiSlice',
+  reducerPath: 'authApiSlice',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://elxserver.pp.ua/api',
 
@@ -17,15 +17,6 @@ const authApiSlice = createApi({
 
   tagTypes: ['users'],
   endpoints: builder => ({
-    logInUser: builder.mutation({
-      query: user => ({
-        url: `/auth/login`,
-        method: 'POST',
-        body: { username: user.username, password: user.password },
-      }),
-      providesTags: ['users'],
-    }),
-
     signUpUser: builder.mutation({
       query: user => ({
         url: `/auth/register`,
@@ -35,6 +26,24 @@ const authApiSlice = createApi({
       }),
     }),
 
+    logInUser: builder.mutation({
+      query: user => ({
+        url: `/auth/login`,
+        method: 'POST',
+        body: { username: user.username, password: user.password },
+      }),
+      providesTags: ['users'],
+    }),
+
+    logOutUser: builder.mutation({
+      // eslint-disable-next-line no-unused-vars
+      query: token => ({
+        url: `/`,
+        method: 'POST',
+      }),
+      providesTags: ['users'],
+    }),
+
     getUser: builder.query({
       query: () => ({
         url: '/auth/me',
@@ -42,9 +51,13 @@ const authApiSlice = createApi({
       providesTags: ['users'],
     }),
   }),
-  refetchOnReconnect: true,
 });
 
-export const { useLogInUserMutation } = authApiSlice;
+export const {
+  useSignUpUserMutation,
+  useLogInUserMutation,
+  useLogOutUserMutation,
+  useGetUserQuery,
+} = authApiSlice;
 
 export default authApiSlice;

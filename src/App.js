@@ -1,35 +1,48 @@
 import { useEffect } from 'react';
-import { useLogInUserMutation } from 'redux/auth/authApiSlice';
-import { logIn } from 'redux/auth/authSlice';
-import { useDispatch } from 'react-redux';
-import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
-import { Heading } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import authSelectors from 'redux/auth/auth-selectors';
+import { useGetUserQuery } from 'redux/auth/authApiSlice';
+import { refresh } from 'redux/auth/authSlice';
+import { Route, Routes } from 'react-router-dom';
+import PrivateRoute from 'components/Routs/PrivateRoute';
+import Dashboard from 'pages/Dashboard/Dashboard';
+import MyPosts from 'pages/MyPosts/MyPosts';
+import AddPosts from 'pages/AddPosts/AddPosts';
+import Offers from 'pages/Offers/Offers';
+import PublicRoute from 'components/Routs/PublicRoute';
+import Login from 'pages/Login/Login';
+import Layout from 'layouts/Layout';
 
 const App = () => {
   const dispatch = useDispatch();
-  const [logInUser] = useLogInUserMutation();
-  const { data } = useGetOffersQuery();
-  const username = 'okluk';
-  const password = 'okluk';
+  const token = useSelector(authSelectors.getToken);
+  const { data, isLoading } = useGetUserQuery(token, {
+    skip: token === null,
+  });
 
-  console.log(data);
   useEffect(() => {
-    async function userLogin() {
-      try {
-        const { data } = await logInUser({ username, password });
-        dispatch(logIn(data));
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    userLogin();
-  }, []);
+    if (data) dispatch(refresh(data));
+  }, [data]);
 
   return (
     <>
-      <Heading fontSize={{ sm: '10px', md: '20px', lg: '30px' }}>
-        Hello, Andrii
-      </Heading>
+      {!isLoading ? (
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route element={<PrivateRoute />}>
+              <Route path="home" element={<Dashboard />} />
+              <Route path="my" element={<MyPosts />} />
+              <Route path="add" element={<AddPosts />} />
+              <Route path="offers" element={<Offers />} />
+            </Route>
+            <Route element={<PublicRoute />}>
+              <Route path="login" element={<Login />} />
+            </Route>
+          </Route>
+        </Routes>
+      ) : (
+        <>Loading...</>
+      )}
     </>
   );
 };

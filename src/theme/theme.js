@@ -1,4 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
+import { buttonTheme } from './components/buttonTheme';
+import { popoverTheme } from './components/popoverTheme';
 
 // const config = {
 //   initialColorMode: 'white',
@@ -8,67 +10,62 @@ import { extendTheme } from '@chakra-ui/react';
 const breakpoints = {
   sm: '320px',
   md: '768px',
-  lg: '1280px',
+  lg: '992px',
+  xl: '1280px',
+};
+
+const boxShadow = {
+  sidebarActiveLink: '0px 2px 4px rgba(138, 146, 166, 0.3)',
 };
 
 const colors = {
-  mainWhite: '#f9f9f9',
-  mainDark: '#202023',
-  darkBG: '#234E52',
-  whiteBG: '#6B46C1',
-  hoverWhite: '#9F7AEA',
-  hoverBlack: '#2C7A7B',
-  btnOutlineBG: '#319795',
-  lightBtnBGWhite: '#FAF5FF',
-  lightBtnBGDark: '#2D3748',
+  bodyBG: '#151824',
+  sectionBG: '#222738',
+  sidebarActiveLinkBG: '#3A57E8',
+  primaryTextColor: '#8A92A6',
+  secondaryTextColor: '#D3D3D3',
+  hoverColor: '#E1F1FF',
+  buttonHover: '#0076FB',
 };
 
 const styles = {
   global: () => ({
     body: {
-      bg: 'mainDark',
+      bg: 'bodyBG',
+      color: 'primaryTextColor',
     },
   }),
 };
 
-// const components = {
-//   Link: {
-//     baseStyle: props => ({
-//       color: mode('accentWhite', 'teal.600')(props),
-//       textUnderlineOffset: 3,
-//       _hover: {
-//         color: mode('purple.600', 'teal.300')(props),
-//       },
-//     }),
-//   },
+const components = {
+  Link: {
+    baseStyle: {},
+    variants: {
+      activeLink: {
+        color: 'primaryTextColor',
+        textDecoration: 'none',
+        transition: '350ms ease',
+        _hover: { textDecoration: 'none', color: 'hoverColor' },
+        _focus: { boxShadow: 'none' },
+        _activeLink: {
+          color: '#fff',
+          boxShadow: 'sidebarActiveLink',
+        },
+      },
+      secondary: {
+        //...define other variants
+      },
+    },
+  },
+  Button: buttonTheme,
+  Popover: popoverTheme,
+};
 
-//   IconButton: {
-//     baseStyle: props => ({
-//       color: mode('white', 'white')(props),
-//       bg: mode('whiteBG', 'darkBG')(props),
-//       _hover: {
-//         bg: mode('hoverWhite', 'hoverBlack')(props),
-//       },
-//     }),
-//   },
-//   Button: {
-//     baseStyle: props => ({
-//       color: mode('white', 'white')(props),
-//       bg: mode('whiteBG', 'darkBG')(props),
-//       _hover: {
-//         bg: mode('hoverWhite', 'hoverBlack')(props),
-//       },
-//     }),
-//   },
-//   Divider: {
-//     baseStyle: props => ({
-//       opacity: 0.9,
-//       bg: mode('whiteBG', 'darkBG')(props),
-//       fontWeight: '700',
-//       width: '1px',
-//     }),
-//   },
-// };
-
-const theme = extendTheme({ colors, styles, breakpoints });
+const theme = extendTheme({
+  colors,
+  boxShadow,
+  styles,
+  components,
+  breakpoints,
+});
 export default theme;
