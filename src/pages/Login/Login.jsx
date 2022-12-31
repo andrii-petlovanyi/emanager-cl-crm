@@ -49,7 +49,7 @@ export default function Login() {
 
   return (
     <Flex
-      minH={'calc(100vh - 32px)'}
+      minH={'calc(100vh)'}
       align={'center'}
       justify={'center'}
       bg="sectionBG"

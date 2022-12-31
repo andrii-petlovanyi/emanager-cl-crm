@@ -5,7 +5,7 @@ const Footer = () => {
     <Box
       position="fixed"
       bottom="0"
-      left="50px"
+      ml="50px"
       display={{ base: 'none', lg: 'flex' }}
       //   justifyContent="center"
       //   alignItems="center"

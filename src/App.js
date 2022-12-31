@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <>
-      {!isLoading ? (
+      {!isLoading && (
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route element={<PrivateRoute />}>
@@ -40,8 +40,6 @@ const App = () => {
             </Route>
           </Route>
         </Routes>
-      ) : (
-        <>Loading...</>
       )}
     </>
   );

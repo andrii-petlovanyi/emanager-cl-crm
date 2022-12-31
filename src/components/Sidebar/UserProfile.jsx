@@ -6,9 +6,9 @@ const UserProfile = ({ ...rest }) => {
       <Box
         pos="fixed"
         display={{ base: 'block', lg: 'none' }}
-        right={{ base: '20px' }}
-        left={{ lg: '20px' }}
-        top="80px"
+        mr={{ base: '20px' }}
+        ml={{ lg: '20px' }}
+        mt="80px"
         w={{ base: '230px', lg: '230px' }}
         transition="1s ease"
         p="20px 25px"

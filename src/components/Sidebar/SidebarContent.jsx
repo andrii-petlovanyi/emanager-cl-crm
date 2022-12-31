@@ -22,9 +22,9 @@ const SidebarContent = ({ ...rest }) => {
     <Box
       pos="fixed"
       display={{ base: 'block', lg: 'none' }}
-      right={{ base: '20px' }}
-      left={{ lg: '20px' }}
-      top="190px"
+      mr={{ base: '20px' }}
+      ml={{ lg: '20px' }}
+      mt="190px"
       w="230px"
       p="20px 5px"
       transition="1s ease"

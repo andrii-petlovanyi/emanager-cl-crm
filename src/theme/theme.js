@@ -1,6 +1,8 @@
 import { extendTheme } from '@chakra-ui/react';
 import { buttonTheme } from './components/buttonTheme';
 import { popoverTheme } from './components/popoverTheme';
+import '@fontsource/lato';
+import '@fontsource/montserrat';
 
 // const config = {
 //   initialColorMode: 'white',
@@ -37,6 +39,11 @@ const styles = {
   }),
 };
 
+const fonts = {
+  heading: `'Montserat', sans-serif`,
+  body: `'Lato', sans-serif`,
+};
+
 const components = {
   Link: {
     baseStyle: {},
@@ -67,5 +74,6 @@ const theme = extendTheme({
   styles,
   components,
   breakpoints,
+  fonts,
 });
 export default theme;
