@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   userName: null,
-  postsId: null,
+  userId: null,
   token: null,
   isLoggedIn: false,
 };
@@ -13,26 +13,27 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     register(state, { payload }) {
-      state.userName = payload.user.username;
-      state.postsId = payload.user.posts;
+      state.userName = payload.user.name;
+      state.userId = payload.user.id;
       state.token = payload.token;
       state.isLoggedIn = true;
     },
     logIn: (state, { payload }) => {
-      state.userName = payload.user.username;
-      state.postsId = payload.user.posts;
+      console.log(payload);
+      state.userName = payload.user.name;
+      state.userId = payload.user.id;
       state.token = payload.token;
       state.isLoggedIn = true;
     },
     logOut: state => {
       state.userName = null;
-      state.postsId = null;
+      state.userId = null;
       state.token = null;
       state.isLoggedIn = false;
     },
     refresh: (state, { payload }) => {
-      state.userName = payload.user.username;
-      state.postsId = payload.user.posts;
+      state.userName = payload.user.name;
+      state.userId = payload.user.id;
       state.isLoggedIn = true;
     },
   },

@@ -1,19 +1,18 @@
 /* eslint-disable react/prop-types */
 import { Box } from '@chakra-ui/react';
 import {
-  FiCompass,
-  FiHome,
-  // FiSettings,
-  FiStar,
-  FiTrendingUp,
-} from 'react-icons/fi';
+  MdDashboard,
+  MdOutlineArticle,
+  MdPostAdd,
+  MdOutlineLocalOffer,
+} from 'react-icons/md';
 import NavItem from './NavItem';
 
 const LinkItems = [
-  { name: 'Dashboard', icon: FiHome, to: '/' },
-  { name: 'My Posts', icon: FiTrendingUp, to: 'my' },
-  { name: 'Add Posts', icon: FiCompass, to: 'add' },
-  { name: 'Offers', icon: FiStar, to: 'offers' },
+  { name: 'Dashboard', icon: MdDashboard, to: '/' },
+  { name: 'My Posts', icon: MdOutlineArticle, to: 'my' },
+  { name: 'Add Posts', icon: MdPostAdd, to: 'add' },
+  { name: 'Offers', icon: MdOutlineLocalOffer, to: 'offers' },
   // { name: 'Other', icon: FiSettings, to: 'other' },
 ];
 

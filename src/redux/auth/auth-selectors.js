@@ -1,6 +1,8 @@
 const getToken = state => state.auth.token;
 const isAuth = state => state.auth.isLoggedIn;
+const userName = state => state.auth.userName;
+const userId = state => state.auth.userId;
 
-const authSelectors = { getToken, isAuth };
+const authSelectors = { getToken, isAuth, userName, userId };
 
 export default authSelectors;

@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { FiLogOut } from 'react-icons/fi';
 
-const LogOutPopover = ({ handleLogOut }) => {
+const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
   return (
     <>
       <Popover placement="bottom" variant="custom">
@@ -36,7 +36,12 @@ const LogOutPopover = ({ handleLogOut }) => {
                 >
                   <Text fontSize="16px">Are you sure?</Text>
                   <Box display="flex" justifyContent="space-around">
-                    <Button colorScheme="red" size="sm" onClick={handleLogOut}>
+                    <Button
+                      colorScheme="red"
+                      isLoading={isLoading}
+                      size="sm"
+                      onClick={handleLogOut}
+                    >
                       Yes
                     </Button>
                     <Button colorScheme="green" size="sm" onClick={onClose}>

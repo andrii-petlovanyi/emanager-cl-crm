@@ -12,6 +12,7 @@ import Offers from 'pages/Offers/Offers';
 import PublicRoute from 'components/Routs/PublicRoute';
 import Login from 'pages/Login/Login';
 import Layout from 'layouts/Layout';
+import ResetPassword from 'pages/ResetPassword/ResetPassword';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,13 +31,14 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route element={<PrivateRoute />}>
-              <Route path="/" element={<Dashboard />} />
+              <Route index element={<Dashboard />} />
               <Route path="my" element={<MyPosts />} />
               <Route path="add" element={<AddPosts />} />
               <Route path="offers" element={<Offers />} />
             </Route>
             <Route element={<PublicRoute />}>
               <Route path="login" element={<Login />} />
+              <Route path="reset-pass" element={<ResetPassword />} />
             </Route>
           </Route>
         </Routes>

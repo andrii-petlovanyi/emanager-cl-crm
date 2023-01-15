@@ -21,7 +21,7 @@ const NavItem = ({ icon, to, children, ...rest }) => {
         bg={isActive ? 'sidebarActiveLinkBG' : 'none'}
         {...rest}
       >
-        {icon && <Icon mr="4" fontSize="16" as={icon} />}
+        {icon && <Icon mr="4" fontSize="18" as={icon} />}
         {children}
       </Flex>
     </Link>

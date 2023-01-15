@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -7,44 +10,50 @@ import {
   Stack,
   Button,
   Heading,
+  Link,
 } from '@chakra-ui/react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { useLogInUserMutation } from 'redux/auth/authApiSlice';
 import { logIn } from 'redux/auth/authSlice';
+import Toast from 'components/Toast/Toast';
 
-export default function Login() {
-  const [value, setValue] = useState({
-    username: '',
+const Login = () => {
+  const [userCred, setUserCred] = useState({
+    email: '',
     password: '',
   });
+  const { addToast } = Toast();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [logInUser] = useLogInUserMutation();
-
-  // gAcwaw-qyvra6-xyxwyv
+  const [logInUser, { isLoading }] = useLogInUserMutation();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (value.username === '' || value.password === '')
-      return console.log('error');
-
+    if (userCred.email === '' || userCred.password === '')
+      return addToast({
+        message: 'All fields is required!',
+        type: 'error',
+      });
     try {
-      const { data } = await logInUser(value);
-      console.log(data);
-
+      const { data, error } = await logInUser(userCred);
+      if (!data)
+        return addToast({ message: error.data.message, type: 'error' });
       dispatch(logIn(data));
-      setValue({ username: '', password: '' });
-      navigate('/');
+      setUserCred({ email: '', password: '' });
+      addToast({
+        message: `${data.user.name}, welcome back!`,
+        type: 'success',
+      });
     } catch (error) {
-      console.log(error);
+      addToast({
+        message: `${error.message}`,
+        type: 'error',
+      });
     }
   };
 
   const handleInputChange = e => {
     const { name, value } = e.currentTarget;
-    setValue(state => ({ ...state, [name]: value }));
+    setUserCred(state => ({ ...state, [name]: value }));
   };
 
   return (
@@ -57,7 +66,8 @@ export default function Login() {
       <Stack
         spacing={8}
         mx={'auto'}
-        maxW={'lg'}
+        maxW={'md'}
+        w="100%"
         py={12}
         px={6}
         color="secondaryTextColor"
@@ -72,8 +82,8 @@ export default function Login() {
                 <FormLabel>Email address</FormLabel>
                 <Input
                   type="text"
-                  name="username"
-                  value={value.email}
+                  name="email"
+                  value={userCred.email}
                   onChange={handleInputChange}
                 />
               </FormControl>
@@ -82,15 +92,19 @@ export default function Login() {
                 <Input
                   type="password"
                   name="password"
-                  value={value.email}
+                  value={userCred.password}
                   onChange={handleInputChange}
                 />
               </FormControl>
-              <Stack spacing={10}>
+              <Stack spacing={8}>
+                <Link as={NavLink} alignSelf="end" to="/reset-pass">
+                  Forgot password?
+                </Link>
                 <Button
                   type="submit"
                   bg="sidebarActiveLinkBG"
                   color="secondaryTextColor"
+                  isLoading={isLoading}
                   _hover={{
                     bg: 'buttonHover',
                     color: 'hoverColor',
@@ -105,4 +119,6 @@ export default function Login() {
       </Stack>
     </Flex>
   );
-}
+};
+
+export default Login;

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const authApiSlice = createApi({
   reducerPath: 'authApiSlice',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://elxserver.pp.ua/api',
+    baseUrl: 'https://emanager.tryapi.site/api/users',
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
@@ -19,7 +19,7 @@ const authApiSlice = createApi({
   endpoints: builder => ({
     signUpUser: builder.mutation({
       query: user => ({
-        url: `/auth/register`,
+        url: `/signup`,
         method: 'POST',
         body: { name: user.name, email: user.email, password: user.password },
         providesTags: ['users'],
@@ -28,25 +28,41 @@ const authApiSlice = createApi({
 
     logInUser: builder.mutation({
       query: user => ({
-        url: `/auth/login`,
+        url: `/signin`,
         method: 'POST',
-        body: { username: user.username, password: user.password },
+        body: { email: user.email, password: user.password },
       }),
       providesTags: ['users'],
     }),
 
     logOutUser: builder.mutation({
-      // eslint-disable-next-line no-unused-vars
-      query: token => ({
-        url: `/`,
-        method: 'POST',
+      query: () => ({
+        url: `/logout`,
       }),
       providesTags: ['users'],
     }),
 
     getUser: builder.query({
       query: () => ({
-        url: '/auth/me',
+        url: '/current',
+      }),
+      providesTags: ['users'],
+    }),
+
+    resetUserPass: builder.mutation({
+      query: email => ({
+        url: `/password-reset`,
+        method: 'POST',
+        body: { email },
+      }),
+      providesTags: ['users'],
+    }),
+
+    changeUserPass: builder.mutation({
+      query: user => ({
+        url: `/${user.id}/password`,
+        method: 'POST',
+        body: { email: user.email, password: user.password },
       }),
       providesTags: ['users'],
     }),
@@ -57,6 +73,8 @@ export const {
   useSignUpUserMutation,
   useLogInUserMutation,
   useLogOutUserMutation,
+  useChangeUserPassMutation,
+  useResetUserPassMutation,
   useGetUserQuery,
 } = authApiSlice;
 
