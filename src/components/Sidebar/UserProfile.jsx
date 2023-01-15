@@ -8,7 +8,7 @@ const UserProfile = ({ ...rest }) => {
         display={{ base: 'block', lg: 'none' }}
         mr={{ base: '20px' }}
         ml={{ lg: '20px' }}
-        mt="80px"
+        mt={{ base: '0', lg: '80px' }}
         w={{ base: '230px', lg: '230px' }}
         transition="1s ease"
         p="20px 25px"

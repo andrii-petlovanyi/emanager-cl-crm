@@ -10,7 +10,7 @@ import Logo from 'components/Logo/Logo';
 import Toast from 'components/Toast/Toast';
 import LogOutPopover from './LogOutPopover';
 
-const Navbar = ({ onOpen, ...rest }) => {
+const Header = ({ onOpen, ...rest }) => {
   const dispatch = useDispatch();
   const userName = useSelector(authSelectors.userName);
   const [logOutUser, { isLoading }] = useLogOutUserMutation();
@@ -57,4 +57,4 @@ const Navbar = ({ onOpen, ...rest }) => {
   );
 };
 
-export default Navbar;
+export default Header;

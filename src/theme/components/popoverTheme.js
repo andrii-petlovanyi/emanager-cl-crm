@@ -3,7 +3,7 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 const custom = defineStyle({
   content: {
     right: '10px',
-    width: '200px',
+    width: '220px',
     bg: 'sectionBG',
     padding: '5px 10px',
     border: '',

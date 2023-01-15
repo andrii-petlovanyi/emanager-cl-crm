@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 
-const Footer = () => {
+const Footer = ({ ...rest }) => {
   return (
     <Box
       position="fixed"
@@ -12,6 +12,7 @@ const Footer = () => {
       height="50px"
       color="secondaryTextColor"
       opacity="0.3"
+      {...rest}
     >
       &copy; {new Date().getFullYear()} | Petlovanyi A.
     </Box>

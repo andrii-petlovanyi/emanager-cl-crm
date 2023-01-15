@@ -5,6 +5,7 @@ import {
   MdOutlineArticle,
   MdPostAdd,
   MdOutlineLocalOffer,
+  MdOutlineArchive,
 } from 'react-icons/md';
 import NavItem from './NavItem';
 
@@ -13,7 +14,7 @@ const LinkItems = [
   { name: 'My Posts', icon: MdOutlineArticle, to: 'my' },
   { name: 'Add Posts', icon: MdPostAdd, to: 'add' },
   { name: 'Offers', icon: MdOutlineLocalOffer, to: 'offers' },
-  // { name: 'Other', icon: FiSettings, to: 'other' },
+  { name: 'Archive Posts', icon: MdOutlineArchive, to: 'archive' },
 ];
 
 const SidebarContent = ({ ...rest }) => {
@@ -22,8 +23,8 @@ const SidebarContent = ({ ...rest }) => {
       pos="fixed"
       display={{ base: 'block', lg: 'none' }}
       mr={{ base: '20px' }}
-      ml={{ lg: '20px' }}
-      mt="190px"
+      ml={{ base: 'auto', lg: '20px' }}
+      mt={{ base: '120px', lg: '190px' }}
       w="230px"
       p="20px 5px"
       transition="1s ease"

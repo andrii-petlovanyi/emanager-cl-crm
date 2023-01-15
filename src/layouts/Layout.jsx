@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 import Footer from 'components/Footer/Footer';
 import Logo from 'components/Logo/Logo';
-import Navbar from 'components/Navbar/Navbar';
+import Header from 'components/Header/Header';
 import SidebarContent from 'components/Sidebar/SidebarContent';
 import UserProfile from 'components/Sidebar/UserProfile';
 import { useSelector } from 'react-redux';
@@ -51,13 +51,26 @@ const Layout = () => {
             >
               <DrawerContent
                 display={{ lg: 'none' }}
+                mr="-45px"
                 style={{ bottom: 'none', backgroundColor: 'none' }}
               >
-                <UserProfile />
-                <SidebarContent onClose={onClose} />
+                <Box
+                  position="absolute"
+                  width="100%"
+                  height="100vh"
+                  mt="70px"
+                  borderTopLeftRadius="20px"
+                  backgroundColor="#ffffff02"
+                  backdropFilter="blur(10px)"
+                  border
+                  padding="20px"
+                >
+                  <UserProfile />
+                  <SidebarContent onClose={onClose} />
+                </Box>
               </DrawerContent>
             </Drawer>
-            <Navbar onOpen={onOpen} />
+            <Header onOpen={onOpen} />
           </>
         )}
         {!isAuth && !isLoading && (
@@ -68,7 +81,11 @@ const Layout = () => {
             left="35px"
             transform="translate(0, -50%)"
           >
-            <Text fontSize="34px" fontFamily={'Montserrat'}>
+            <Text
+              fontSize="34px"
+              display={{ base: 'none', lg: 'flex' }}
+              fontFamily={'Montserrat'}
+            >
               managing your assistant bot in a few clicks
             </Text>
           </Box>

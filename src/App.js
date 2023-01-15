@@ -14,6 +14,7 @@ import Login from 'pages/Login/Login';
 import Layout from 'layouts/Layout';
 import ResetPassword from 'pages/ResetPassword/ResetPassword';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
+import ArchivePosts from 'pages/ArchivePosts/ArchivePosts';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const App = () => {
               <Route path="my" element={<MyPosts />} />
               <Route path="add" element={<AddPosts />} />
               <Route path="offers" element={<Offers />} />
+              <Route path="archive" element={<ArchivePosts />} />
             </Route>
             <Route element={<PublicRoute />}>
               <Route path="login" element={<Login />} />

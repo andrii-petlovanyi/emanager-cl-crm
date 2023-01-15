@@ -16,6 +16,8 @@ import {
 import { useLogInUserMutation } from 'redux/auth/authApiSlice';
 import { logIn } from 'redux/auth/authSlice';
 import Toast from 'components/Toast/Toast';
+import Logo from 'components/Logo/Logo';
+import Footer from 'components/Footer/Footer';
 
 const Login = () => {
   const [userCred, setUserCred] = useState({
@@ -63,6 +65,12 @@ const Login = () => {
       justify={'center'}
       bg="sectionBG"
     >
+      <Logo
+        display={{ base: 'flex', lg: 'none' }}
+        position="absolute"
+        top="20px"
+        left="20px"
+      />
       <Stack
         spacing={8}
         mx={'auto'}
@@ -117,6 +125,7 @@ const Login = () => {
           </form>
         </Box>
       </Stack>
+      <Footer display={{ base: 'flex', lg: 'none' }} mx="auto" />
     </Flex>
   );
 };

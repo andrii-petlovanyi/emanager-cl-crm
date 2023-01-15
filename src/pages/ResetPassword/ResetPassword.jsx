@@ -13,6 +13,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useResetUserPassMutation } from 'redux/auth/authApiSlice';
 import Toast from 'components/Toast/Toast';
+import Logo from 'components/Logo/Logo';
+import Footer from 'components/Footer/Footer';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -49,6 +51,12 @@ const ResetPassword = () => {
         justify={'center'}
         bg="sectionBG"
       >
+        <Logo
+          display={{ base: 'flex', lg: 'none' }}
+          position="absolute"
+          top="20px"
+          left="20px"
+        />
         <Stack
           spacing={6}
           mx={'auto'}
@@ -91,6 +99,7 @@ const ResetPassword = () => {
             </form>
           </Box>
         </Stack>
+        <Footer display={{ base: 'flex', lg: 'none' }} mx="auto" />
       </Flex>
     </>
   );
