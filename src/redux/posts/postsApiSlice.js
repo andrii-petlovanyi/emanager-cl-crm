@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { store } from 'redux/store';
+import { API_URL } from 'services/apiUrl';
 
 const postsApiSlice = createApi({
   reducerPath: 'postsApiSlice',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://elxserver.pp.ua/api',
+    baseUrl: `${API_URL}/posts`,
 
     prepareHeaders: headers => {
       const token = store.getState().auth.token;
@@ -15,38 +16,42 @@ const postsApiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ['posts', 'userPosts'],
+  tagTypes: ['posts'],
   endpoints: builder => ({
     getPosts: builder.query({
-      query: () => `/posts`,
+      query: () => `/`,
       keepUnusedDataFor: 0,
       providesTags: ['posts'],
     }),
-    getUserPosts: builder.query({
-      query: () => `/posts/user/me`,
+
+    getPostById: builder.query({
+      query: postId => `/${postId}`,
       keepUnusedDataFor: 0,
       providesTags: ['userPosts'],
     }),
-    postPost: builder.mutation({
-      query: contact => ({
-        url: `/posts`,
-        method: 'POST',
-        body: contact,
-      }),
-      invalidatesTags: ['posts'],
-    }),
+
     deletePost: builder.mutation({
-      query: contactId => ({
-        url: `/posts/${contactId}`,
+      query: postId => ({
+        url: `/${postId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['posts'],
     }),
-    patchPost: builder.mutation({
-      query: ({ postsId, patchedPosts }) => ({
-        url: `/contacts/${postsId}`,
-        method: 'PATCH',
-        body: patchedPosts,
+
+    addPost: builder.mutation({
+      query: post => ({
+        url: `/`,
+        method: 'POST',
+        body: post,
+      }),
+      invalidatesTags: ['posts'],
+    }),
+
+    updatePost: builder.mutation({
+      query: ({ postId, updatedPost }) => ({
+        url: `/${postId}`,
+        method: 'PUT',
+        body: updatedPost,
       }),
       invalidatesTags: ['posts'], // subscription to updates
     }),
@@ -54,11 +59,11 @@ const postsApiSlice = createApi({
   refetchOnReconnect: true,
 });
 export const {
-  useGetPostsQuery,
-  useGetUserPostsQuery,
-  usePostPostMutation,
+  useAddPostMutation,
   useDeletePostMutation,
-  usePatchPostMutation,
+  useGetPostByIdQuery,
+  useGetPostsQuery,
+  useUpdatePostMutation,
 } = postsApiSlice;
 
 export default postsApiSlice;

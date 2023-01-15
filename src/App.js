@@ -13,6 +13,7 @@ import PublicRoute from 'components/Routs/PublicRoute';
 import Login from 'pages/Login/Login';
 import Layout from 'layouts/Layout';
 import ResetPassword from 'pages/ResetPassword/ResetPassword';
+import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,15 @@ const App = () => {
     skip: token === null,
   });
 
+  //test
+  const { data: newDate } = useGetPostsQuery();
+  console.log(newDate);
+  //test
+
   useEffect(() => {
-    if (data) dispatch(refresh(data));
+    if (!data) return;
+
+    dispatch(refresh(data));
   }, [data]);
 
   return (

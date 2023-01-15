@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_URL } from 'services/apiUrl';
 
 const authApiSlice = createApi({
   reducerPath: 'authApiSlice',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://emanager.tryapi.site/api/users',
+    baseUrl: `${API_URL}/users`,
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;

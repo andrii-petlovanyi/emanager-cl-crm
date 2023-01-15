@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { store } from 'redux/store';
+import { API_URL } from 'services/apiUrl';
 
 const offersApiSlice = createApi({
   reducerPath: 'offersApiSlice',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://elxserver.pp.ua/api',
+    baseUrl: `${API_URL}/offers`,
 
     prepareHeaders: headers => {
       const token = store.getState().auth.token;
@@ -18,14 +19,20 @@ const offersApiSlice = createApi({
   tagTypes: ['offers'],
   endpoints: builder => ({
     getOffers: builder.query({
-      query: () => `/offers`,
+      query: () => `/`,
       keepUnusedDataFor: 0,
       providesTags: ['offers'],
     }),
 
-    deletePost: builder.mutation({
+    getOffersById: builder.query({
+      query: offerId => `/${offerId}`,
+      keepUnusedDataFor: 0,
+      providesTags: ['offers'],
+    }),
+
+    deleteOffer: builder.mutation({
       query: offerId => ({
-        url: `/offers/${offerId}`,
+        url: `/${offerId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['offers'],
@@ -33,6 +40,10 @@ const offersApiSlice = createApi({
   }),
   refetchOnReconnect: true,
 });
-export const { useDeletePostMutation, useGetOffersQuery } = offersApiSlice;
+export const {
+  useDeletePostMutation,
+  useGetOffersByIdQuery,
+  useGetOffersQuery,
+} = offersApiSlice;
 
 export default offersApiSlice;

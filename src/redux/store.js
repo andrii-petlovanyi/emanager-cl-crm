@@ -14,6 +14,7 @@ import authReducer from 'redux/auth/authSlice';
 import postsApiSlice from 'redux/posts/postsApiSlice';
 import authApiSlice from 'redux/auth/authApiSlice';
 import offersApiSlice from 'redux/offers/offersApiSlice';
+import archiveApiSlice from './archive/archiveApiSlice';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 const middleware = [
@@ -25,6 +26,7 @@ const middleware = [
   authApiSlice.middleware,
   postsApiSlice.middleware,
   offersApiSlice.middleware,
+  archiveApiSlice.middleware,
 ];
 
 const authPersistConfig = {
@@ -38,6 +40,7 @@ export const store = configureStore({
     [authApiSlice.reducerPath]: authApiSlice.reducer,
     [postsApiSlice.reducerPath]: postsApiSlice.reducer,
     [offersApiSlice.reducerPath]: offersApiSlice.reducer,
+    [archiveApiSlice.reducerPath]: archiveApiSlice.reducer,
   },
   middleware,
   //   devTools: process.env.NODE_ENV === 'development',
