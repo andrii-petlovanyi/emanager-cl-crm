@@ -11,6 +11,7 @@ import '@fontsource/montserrat';
 
 const breakpoints = {
   sm: '320px',
+  msm: '400px',
   md: '768px',
   lg: '992px',
   xl: '1280px',
