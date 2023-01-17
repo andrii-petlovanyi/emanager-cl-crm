@@ -16,18 +16,19 @@ const postsApiSlice = createApi({
       return headers;
     },
   }),
+  keepUnusedDataFor: 30,
   tagTypes: ['posts'],
   endpoints: builder => ({
     getPosts: builder.query({
       query: () => `/`,
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 30,
       providesTags: ['posts'],
     }),
 
     getPostById: builder.query({
       query: postId => `/${postId}`,
-      keepUnusedDataFor: 0,
-      providesTags: ['userPosts'],
+      keepUnusedDataFor: 30,
+      providesTags: ['posts'],
     }),
 
     deletePost: builder.mutation({
@@ -64,6 +65,7 @@ export const {
   useGetPostByIdQuery,
   useGetPostsQuery,
   useUpdatePostMutation,
+  usePrefetch,
 } = postsApiSlice;
 
 export default postsApiSlice;

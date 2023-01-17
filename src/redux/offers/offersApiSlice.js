@@ -20,13 +20,13 @@ const offersApiSlice = createApi({
   endpoints: builder => ({
     getOffers: builder.query({
       query: () => `/`,
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 5,
       providesTags: ['offers'],
     }),
 
     getOffersById: builder.query({
       query: offerId => `/${offerId}`,
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 5,
       providesTags: ['offers'],
     }),
 

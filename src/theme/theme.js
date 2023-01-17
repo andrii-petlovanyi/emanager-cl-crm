@@ -28,7 +28,10 @@ const colors = {
   primaryTextColor: '#8A92A6',
   secondaryTextColor: '#D3D3D3',
   hoverColor: '#E1F1FF',
+
   buttonHover: '#0076FB',
+  borderColor: '#D3D3D333',
+  badgeAccentBG: '#714E99',
 };
 
 const styles = {

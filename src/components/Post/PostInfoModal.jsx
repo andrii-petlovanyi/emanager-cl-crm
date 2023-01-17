@@ -7,6 +7,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Tooltip,
   useDisclosure,
 } from '@chakra-ui/react';
 import { MdOutlineTextsms } from 'react-icons/md';
@@ -15,14 +16,14 @@ const PostInfoModal = ({ postInfo = '', model = '' }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <IconButton
-        onClick={onOpen}
-        color="primaryTextColor"
-        icon={<MdOutlineTextsms />}
-        colorScheme="gray"
-        aria-label="Post text"
-        variant="outline"
-      />
+      <Tooltip hasArrow label="Post text">
+        <IconButton
+          onClick={onOpen}
+          icon={<MdOutlineTextsms />}
+          aria-label="Post text"
+          variant="customOutIB"
+        />
+      </Tooltip>
       <Modal isOpen={isOpen} isCentered onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

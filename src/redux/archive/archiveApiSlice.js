@@ -16,11 +16,12 @@ const archiveApiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ['archive'],
+
+  tagTypes: ['archive', 'posts'],
   endpoints: builder => ({
     getArchiveList: builder.query({
       query: () => `/`,
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 5,
       providesTags: ['archive'],
     }),
 
