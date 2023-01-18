@@ -1,32 +1,23 @@
-import { Box, SimpleGrid } from '@chakra-ui/react';
-import Post from 'components/Post/Post';
-import StatCard from 'components/StatCard/StatCard';
+import { Box } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { usePrefetch } from 'redux/posts/postsApiSlice';
+import { usePrefetch as prefPost } from 'redux/posts/postsApiSlice';
+import { usePrefetch } from 'redux/archive/archiveApiSlice';
+import StatList from 'components/StatList/StatList';
+import PostsList from 'components/Dashboard/PostsList';
 
 const Dashboard = () => {
-  const prefetchPost = usePrefetch('getPosts');
+  const prefetchPost = prefPost('getPosts');
+  const prefetchArchive = usePrefetch('getArchiveList');
 
   useEffect(() => {
-    prefetchPost();
+    prefetchPost({});
+    prefetchArchive({});
   }, []);
 
   return (
     <Box p="10px" pt="0" display="flex" flexDirection="column" gridGap="30px">
-      <SimpleGrid minChildWidth="230px" spacing="30px" width="100%">
-        <StatCard />
-        <StatCard />
-        <StatCard />
-      </SimpleGrid>
-      <SimpleGrid
-        minChildWidth={{ base: '240px', msm: '300px' }}
-        spacing="20px"
-        justifyContent="center"
-        width="100%"
-      >
-        <Post />
-        <Post />
-      </SimpleGrid>
+      <StatList />
+      <PostsList />
     </Box>
   );
 };

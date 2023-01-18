@@ -16,12 +16,12 @@ const archiveApiSlice = createApi({
       return headers;
     },
   }),
-
-  tagTypes: ['archive', 'posts'],
+  keepUnusedDataFor: 30,
+  tagTypes: ['archive'],
   endpoints: builder => ({
     getArchiveList: builder.query({
-      query: () => `/`,
-      keepUnusedDataFor: 5,
+      query: ({ page = 1, limit = 10 }) => `/?limit=${limit}&page=${page}`,
+      keepUnusedDataFor: 30,
       providesTags: ['archive'],
     }),
 
@@ -57,6 +57,7 @@ export const {
   useAddToArchiveMutation,
   useMoveFromArchiveMutation,
   useDeleteFromArchiveMutation,
+  usePrefetch,
 } = archiveApiSlice;
 
 export default archiveApiSlice;

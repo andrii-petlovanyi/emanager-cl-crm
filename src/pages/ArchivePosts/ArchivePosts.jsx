@@ -3,8 +3,8 @@ import Post from 'components/Post/Post';
 import { useGetArchiveListQuery } from 'redux/archive/archiveApiSlice';
 
 const ArchivePosts = () => {
-  const { data, isLoading } = useGetArchiveListQuery();
-  const posts = data?.data;
+  const { data, isLoading } = useGetArchiveListQuery({});
+  const { archivePosts } = data || [];
   return (
     !isLoading && (
       <SimpleGrid
@@ -13,8 +13,8 @@ const ArchivePosts = () => {
         justifyContent="center"
         width="100%"
       >
-        {posts?.length
-          ? posts?.map(post => (
+        {archivePosts?.length
+          ? archivePosts?.map(post => (
               <Post key={post._id} post={post} type={'archive'} />
             ))
           : 'Sorry, no posts in archive'}

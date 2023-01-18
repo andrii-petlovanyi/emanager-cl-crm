@@ -3,8 +3,8 @@ import Post from 'components/Post/Post';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 
 const MyPosts = () => {
-  const { data, isLoading } = useGetPostsQuery();
-  const posts = data?.data;
+  const { data, isLoading } = useGetPostsQuery({});
+  const { posts } = data || [];
 
   return (
     !isLoading && (
@@ -14,7 +14,7 @@ const MyPosts = () => {
         justifyContent="center"
         width="100%"
       >
-        {posts.length
+        {posts?.length
           ? posts.map(post => <Post key={post._id} post={post} type={'post'} />)
           : 'Sorry, no posts in database'}
       </SimpleGrid>

@@ -20,7 +20,7 @@ const postsApiSlice = createApi({
   tagTypes: ['posts'],
   endpoints: builder => ({
     getPosts: builder.query({
-      query: () => `/`,
+      query: ({ page = 1, limit = 10 }) => `/?limit=${limit}&page=${page}`,
       keepUnusedDataFor: 30,
       providesTags: ['posts'],
     }),

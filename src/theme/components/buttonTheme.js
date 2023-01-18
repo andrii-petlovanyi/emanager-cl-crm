@@ -14,6 +14,20 @@ const customIB = defineStyle({
   },
 });
 
+const tabArrowIB = defineStyle({
+  background: 'none',
+  color: 'primaryTextColor',
+  fontWeight: '700',
+  fontSize: '30px',
+  transition: '350ms ease',
+  transform: 'translate3d(0, 0, 0)',
+
+  _hover: {
+    color: 'hoverColor',
+    transform: 'scale(1.1)',
+  },
+});
+
 const customOutIB = defineStyle({
   background: 'none',
   color: 'primaryTextColor',
@@ -31,5 +45,5 @@ const customOutIB = defineStyle({
 });
 
 export const buttonTheme = defineStyleConfig({
-  variants: { customIB, customOutIB },
+  variants: { customIB, customOutIB, tabArrowIB },
 });

@@ -48,7 +48,6 @@ const PostOptions = ({ post = {}, type = '' }) => {
   const moveFromArchiveHandler = async () => {
     const postId = post?._id;
     const { data } = await moveFromArchive(postId);
-    console.log(data);
     if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
   };
 

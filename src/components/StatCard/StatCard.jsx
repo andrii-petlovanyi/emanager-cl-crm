@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { MdNorthEast } from 'react-icons/md';
 
-const StatCard = () => {
+const StatCard = ({ stat = {} }) => {
+  const { title, count } = stat;
   return (
     <Box
       minW="230px"
@@ -33,8 +35,8 @@ const StatCard = () => {
         alignItems="center"
         gridGap="8px"
       >
-        <Text fontSize="18px">Total Posts</Text>
-        <Heading fontSize="26px">680</Heading>
+        <Text fontSize="18px">{title}</Text>
+        <Heading fontSize="26px">{count}</Heading>
       </Flex>
     </Box>
   );
