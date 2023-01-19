@@ -16,20 +16,28 @@ import { useDeletePostMutation } from 'redux/posts/postsApiSlice';
 
 /* eslint-disable no-unused-vars */
 const PostOptions = ({ post = {}, type = '' }) => {
-  const [deletePost] = useDeletePostMutation();
-
-  const [moveFromArchive] = useMoveFromArchiveMutation();
-  const [deleteFromArchive] = useDeleteFromArchiveMutation();
-  const [addToArchive] = useAddToArchiveMutation();
-
   const dispatch = useDispatch();
+
+  const [deletePost, { isLoading: delPostLoading }] = useDeletePostMutation();
+  const [moveFromArchive, { isLoading: moveFromArchLoading }] =
+    useMoveFromArchiveMutation();
+  const [deleteFromArchive, { isLoading: delArchLoading }] =
+    useDeleteFromArchiveMutation();
+  const [addToArchive, { isLoading: addToArchLoading }] =
+    useAddToArchiveMutation();
+
+  const typePost = type && type === 'post';
+  const typeArchive = type && type === 'archive';
+
+  const postOptLoading = delPostLoading || addToArchLoading;
+  const archOptLoading = moveFromArchLoading || delArchLoading;
 
   const editPostHandler = () => {
     console.log('hello');
   };
 
   const deletePostHandler = async () => {
-    const { data } = deletePost(post?._id);
+    const { data } = await deletePost(post?._id);
     console.log(data);
   };
 
@@ -41,18 +49,16 @@ const PostOptions = ({ post = {}, type = '' }) => {
   };
 
   const deleteArchivePostHandler = async () => {
-    const { data } = deleteFromArchive(post?._id);
+    const { data } = await deleteFromArchive(post?._id);
     console.log(data);
   };
 
   const moveFromArchiveHandler = async () => {
     const postId = post?._id;
     const { data } = await moveFromArchive(postId);
+
     if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
   };
-
-  const typePost = type && type === 'post';
-  const typeArchive = type && type === 'archive';
 
   return (
     <Menu closeOnSelect isLazy>
@@ -64,6 +70,7 @@ const PostOptions = ({ post = {}, type = '' }) => {
         aria-label="Post menu"
         variant="ghost"
         fontSize="22px"
+        isLoading={typePost ? postOptLoading : archOptLoading}
         color="primaryTextColor"
         icon={<MdMoreVert />}
       />

@@ -1,23 +1,26 @@
 import { Box, IconButton, SimpleGrid } from '@chakra-ui/react';
-import Post from 'components/Post/Post';
+import Offer from 'components/Offer/Offer';
 import { useState } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
+import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 
-const PostsList = () => {
+const OffersTab = () => {
   const [page, setPage] = useState(1);
 
-  const { data, isLoading } = useGetPostsQuery({ page, limit: 2 });
-  const { posts, totalPosts } = data || {};
-  const totalPage = Math.ceil(totalPosts / 2);
+  const { data, isLoading } = useGetOffersQuery({ page, limit: 3 });
+  const { offers, totalOffers } = data || {};
+
+  const totalPage = Math.ceil(totalOffers / 3);
+  const decrDisabled = page === 1;
+  const incrDisabled = page === totalPage || page === 3;
 
   const incrementHandler = () => {
-    if (page === totalPage || page === 5) return;
+    if (incrDisabled) return;
     setPage(prev => prev + 1);
   };
 
   const decrementHandler = () => {
-    if (page === 1) return;
+    if (decrDisabled) return;
     setPage(prev => prev - 1);
   };
 
@@ -25,21 +28,23 @@ const PostsList = () => {
     <>
       <Box>
         <SimpleGrid
-          minChildWidth={{ base: '240px', msm: '320px' }}
+          minChildWidth={{ base: '240px', msm: '300px' }}
           spacing="20px"
           justifyContent="center"
           width="100%"
         >
-          {posts?.length
-            ? posts.map(post => <Post key={post._id} post={post} type="post" />)
+          {offers?.length
+            ? offers.map(offer => <Offer key={offer._id} offer={offer} />)
             : 'Sorry, no posts available...'}
         </SimpleGrid>
         <IconButton
+          isDisabled={decrDisabled}
           onClick={decrementHandler}
           icon={<MdKeyboardArrowLeft />}
           variant="tabArrowIB"
         />
         <IconButton
+          isDisabled={incrDisabled}
           onClick={incrementHandler}
           icon={<MdKeyboardArrowRight />}
           variant="tabArrowIB"
@@ -51,4 +56,4 @@ const PostsList = () => {
   );
 };
 
-export default PostsList;
+export default OffersTab;

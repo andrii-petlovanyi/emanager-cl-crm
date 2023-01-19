@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { usePrefetch as prefPost } from 'redux/posts/postsApiSlice';
 import { usePrefetch } from 'redux/archive/archiveApiSlice';
 import StatList from 'components/StatList/StatList';
-import PostsList from 'components/Dashboard/PostsList';
+import PostsTab from 'components/Dashboard/PostsTab';
+import OffersTab from 'components/Dashboard/OffersTab';
 
 const Dashboard = () => {
   const prefetchPost = prefPost('getPosts');
@@ -17,7 +18,8 @@ const Dashboard = () => {
   return (
     <Box p="10px" pt="0" display="flex" flexDirection="column" gridGap="30px">
       <StatList />
-      <PostsList />
+      <PostsTab />
+      <OffersTab />
     </Box>
   );
 };

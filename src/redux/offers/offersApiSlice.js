@@ -19,7 +19,7 @@ const offersApiSlice = createApi({
   tagTypes: ['offers'],
   endpoints: builder => ({
     getOffers: builder.query({
-      query: () => `/`,
+      query: ({ page, limit }) => `/?page=${page}&limit=${limit}`,
       keepUnusedDataFor: 5,
       providesTags: ['offers'],
     }),
@@ -41,7 +41,7 @@ const offersApiSlice = createApi({
   refetchOnReconnect: true,
 });
 export const {
-  useDeletePostMutation,
+  useDeleteOfferMutation,
   useGetOffersByIdQuery,
   useGetOffersQuery,
 } = offersApiSlice;
