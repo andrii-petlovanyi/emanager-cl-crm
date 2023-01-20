@@ -12,7 +12,6 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import { MdBookmark, MdMenuBook } from 'react-icons/md';
-import '@fontsource/montserrat';
 
 import PostInfoModal from './PostInfoModal';
 import PostOptions from './PostOptions';

@@ -9,6 +9,9 @@ import { persistor, store } from 'redux/store';
 import App from './App';
 import theme from 'theme/theme';
 
+import '@fontsource/lato';
+import '@fontsource/montserrat';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter basename="/">

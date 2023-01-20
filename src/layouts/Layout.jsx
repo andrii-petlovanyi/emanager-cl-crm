@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import authSelectors from 'redux/auth/auth-selectors';
 import { useGetUserQuery } from 'redux/auth/authApiSlice';
-import '@fontsource/montserrat';
 
 const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

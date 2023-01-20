@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { Text } from '@chakra-ui/react';
-import '@fontsource/montserrat';
 
 const Logo = ({ ...res }) => {
   return (

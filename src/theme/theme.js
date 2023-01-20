@@ -1,8 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import { buttonTheme } from './components/buttonTheme';
 import { popoverTheme } from './components/popoverTheme';
-import '@fontsource/lato';
-import '@fontsource/montserrat';
 
 // const config = {
 //   initialColorMode: 'white',
