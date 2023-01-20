@@ -6,6 +6,7 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
+import Toast from 'components/Toast/Toast';
 import { MdMoreVert } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useDeleteFromArchiveMutation } from 'redux/archive/archiveApiSlice';
@@ -17,6 +18,8 @@ import { useDeletePostMutation } from 'redux/posts/postsApiSlice';
 /* eslint-disable no-unused-vars */
 const PostOptions = ({ post = {}, type = '' }) => {
   const dispatch = useDispatch();
+  const { addToast } = Toast();
+  const postId = post._id;
 
   const [deletePost, { isLoading: delPostLoading }] = useDeletePostMutation();
   const [moveFromArchive, { isLoading: moveFromArchLoading }] =
@@ -37,25 +40,30 @@ const PostOptions = ({ post = {}, type = '' }) => {
   };
 
   const deletePostHandler = async () => {
-    const { data } = await deletePost(post?._id);
-    console.log(data);
+    const { data, error } = await deletePost(postId);
+    if (error) return addToast({ message: error.data.message, type: 'error' });
+    addToast({ message: data.message, type: 'success' });
   };
 
   const addPostToArchiveHandler = async () => {
-    const postId = { postId: post?._id };
-    const { data } = await addToArchive(postId);
+    const { data, error } = await addToArchive({ postId });
+    if (error) return addToast({ message: error.data.message, type: 'error' });
+    addToast({ message: data.message, type: 'success' });
+
     //TODO: notify and good validation result
     if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
   };
 
   const deleteArchivePostHandler = async () => {
-    const { data } = await deleteFromArchive(post?._id);
-    console.log(data);
+    const { data, error } = await deleteFromArchive(postId);
+    if (error) return addToast({ message: error.data.message, type: 'error' });
+    addToast({ message: data.message, type: 'success' });
   };
 
   const moveFromArchiveHandler = async () => {
-    const postId = post?._id;
-    const { data } = await moveFromArchive(postId);
+    const { data, error } = await moveFromArchive(postId);
+    if (error) return addToast({ message: error.data.message, type: 'error' });
+    addToast({ message: data.message, type: 'success' });
 
     if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
   };

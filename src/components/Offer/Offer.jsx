@@ -7,27 +7,14 @@ import {
   CardBody,
   CardHeader,
   Flex,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Text,
 } from '@chakra-ui/react';
 import moment from 'moment';
-import { MdMoreVert } from 'react-icons/md';
-import { useDeleteOfferMutation } from 'redux/offers/offersApiSlice';
+import OfferOptions from './OfferOptions';
 
 /* eslint-disable no-unused-vars */
 const Offer = ({ offer = {} }) => {
   const { _id: id, model, date, firstName, lastName, username } = offer;
-
-  const [deleteOffer, { isLoading }] = useDeleteOfferMutation();
-
-  const deleteOfferHandler = async () => {
-    const res = await deleteOffer(id);
-    console.log(res);
-  };
 
   return (
     <>
@@ -49,23 +36,7 @@ const Offer = ({ offer = {} }) => {
                 <Text fontSize="12px">{username ?? ''}</Text>
               </Box>
             </Flex>
-            <Menu closeOnSelect isLazy>
-              <MenuButton
-                as={IconButton}
-                position="absolute"
-                top="0"
-                right="0"
-                aria-label="Post menu"
-                variant="ghost"
-                fontSize="22px"
-                isLoading={isLoading}
-                color="primaryTextColor"
-                icon={<MdMoreVert />}
-              />
-              <MenuList>
-                <MenuItem onClick={deleteOfferHandler}>Delete</MenuItem>
-              </MenuList>
-            </Menu>
+            <OfferOptions id={id} />
           </Flex>
         </CardHeader>
         <CardBody p="0 20px 20px 20px" display="flex" justifyContent="center">
