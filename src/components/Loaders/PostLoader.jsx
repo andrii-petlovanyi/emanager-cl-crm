@@ -15,7 +15,12 @@ const PostLoader = () => {
         borderRadius="10px"
         height="150px"
       >
-        <Skeleton flex="1" borderLeftRadius="10px" />
+        <Skeleton
+          flex="1"
+          borderLeftRadius="10px"
+          startColor="gray.600"
+          endColor="gray.800"
+        />
         <Box
           flex="2"
           display="flex"
@@ -29,6 +34,8 @@ const PostLoader = () => {
             maxWidth="120px"
             width="100%"
             height="40px"
+            startColor="gray.600"
+            endColor="gray.800"
           />
 
           <Skeleton
@@ -39,6 +46,8 @@ const PostLoader = () => {
             borderRadius="10px"
             width="10px"
             height="25px"
+            startColor="gray.600"
+            endColor="gray.800"
           />
           <Skeleton
             position="absolute"
@@ -49,6 +58,8 @@ const PostLoader = () => {
             borderBottomRightRadius="10px"
             width="30px"
             height="20px"
+            startColor="gray.600"
+            endColor="gray.800"
           />
           <Box display="flex" gap="10px" justifyContent="center">
             <Skeleton
@@ -56,18 +67,24 @@ const PostLoader = () => {
               maxWidth="40px"
               width="100%"
               height="40px"
+              startColor="gray.600"
+              endColor="gray.800"
             />
             <Skeleton
               borderRadius="5px"
               maxWidth="40px"
               width="100%"
               height="40px"
+              startColor="gray.600"
+              endColor="gray.800"
             />
             <Skeleton
               borderRadius="5px"
               maxWidth="40px"
               width="100%"
               height="40px"
+              startColor="gray.600"
+              endColor="gray.800"
             />
           </Box>
         </Box>

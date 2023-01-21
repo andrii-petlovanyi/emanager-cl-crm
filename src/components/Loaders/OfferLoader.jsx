@@ -20,10 +20,22 @@ const OfferLoader = () => {
           gap="15px"
           alignItems="center"
         >
-          <SkeletonCircle size="12" />
+          <SkeletonCircle size="12" startColor="gray.600" endColor="gray.800" />
           <Box display="flex" flexDirection="column" gap="10px">
-            <Skeleton height="15px" width="120px" borderRadius="10px" />
-            <Skeleton height="15px" width="60px" borderRadius="10px" />
+            <Skeleton
+              height="15px"
+              width="120px"
+              borderRadius="10px"
+              startColor="gray.600"
+              endColor="gray.800"
+            />
+            <Skeleton
+              height="15px"
+              width="60px"
+              borderRadius="10px"
+              startColor="gray.600"
+              endColor="gray.800"
+            />
           </Box>
         </Box>
         <Box position="absolute" bottom="20px" left="50%">
@@ -32,6 +44,8 @@ const OfferLoader = () => {
             height="35px"
             borderRadius="10px"
             transform="translateX(-50%)"
+            startColor="gray.600"
+            endColor="gray.800"
           />
         </Box>
         <Box
@@ -46,6 +60,8 @@ const OfferLoader = () => {
             maxWidth="120px"
             width="100%"
             height="40px"
+            startColor="gray.600"
+            endColor="gray.800"
           />
 
           <Skeleton
@@ -56,6 +72,8 @@ const OfferLoader = () => {
             borderRadius="10px"
             width="10px"
             height="25px"
+            startColor="gray.600"
+            endColor="gray.800"
           />
           <Skeleton
             position="absolute"
@@ -66,6 +84,8 @@ const OfferLoader = () => {
             borderBottomRightRadius="10px"
             width="40px"
             height="20px"
+            startColor="gray.600"
+            endColor="gray.800"
           />
         </Box>
       </Box>

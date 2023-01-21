@@ -16,7 +16,13 @@ const StatLoader = () => {
         gap="30px"
       >
         <Box>
-          <Skeleton width="70px" height="70px" borderRadius="50%" />
+          <Skeleton
+            width="70px"
+            height="70px"
+            borderRadius="50%"
+            startColor="gray.600"
+            endColor="gray.800"
+          />
         </Box>
         <Box
           display="flex"
@@ -24,8 +30,20 @@ const StatLoader = () => {
           alignItems="center"
           gap="15px"
         >
-          <Skeleton height="25px" width="150px" borderRadius="10px" />
-          <Skeleton height="25px" width="70px" borderRadius="10px" />
+          <Skeleton
+            height="25px"
+            width="150px"
+            borderRadius="10px"
+            startColor="gray.600"
+            endColor="gray.800"
+          />
+          <Skeleton
+            height="25px"
+            width="70px"
+            borderRadius="10px"
+            startColor="gray.600"
+            endColor="gray.800"
+          />
         </Box>
       </Box>
     </>
