@@ -116,7 +116,12 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
         </MenuList>
       )}
       {typeArchive && (
-        <MenuList bgColor="sectionBG" color="primaryTextColor" fontSize="15px">
+        <MenuList
+          bgColor="sectionBG"
+          color="primaryTextColor"
+          borderColor="borderColor"
+          fontSize="15px"
+        >
           <MenuItem
             onClick={moveFromArchiveHandler}
             bg=""
