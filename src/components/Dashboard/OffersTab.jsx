@@ -1,4 +1,5 @@
 import { Box, IconButton, SimpleGrid } from '@chakra-ui/react';
+import OfferLoader from 'components/Loaders/OfferLoader';
 import Offer from 'components/Offer/Offer';
 import { useState } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
@@ -7,7 +8,7 @@ import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 const OffersTab = () => {
   const [page, setPage] = useState(1);
 
-  const { data, isLoading } = useGetOffersQuery({ page, limit: 3 });
+  const { data, isLoading, isFetching } = useGetOffersQuery({ page, limit: 3 });
   const { offers, totalOffers } = data || {};
 
   const totalPage = Math.ceil(totalOffers / 3);
@@ -24,7 +25,7 @@ const OffersTab = () => {
     setPage(prev => prev - 1);
   };
 
-  return !isLoading ? (
+  return (
     <>
       <Box>
         <SimpleGrid
@@ -33,9 +34,18 @@ const OffersTab = () => {
           justifyContent="center"
           width="100%"
         >
-          {offers?.length
-            ? offers.map(offer => <Offer key={offer._id} offer={offer} />)
-            : 'Sorry, no posts available...'}
+          {!isLoading &&
+            !isFetching &&
+            (offers?.length
+              ? offers.map(offer => <Offer key={offer._id} offer={offer} />)
+              : 'Sorry, no posts available...')}
+          {(isLoading || isFetching) && (
+            <>
+              <OfferLoader />
+              <OfferLoader />
+              <OfferLoader />
+            </>
+          )}
         </SimpleGrid>
         <IconButton
           isDisabled={decrDisabled}
@@ -51,8 +61,6 @@ const OffersTab = () => {
         />
       </Box>
     </>
-  ) : (
-    <>Loading...</>
   );
 };
 

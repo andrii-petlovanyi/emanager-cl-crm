@@ -1,10 +1,11 @@
 import { SimpleGrid } from '@chakra-ui/react';
+import StatLoader from 'components/Loaders/StatLoader';
 import StatCard from 'components/StatCard/StatCard';
 import { useGetArchiveListQuery } from 'redux/archive/archiveApiSlice';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 
-const StatList = () => {
+const StatsTab = () => {
   const { data: archive } = useGetArchiveListQuery({});
   const { data: posts, isLoading } = useGetPostsQuery({});
   const { data: offers } = useGetOffersQuery({});
@@ -23,16 +24,20 @@ const StatList = () => {
     },
   ];
   return (
-    !isLoading && (
-      <>
-        <SimpleGrid minChildWidth="230px" spacing="30px" width="100%">
-          {stats.map(stat => (
-            <StatCard key={stat.title} stat={stat} />
-          ))}
-        </SimpleGrid>
-      </>
-    )
+    <>
+      <SimpleGrid minChildWidth="230px" spacing="30px" width="100%">
+        {!isLoading ? (
+          stats.map(stat => <StatCard key={stat.title} stat={stat} />)
+        ) : (
+          <>
+            <StatLoader />
+            <StatLoader />
+            <StatLoader />
+          </>
+        )}
+      </SimpleGrid>
+    </>
   );
 };
 
-export default StatList;
+export default StatsTab;
