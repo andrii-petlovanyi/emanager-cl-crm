@@ -28,14 +28,26 @@ const OfferOptions = ({ id }) => {
           top="0"
           right="0"
           aria-label="Post menu"
-          variant="ghost"
+          variant="customOptIB"
           fontSize="22px"
           isLoading={isLoading}
           color="primaryTextColor"
           icon={<MdMoreVert />}
         />
-        <MenuList>
-          <MenuItem onClick={deleteOfferHandler}>Delete</MenuItem>
+        <MenuList
+          bgColor="sectionBG"
+          borderColor="borderColor"
+          color="primaryTextColor"
+          fontSize="15px"
+        >
+          <MenuItem
+            onClick={deleteOfferHandler}
+            bg=""
+            transition="350ms ease"
+            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+          >
+            Delete
+          </MenuItem>
         </MenuList>
       </Menu>
     </>

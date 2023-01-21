@@ -23,6 +23,7 @@ const Offer = ({ offer = {} }) => {
         maxW="320px"
         borderRadius="10px"
         bgColor="sectionBG"
+        color="primaryTextColor"
       >
         <CardHeader>
           <Flex spacing="4">

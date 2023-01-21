@@ -14,6 +14,21 @@ const customIB = defineStyle({
   },
 });
 
+const customOptIB = defineStyle({
+  background: 'none',
+  color: 'primaryTextColor',
+  borderColor: '',
+  outline: 'none',
+  fontWeight: '700',
+  fontSize: '20px',
+  transition: '350ms ease',
+
+  _hover: {
+    color: 'hoverColor',
+    // transform: 'rotate(90deg)',
+  },
+});
+
 const tabArrowIB = defineStyle({
   background: 'none',
   color: 'primaryTextColor',
@@ -45,5 +60,5 @@ const customOutIB = defineStyle({
 });
 
 export const buttonTheme = defineStyleConfig({
-  variants: { customIB, customOutIB, tabArrowIB },
+  variants: { customIB, customOutIB, tabArrowIB, customOptIB },
 });

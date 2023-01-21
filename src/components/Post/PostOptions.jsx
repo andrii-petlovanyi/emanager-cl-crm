@@ -76,25 +76,63 @@ const PostOptions = ({ post = {}, type = '' }) => {
         top="0"
         right="0"
         aria-label="Post menu"
-        variant="ghost"
+        variant="customOptIB"
         fontSize="22px"
         isLoading={typePost ? postOptLoading : archOptLoading}
         color="primaryTextColor"
         icon={<MdMoreVert />}
       />
       {typePost && (
-        <MenuList>
-          <MenuItem onClick={editPostHandler}>Edit</MenuItem>
-          <MenuItem onClick={addPostToArchiveHandler}>Add to archive</MenuItem>
-          <MenuItem onClick={deletePostHandler}>Delete</MenuItem>
+        <MenuList
+          bgColor="sectionBG"
+          borderColor="borderColor"
+          color="primaryTextColor"
+          fontSize="15px"
+        >
+          <MenuItem
+            onClick={editPostHandler}
+            bg=""
+            transition="350ms ease"
+            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+          >
+            Edit
+          </MenuItem>
+          <MenuItem
+            onClick={addPostToArchiveHandler}
+            bg=""
+            transition="350ms ease"
+            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+          >
+            Add to archive
+          </MenuItem>
+          <MenuItem
+            onClick={deletePostHandler}
+            bg=""
+            transition="350ms ease"
+            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+          >
+            Delete
+          </MenuItem>
         </MenuList>
       )}
       {typeArchive && (
-        <MenuList>
-          <MenuItem onClick={moveFromArchiveHandler}>
+        <MenuList bgColor="sectionBG" color="primaryTextColor" fontSize="15px">
+          <MenuItem
+            onClick={moveFromArchiveHandler}
+            bg=""
+            transition="350ms ease"
+            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+          >
             Move to posts list
           </MenuItem>
-          <MenuItem onClick={deleteArchivePostHandler}>Delete forever</MenuItem>
+          <MenuItem
+            onClick={deleteArchivePostHandler}
+            bg=""
+            transition="350ms ease"
+            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+          >
+            Delete forever
+          </MenuItem>
         </MenuList>
       )}
     </Menu>

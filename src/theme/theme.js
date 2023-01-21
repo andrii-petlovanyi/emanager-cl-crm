@@ -28,6 +28,7 @@ const colors = {
   hoverColor: '#E1F1FF',
 
   buttonHover: '#0076FB',
+  tooltipHoverBG: '#e2e2e222',
   borderColor: '#D3D3D333',
   badgeAccentBG: '#714E99',
 };
