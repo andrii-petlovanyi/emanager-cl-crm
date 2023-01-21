@@ -1,4 +1,5 @@
 import { Box, IconButton, SimpleGrid } from '@chakra-ui/react';
+import PostLoader from 'components/Loaders/PostLoader';
 import Post from 'components/Post/Post';
 import { useState } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
@@ -7,7 +8,7 @@ import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 const PostsTab = () => {
   const [page, setPage] = useState(1);
 
-  const { data, isLoading } = useGetPostsQuery({ page, limit: 2 });
+  const { data, isLoading, isFetching } = useGetPostsQuery({ page, limit: 2 });
   const { posts, totalPosts } = data || {};
 
   const totalPage = Math.ceil(totalPosts / 2);
@@ -24,7 +25,7 @@ const PostsTab = () => {
     setPage(prev => prev - 1);
   };
 
-  return !isLoading ? (
+  return (
     <>
       <Box>
         <SimpleGrid
@@ -33,9 +34,20 @@ const PostsTab = () => {
           justifyContent="center"
           width="100%"
         >
-          {posts?.length
-            ? posts.map(post => <Post key={post._id} post={post} type="post" />)
-            : 'Sorry, no posts available...'}
+          {!isLoading &&
+            !isFetching &&
+            (posts?.length
+              ? posts.map(post => (
+                  <Post key={post._id} post={post} type="post" />
+                ))
+              : 'Sorry, no posts available...')}
+
+          {(isLoading || isFetching) && (
+            <>
+              <PostLoader />
+              <PostLoader />
+            </>
+          )}
         </SimpleGrid>
         <IconButton
           isDisabled={decrDisabled}
@@ -51,8 +63,6 @@ const PostsTab = () => {
         />
       </Box>
     </>
-  ) : (
-    <>Loading...</>
   );
 };
 

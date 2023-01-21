@@ -16,7 +16,7 @@ import postsApiSlice from 'redux/posts/postsApiSlice';
 import { useDeletePostMutation } from 'redux/posts/postsApiSlice';
 
 /* eslint-disable no-unused-vars */
-const PostOptions = ({ post = {}, type = '' }) => {
+const PostOptions = ({ setOpen, post = {}, type = '' }) => {
   const dispatch = useDispatch();
   const { addToast } = Toast();
   const postId = post._id;
@@ -36,7 +36,7 @@ const PostOptions = ({ post = {}, type = '' }) => {
   const archOptLoading = moveFromArchLoading || delArchLoading;
 
   const editPostHandler = () => {
-    console.log('hello');
+    setOpen(true);
   };
 
   const deletePostHandler = async () => {

@@ -6,8 +6,8 @@ const custom = defineStyle({
     width: '220px',
     bg: 'sectionBG',
     padding: '5px 10px',
-    border: '',
-    borderColor: '',
+    border: '1px solid',
+    borderColor: 'borderColor',
     outline: '',
   },
 });

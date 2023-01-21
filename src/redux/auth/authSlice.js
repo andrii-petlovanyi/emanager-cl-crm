@@ -36,7 +36,6 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
     refresh: (state, { payload }) => {
-      console.log(payload);
       state.userName = payload.user.name;
       state.userId = payload.user.id;
       state.notes = payload.user.notes;

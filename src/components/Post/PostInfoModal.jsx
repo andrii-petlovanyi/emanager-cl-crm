@@ -30,7 +30,11 @@ const PostInfoModal = ({ postInfo = '', model = '' }) => {
           <ModalHeader>{model.length ? model : 'No model'}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {postInfo.length ? postInfo : 'Sorry, but something went wrong...'}
+            {postInfo.length ? (
+              <div dangerouslySetInnerHTML={{ __html: postInfo }} />
+            ) : (
+              'Sorry, but something went wrong...'
+            )}
           </ModalBody>
         </ModalContent>
       </Modal>

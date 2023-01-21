@@ -1,14 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import {
-  Avatar,
-  Box,
-  Card,
-  CardBody,
-  CardHeader,
-  Flex,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react';
 import moment from 'moment';
 import OfferOptions from './OfferOptions';
 
@@ -16,6 +8,8 @@ import OfferOptions from './OfferOptions';
 const Offer = ({ offer = {} }) => {
   const { _id: id, model, date, firstName, lastName, username } = offer;
 
+  const firstNameLetter = firstName ? firstName.charAt(0).toUpperCase() : '';
+  const lastNameLetter = lastName ? lastName.charAt(0).toUpperCase() : '';
   return (
     <>
       <Card
@@ -28,8 +22,19 @@ const Offer = ({ offer = {} }) => {
         <CardHeader>
           <Flex spacing="4">
             <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
-
+              <Text
+                width="45px"
+                height="45px"
+                borderRadius="50%"
+                color="secondaryTextColor"
+                bg="badgeAccentBG"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                fontSize="18px"
+              >
+                {firstNameLetter + lastNameLetter}
+              </Text>
               <Box>
                 <Text>
                   {firstName ?? ''} {lastName ?? ''}

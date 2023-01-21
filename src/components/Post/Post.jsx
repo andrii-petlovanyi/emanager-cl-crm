@@ -16,11 +16,15 @@ import { MdBookmark, MdMenuBook } from 'react-icons/md';
 import PostInfoModal from './PostInfoModal';
 import PostOptions from './PostOptions';
 import moment from 'moment';
+import PostEdit from './PostEdit';
+import { useState } from 'react';
 
 // eslint-disable-next-line no-unused-vars
 const Post = ({ post = {}, type = '' }) => {
   // eslint-disable-next-line no-unused-vars
   const { model, urlOffSite, urlBook, urlImg, info, author, updatedAt } = post;
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Card
@@ -34,7 +38,8 @@ const Post = ({ post = {}, type = '' }) => {
         height="150px"
       >
         <CardHeader p="0" flex={{ base: '0', msm: '1' }}>
-          <PostOptions post={post} type={type} />
+          <PostOptions post={post} type={type} setOpen={setOpen} />
+          <PostEdit openModal={open} setOpen={setOpen} post={post} />
           <Box
             height="150px"
             width="100%"

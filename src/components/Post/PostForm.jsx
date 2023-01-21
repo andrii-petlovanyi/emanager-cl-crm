@@ -52,9 +52,10 @@ const PostForm = ({ submitPost, post = {} }) => {
     resolver: yupResolver(schema),
     defaultValues: post,
   });
+
   const onSubmit = data => {
     submitPost(data);
-    reset();
+    if (!post) reset();
   };
 
   return (
@@ -113,6 +114,11 @@ const PostForm = ({ submitPost, post = {} }) => {
       <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
         Submit
       </Button>
+      {!post && (
+        <Button mt={4} colorScheme="teal" type="button" onClick={() => reset()}>
+          Clear form
+        </Button>
+      )}
     </form>
   );
 };
