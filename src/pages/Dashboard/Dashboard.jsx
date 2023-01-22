@@ -16,7 +16,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Box p="10px" pt="0" display="flex" flexDirection="column" gap="40px">
+    <Box p="10px" pt="0" display="flex" flexDirection="column" gap="30px">
       <StatsTab />
       <PostsTab />
       <OffersTab />

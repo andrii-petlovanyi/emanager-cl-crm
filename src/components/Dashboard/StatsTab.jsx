@@ -25,7 +25,7 @@ const StatsTab = () => {
   ];
   return (
     <>
-      <SimpleGrid minChildWidth="230px" spacing="30px" width="100%">
+      <SimpleGrid minChildWidth="230px" spacing="30px" width="100%" mb="10px">
         {!isLoading ? (
           stats.map(stat => <StatCard key={stat.title} stat={stat} />)
         ) : (
