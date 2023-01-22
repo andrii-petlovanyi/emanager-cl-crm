@@ -67,7 +67,7 @@ const ResetPassword = () => {
           color="secondaryTextColor"
         >
           <Stack align={'center'}>
-            <Heading fontSize={'4xl'} textAlign="center">
+            <Heading fontSize={'4xl'} textAlign="start">
               Reset password to your account
             </Heading>
           </Stack>
