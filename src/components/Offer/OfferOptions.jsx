@@ -44,7 +44,10 @@ const OfferOptions = ({ id }) => {
             onClick={deleteOfferHandler}
             bg=""
             transition="350ms ease"
-            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+            _hover={{
+              backgroundColor: 'tooltipHoverBG',
+              color: 'delItemColor',
+            }}
           >
             Delete
           </MenuItem>

@@ -24,7 +24,7 @@ const PostInfoModal = ({ postInfo = '', model = '' }) => {
           variant="customOutIB"
         />
       </Tooltip>
-      <Modal isOpen={isOpen} isCentered onClose={onClose}>
+      <Modal isOpen={isOpen} isCentered onClose={onClose} bg="sectionBG">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{model.length ? model : 'No model'}</ModalHeader>

@@ -109,7 +109,10 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
             onClick={deletePostHandler}
             bg=""
             transition="350ms ease"
-            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+            _hover={{
+              backgroundColor: 'tooltipHoverBG',
+              color: 'delItemColor',
+            }}
           >
             Delete
           </MenuItem>
@@ -134,7 +137,10 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
             onClick={deleteArchivePostHandler}
             bg=""
             transition="350ms ease"
-            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+            _hover={{
+              backgroundColor: 'tooltipHoverBG',
+              color: 'delItemColor',
+            }}
           >
             Delete forever
           </MenuItem>

@@ -31,6 +31,7 @@ const colors = {
   tooltipHoverBG: '#e2e2e222',
   borderColor: '#D3D3D333',
   badgeAccentBG: '#714E99',
+  delItemColor: '#FF7064',
 };
 
 const styles = {

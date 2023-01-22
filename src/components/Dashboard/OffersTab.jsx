@@ -1,4 +1,4 @@
-import { Box, IconButton, SimpleGrid } from '@chakra-ui/react';
+import { Box, IconButton, SimpleGrid, Text } from '@chakra-ui/react';
 import OfferLoader from 'components/Loaders/OfferLoader';
 import Offer from 'components/Offer/Offer';
 import { useState } from 'react';
@@ -27,7 +27,26 @@ const OffersTab = () => {
 
   return (
     <>
-      <Box>
+      <Box
+        position="relative"
+        borderTop="1px solid"
+        // borderBottom="1px solid"
+        borderColor="borderColor"
+        // p="10px"
+        pt="30px"
+        pb="0"
+        // borderRadius="10px"
+      >
+        <Text
+          position="absolute"
+          top="-17px"
+          left="30px"
+          bg="bodyBG"
+          px="10px"
+          fontSize="20px"
+        >
+          Last added offers
+        </Text>
         <SimpleGrid
           minChildWidth={{ base: '240px', msm: '300px' }}
           spacing="20px"
@@ -47,18 +66,20 @@ const OffersTab = () => {
             </>
           )}
         </SimpleGrid>
-        <IconButton
-          isDisabled={decrDisabled}
-          onClick={decrementHandler}
-          icon={<MdKeyboardArrowLeft />}
-          variant="tabArrowIB"
-        />
-        <IconButton
-          isDisabled={incrDisabled}
-          onClick={incrementHandler}
-          icon={<MdKeyboardArrowRight />}
-          variant="tabArrowIB"
-        />
+        <Box display="flex" justifyContent="flex-end" mt="10px">
+          <IconButton
+            isDisabled={decrDisabled}
+            onClick={decrementHandler}
+            icon={<MdKeyboardArrowLeft />}
+            variant="tabArrowIB"
+          />
+          <IconButton
+            isDisabled={incrDisabled}
+            onClick={incrementHandler}
+            icon={<MdKeyboardArrowRight />}
+            variant="tabArrowIB"
+          />
+        </Box>
       </Box>
     </>
   );

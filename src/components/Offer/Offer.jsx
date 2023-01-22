@@ -1,6 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Card,
+  CardBody,
+  CardHeader,
+  Flex,
+  Text,
+  Tooltip,
+} from '@chakra-ui/react';
 import moment from 'moment';
 import OfferOptions from './OfferOptions';
 
@@ -56,7 +64,13 @@ const Offer = ({ offer = {} }) => {
             borderRadius="10px"
             textAlign="center"
           >
-            {model}
+            {model.length > 15 ? (
+              <Tooltip hasArrow label={model} bg="gray.300" color="black">
+                {model.slice(0, 15) + '...'}
+              </Tooltip>
+            ) : (
+              model
+            )}
           </Text>
         </CardBody>
 

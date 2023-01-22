@@ -1,4 +1,4 @@
-import { Box, IconButton, SimpleGrid } from '@chakra-ui/react';
+import { Box, IconButton, SimpleGrid, Text } from '@chakra-ui/react';
 import PostLoader from 'components/Loaders/PostLoader';
 import Post from 'components/Post/Post';
 import { useState } from 'react';
@@ -27,7 +27,26 @@ const PostsTab = () => {
 
   return (
     <>
-      <Box>
+      <Box
+        position="relative"
+        borderTop="1px solid"
+        // borderBottom="1px solid"
+        borderColor="borderColor"
+        // p="10px"
+        pt="30px"
+        pb="0"
+        // borderRadius="10px"
+      >
+        <Text
+          position="absolute"
+          top="-17px"
+          left="30px"
+          bg="bodyBG"
+          px="10px"
+          fontSize="20px"
+        >
+          Last added posts
+        </Text>
         <SimpleGrid
           minChildWidth={{ base: '240px', msm: '320px' }}
           spacing="20px"
@@ -49,18 +68,20 @@ const PostsTab = () => {
             </>
           )}
         </SimpleGrid>
-        <IconButton
-          isDisabled={decrDisabled}
-          onClick={decrementHandler}
-          icon={<MdKeyboardArrowLeft />}
-          variant="tabArrowIB"
-        />
-        <IconButton
-          isDisabled={incrDisabled}
-          onClick={incrementHandler}
-          icon={<MdKeyboardArrowRight />}
-          variant="tabArrowIB"
-        />
+        <Box display="flex" justifyContent="flex-end" mt="10px">
+          <IconButton
+            isDisabled={decrDisabled}
+            onClick={decrementHandler}
+            icon={<MdKeyboardArrowLeft />}
+            variant="tabArrowIB"
+          />
+          <IconButton
+            isDisabled={incrDisabled}
+            onClick={incrementHandler}
+            icon={<MdKeyboardArrowRight />}
+            variant="tabArrowIB"
+          />
+        </Box>
       </Box>
     </>
   );
