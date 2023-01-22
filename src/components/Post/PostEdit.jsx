@@ -19,7 +19,7 @@ import PostForm from './PostForm';
 
 const PostEdit = ({ openModal = false, setOpen, post = {} }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [updatePost] = useUpdatePostMutation();
+  const [updatePost, { isLoading }] = useUpdatePostMutation();
   const { addToast } = Toast();
 
   useEffect(() => {
@@ -53,7 +53,11 @@ const PostEdit = ({ openModal = false, setOpen, post = {} }) => {
           <ModalHeader>Edit post</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <PostForm post={post} submitPost={submitPost} />
+            <PostForm
+              post={post}
+              submitPost={submitPost}
+              isLoading={isLoading}
+            />
           </ModalBody>
           <ModalFooter></ModalFooter>
         </ModalContent>

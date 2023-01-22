@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import {
+  Box,
   Button,
   FormControl,
   FormErrorMessage,
@@ -11,6 +12,7 @@ import {
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useEffect } from 'react';
 
 const schema = yup
   .object({
@@ -42,7 +44,7 @@ const schema = yup
   .required();
 
 /* eslint-disable no-unused-vars */
-const PostForm = ({ submitPost, post = {} }) => {
+const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
   const {
     register,
     handleSubmit,
@@ -53,72 +55,93 @@ const PostForm = ({ submitPost, post = {} }) => {
     defaultValues: post,
   });
 
+  useEffect(() => {
+    if (resetForm) reset();
+  }, [resetForm]);
+
   const onSubmit = data => {
     submitPost(data);
-    if (!post) reset();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={errors.model}>
-        <FormLabel htmlFor="firstName">Product model</FormLabel>
-        <Input id="model" placeholder="Product model" {...register('model')} />
-        <FormErrorMessage>
-          {errors.model && errors.model.message}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={errors.urlOffSite}>
-        <FormLabel htmlFor="urlOffSite">URL on official site</FormLabel>
-        <Input
-          id="urlOffSite"
-          placeholder="URL on official site"
-          {...register('urlOffSite')}
-        />
-        <FormErrorMessage>
-          {errors.urlOffSite && errors.urlOffSite.message}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={errors.urlBook}>
-        <FormLabel htmlFor="urlBook">URL on documentations</FormLabel>
-        <Input
-          id="urlBook"
-          placeholder="URL on documentations"
-          {...register('urlBook')}
-        />
-        <FormErrorMessage>
-          {errors.urlBook && errors.urlBook.message}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={errors.urlImg}>
-        <FormLabel htmlFor="urlImg">URL on product img</FormLabel>
-        <Input
-          id="urlImg"
-          placeholder="URL on product img"
-          {...register('urlImg')}
-        />
-        <FormErrorMessage>
-          {errors.urlImg && errors.urlImg.message}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={errors.info}>
-        <FormLabel htmlFor="info">Info about product</FormLabel>
-        <Textarea
-          id="info"
-          placeholder="Info about product"
-          {...register('info')}
-        />
-        <FormErrorMessage>
-          {errors.info && errors.info.message}
-        </FormErrorMessage>
-      </FormControl>
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
-        Submit
-      </Button>
-      {!post && (
-        <Button mt={4} colorScheme="teal" type="button" onClick={() => reset()}>
-          Clear form
-        </Button>
-      )}
+      <Box display="flex" flexDirection="column" gap="20px" width="100%">
+        <FormControl isInvalid={errors.model}>
+          <FormLabel htmlFor="firstName">Product model</FormLabel>
+          <Input
+            id="model"
+            placeholder="Product model"
+            {...register('model')}
+          />
+          <FormErrorMessage>
+            {errors.model && errors.model.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.urlOffSite}>
+          <FormLabel htmlFor="urlOffSite">URL on official site</FormLabel>
+          <Input
+            id="urlOffSite"
+            placeholder="URL on official site"
+            {...register('urlOffSite')}
+          />
+          <FormErrorMessage>
+            {errors.urlOffSite && errors.urlOffSite.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.urlBook}>
+          <FormLabel htmlFor="urlBook">URL on documentations</FormLabel>
+          <Input
+            id="urlBook"
+            placeholder="URL on documentations"
+            {...register('urlBook')}
+          />
+          <FormErrorMessage>
+            {errors.urlBook && errors.urlBook.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.urlImg}>
+          <FormLabel htmlFor="urlImg">URL on product img</FormLabel>
+          <Input
+            id="urlImg"
+            placeholder="URL on product img"
+            {...register('urlImg')}
+          />
+          <FormErrorMessage>
+            {errors.urlImg && errors.urlImg.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.info}>
+          <FormLabel htmlFor="info">Info about product</FormLabel>
+          <Textarea
+            id="info"
+            placeholder="Info about product"
+            {...register('info')}
+          />
+          <FormErrorMessage>
+            {errors.info && errors.info.message}
+          </FormErrorMessage>
+        </FormControl>
+        <Box display="flex" justifyContent="space-between">
+          <Button
+            mt={4}
+            variant="submitBtn"
+            isLoading={isSubmitting || isLoading}
+            type="submit"
+          >
+            Submit
+          </Button>
+          {!Object.keys(post).length && (
+            <Button
+              mt={4}
+              variant="clearBtn"
+              type="button"
+              onClick={() => reset()}
+            >
+              Clear form
+            </Button>
+          )}
+        </Box>
+      </Box>
     </form>
   );
 };

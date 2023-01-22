@@ -59,6 +59,35 @@ const customOutIB = defineStyle({
   },
 });
 
+const submitBtn = defineStyle({
+  backgroundColor: 'sidebarActiveLinkBG',
+  color: 'secondaryTextColor',
+  transition: '350ms ease',
+
+  _hover: {
+    backgroundColor: '#204BDA',
+    color: 'hoverColor',
+  },
+});
+
+const clearBtn = defineStyle({
+  backgroundColor: 'red.700',
+  color: 'secondaryTextColor',
+  transition: '350ms ease',
+
+  _hover: {
+    backgroundColor: 'red.800',
+    color: 'hoverColor',
+  },
+});
+
 export const buttonTheme = defineStyleConfig({
-  variants: { customIB, customOutIB, tabArrowIB, customOptIB },
+  variants: {
+    customIB,
+    customOutIB,
+    tabArrowIB,
+    customOptIB,
+    submitBtn,
+    clearBtn,
+  },
 });

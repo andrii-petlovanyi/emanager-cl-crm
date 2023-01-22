@@ -44,6 +44,8 @@ const PostsTab = () => {
           bg="bodyBG"
           px="10px"
           fontSize="20px"
+          fontWeight="700"
+          // color="secondaryTextColor"
         >
           Last added posts
         </Text>
