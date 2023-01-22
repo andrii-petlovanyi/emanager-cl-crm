@@ -74,12 +74,14 @@ const PostsTab = () => {
             onClick={decrementHandler}
             icon={<MdKeyboardArrowLeft />}
             variant="tabArrowIB"
+            _hover={{ transform: `${decrDisabled ? 'none' : 'scale(1.1)'}` }}
           />
           <IconButton
             isDisabled={incrDisabled}
             onClick={incrementHandler}
             icon={<MdKeyboardArrowRight />}
             variant="tabArrowIB"
+            _hover={{ transform: `${incrDisabled ? 'none' : 'scale(1.1)'}` }}
           />
         </Box>
       </Box>

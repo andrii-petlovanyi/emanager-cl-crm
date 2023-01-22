@@ -13,7 +13,13 @@ const Pagination = ({
   return (
     totalPage &&
     page && (
-      <Box display="flex" gap="5px">
+      <Box
+        display="flex"
+        mt="20px"
+        gap="5px"
+        justifyContent="center"
+        width="100%"
+      >
         <IconButton
           isDisabled={prevDisabled}
           onClick={prevPage}

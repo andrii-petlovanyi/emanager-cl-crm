@@ -33,7 +33,7 @@ const tabArrowIB = defineStyle({
   background: 'none',
   color: 'primaryTextColor',
   fontWeight: '700',
-  fontSize: '30px',
+  fontSize: '35px',
   transition: '350ms ease',
   transform: 'translate3d(0, 0, 0)',
 

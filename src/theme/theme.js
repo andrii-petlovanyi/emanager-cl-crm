@@ -68,6 +68,16 @@ const components = {
       },
     },
   },
+  Modal: {
+    baseStyle: {
+      dialog: {
+        // maxWidth: ['95%', '95%', '95%'],
+        // minWidth: '95%',
+        bg: 'sectionBG',
+      },
+    },
+  },
+
   Button: buttonTheme,
   Popover: popoverTheme,
 };

@@ -22,10 +22,12 @@ const Offer = ({ offer = {} }) => {
     <>
       <Card
         position="relative"
-        maxW="320px"
+        maxW={{ base: '420px', lg: '320px' }}
         borderRadius="10px"
         bgColor="sectionBG"
         color="primaryTextColor"
+        mx={{ base: 'auto', md: '0' }}
+        width="100%"
       >
         <CardHeader>
           <Flex spacing="4">

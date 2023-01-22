@@ -9,11 +9,13 @@ import {
   ModalOverlay,
   Tooltip,
   useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { MdOutlineTextsms } from 'react-icons/md';
 
 const PostInfoModal = ({ postInfo = '', model = '' }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
   return (
     <>
       <Tooltip hasArrow label="Post text">
@@ -24,12 +26,19 @@ const PostInfoModal = ({ postInfo = '', model = '' }) => {
           variant="customOutIB"
         />
       </Tooltip>
-      <Modal isOpen={isOpen} isCentered onClose={onClose} bgColor="sectionBG">
+      <Modal
+        isOpen={isOpen}
+        isCentered={isLargerThan480}
+        onClose={onClose}
+        bgColor="sectionBG"
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{model.length ? model : 'No model'}</ModalHeader>
+          <ModalHeader textTransform="uppercase">
+            {model.length ? model : 'No model'}
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody p="10px 30px 30px 30px">
             {postInfo.length ? (
               <div dangerouslySetInnerHTML={{ __html: postInfo }} />
             ) : (

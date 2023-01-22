@@ -76,8 +76,9 @@ const Post = ({ post = {}, type = '' }) => {
                 fontFamily="'Montserat' san-serif"
                 color="secondaryTextColor"
                 borderRadius="10px"
+                textTransform="uppercase"
               >
-                {model ? model : 'EW7F348SU'}
+                {model ? model : 'No model'}
               </Text>
             </Stack>
             <Box mx="auto" display="flex" gap="10px">
