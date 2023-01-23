@@ -71,6 +71,7 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
           <FormLabel htmlFor="firstName">Product model</FormLabel>
           <Input
             id="model"
+            variant="custom"
             placeholder="Product model"
             {...register('model')}
           />
@@ -82,6 +83,7 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
           <FormLabel htmlFor="urlOffSite">URL on official site</FormLabel>
           <Input
             id="urlOffSite"
+            variant="custom"
             placeholder="URL on official site"
             {...register('urlOffSite')}
           />
@@ -93,6 +95,7 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
           <FormLabel htmlFor="urlBook">URL on documentations</FormLabel>
           <Input
             id="urlBook"
+            variant="custom"
             placeholder="URL on documentations"
             {...register('urlBook')}
           />
@@ -104,6 +107,7 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
           <FormLabel htmlFor="urlImg">URL on product img</FormLabel>
           <Input
             id="urlImg"
+            variant="custom"
             placeholder="URL on product img"
             {...register('urlImg')}
           />
@@ -116,6 +120,10 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
           <Textarea
             id="info"
             placeholder="Info about product"
+            _focus={{
+              borderColor: 'primaryTextColor',
+              boxShadow: '0 0 1px 1px #D3D3D333',
+            }}
             {...register('info')}
           />
           <FormErrorMessage>

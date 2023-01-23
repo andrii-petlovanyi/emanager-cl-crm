@@ -4,7 +4,7 @@ import { Button } from '@chakra-ui/react';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 /* eslint-disable react/prop-types */
-const PagBtn = ({ variant = 'paginationBtn', setPage, page = 1 }) => {
+const PagBtn = ({ variant = 'paginationBtn', setPage, page }) => {
   return (
     <>
       <BtnClickAnim>

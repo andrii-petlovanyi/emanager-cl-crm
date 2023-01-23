@@ -24,10 +24,10 @@ const AddPosts = () => {
   };
 
   return (
-    <Box display="flex" gap="40px">
-      <SectionAnim delay={0.2} flex="2">
+    <SectionAnim delay={0.2}>
+      <Box display="flex" gap="40px">
         <Box
-          // flex="2"
+          flex="2"
           p="20px"
           pt="30px"
           position="relative"
@@ -52,10 +52,8 @@ const AddPosts = () => {
             resetForm={resetForm}
           />
         </Box>
-      </SectionAnim>
-      <SectionAnim delay={0.3} flex="1">
         <Box
-          // flex="1"
+          flex="1"
           position="relative"
           display={{ base: 'none', lg: 'flex' }}
           flexDirection="column"
@@ -68,12 +66,12 @@ const AddPosts = () => {
           <Text
             position="absolute"
             top="-17px"
-            left="50%"
+            left="20px"
             bg="bodyBG"
             px="10px"
             fontSize="22px"
             fontWeight="700"
-            transform="translateX(-50%)"
+            // transform="translateX(-50%)"
           >
             Last offers
           </Text>
@@ -95,8 +93,8 @@ const AddPosts = () => {
             </>
           )}
         </Box>
-      </SectionAnim>
-    </Box>
+      </Box>
+    </SectionAnim>
   );
 };
 

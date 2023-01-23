@@ -72,7 +72,7 @@ const ResetPassword = () => {
               Reset password to your account
             </Heading>
           </Stack>
-          <Box rounded={'lg'} bg="#404756" boxShadow={'lg'} p={8}>
+          <Box rounded={'lg'} bg="loginSectionBG" boxShadow={'lg'} p={8}>
             <form onSubmit={handleSubmit}>
               <Stack spacing={4}>
                 <FormControl id="text">
@@ -87,13 +87,8 @@ const ResetPassword = () => {
                     <Button
                       width="100%"
                       type="submit"
-                      bg="sidebarActiveLinkBG"
-                      color="secondaryTextColor"
-                      _hover={{
-                        bg: 'buttonHover',
-                        color: 'hoverColor',
-                      }}
                       isLoading={isLoading}
+                      variant="submitBtn"
                     >
                       Reset password
                     </Button>

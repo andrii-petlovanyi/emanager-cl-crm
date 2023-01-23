@@ -23,8 +23,9 @@ const PostSearch = ({ setSearch }) => {
         />
         <Input
           type="text"
-          color="primaryTextColor"
           placeholder="Search for model"
+          variant="custom"
+          // borderColor="red"
           onChange={debouncedChangeHandler}
           _placeholder={{ opacity: 0.8, color: 'primaryTextColor' }}
         />

@@ -22,7 +22,12 @@ const Pagination = ({
 
   return (
     isVisible && (
-      <Box display="inline-block" mx="auto" mt="20px">
+      <Box
+        display="inline-block"
+        mx="auto"
+        mt="20px"
+        mb={{ base: '40px', md: '20px' }}
+      >
         <Box
           display="flex"
           mt="20px"
@@ -78,9 +83,25 @@ const Pagination = ({
             </>
           ) : (
             <>
-              <PagBtn page={page} variant="paginationActiveBtn" />
-              <Text variant="paginationDelimiter">...</Text>
-              <PagBtn page={totalPage} />
+              <Text
+                bg="sidebarActiveLinkBG"
+                color="secondaryTextColor"
+                fontSize="16px"
+                fontWeight="700"
+                borderRadius="6px"
+                p="8px 15px"
+              >
+                {page}
+              </Text>
+              <Button variant="paginationDelimiter">...</Button>
+              <Text
+                fontSize="16px"
+                fontWeight="700"
+                borderRadius="6px"
+                p="8px 15px"
+              >
+                {totalPage}
+              </Text>
             </>
           )}
           <BtnClickAnim disabled={nextDisabled}>

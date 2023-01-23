@@ -32,6 +32,7 @@ const colors = {
   borderColor: '#D3D3D333',
   badgeAccentBG: '#714E99',
   delItemColor: '#FF7064',
+  loginSectionBG: '#404756',
 };
 
 const styles = {
@@ -73,6 +74,48 @@ const components = {
         // maxWidth: ['95%', '95%', '95%'],
         // minWidth: '95%',
         bg: 'sectionBG',
+      },
+    },
+  },
+  Divider: {
+    baseStyle: {
+      borderColor: 'borderColor',
+    },
+  },
+
+  Input: {
+    baseStyle: {
+      field: {},
+    },
+    defaultProps: {
+      focusBorderColor: 'borderColor',
+    },
+    variants: {
+      custom: {
+        field: {
+          border: '1px solid',
+          borderColor: 'borderColor',
+          backgroundColor: 'bodyBG',
+          color: 'primaryTextColor',
+          transition: '350ms ease',
+          _focus: {
+            borderColor: 'primaryTextColor',
+            boxShadow: '0 0 1px 1px #D3D3D333',
+          },
+        },
+      },
+      auth: {
+        field: {
+          border: '1px solid',
+          borderColor: 'borderColor',
+          backgroundColor: 'loginSectionBG',
+          color: 'primaryTextColor',
+          transition: '350ms ease',
+          _focus: {
+            borderColor: 'primaryTextColor',
+            boxShadow: '0 0 1px 1px #D3D3D333',
+          },
+        },
       },
     },
   },

@@ -84,7 +84,7 @@ const Login = () => {
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
         </Stack>
-        <Box rounded={'lg'} bg="#404756" boxShadow={'lg'} p={8}>
+        <Box rounded={'lg'} bg="loginSectionBG" boxShadow={'lg'} p={8}>
           <form onSubmit={handleSubmit}>
             <Stack spacing={4}>
               <FormControl id="text">
@@ -92,6 +92,7 @@ const Login = () => {
                 <Input
                   type="text"
                   name="email"
+                  variant="auth"
                   value={userCred.email}
                   onChange={handleInputChange}
                 />
@@ -101,6 +102,7 @@ const Login = () => {
                 <Input
                   type="password"
                   name="password"
+                  variant="auth"
                   value={userCred.password}
                   onChange={handleInputChange}
                 />
@@ -113,13 +115,8 @@ const Login = () => {
                   <Button
                     width="100%"
                     type="submit"
-                    bg="sidebarActiveLinkBG"
-                    color="secondaryTextColor"
+                    variant="submitBtn"
                     isLoading={isLoading}
-                    _hover={{
-                      bg: 'buttonHover',
-                      color: 'hoverColor',
-                    }}
                   >
                     Sign in
                   </Button>
