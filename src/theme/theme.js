@@ -1,5 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import { buttonTheme } from './components/buttonTheme';
+import { inputTheme } from './components/inputTheme';
 import { popoverTheme } from './components/popoverTheme';
 
 // const config = {
@@ -83,43 +84,7 @@ const components = {
     },
   },
 
-  Input: {
-    baseStyle: {
-      field: {},
-    },
-    defaultProps: {
-      focusBorderColor: 'borderColor',
-    },
-    variants: {
-      custom: {
-        field: {
-          border: '1px solid',
-          borderColor: 'borderColor',
-          backgroundColor: 'bodyBG',
-          color: 'primaryTextColor',
-          transition: '350ms ease',
-          _focus: {
-            borderColor: 'primaryTextColor',
-            boxShadow: '0 0 1px 1px #D3D3D333',
-          },
-        },
-      },
-      auth: {
-        field: {
-          border: '1px solid',
-          borderColor: 'borderColor',
-          backgroundColor: 'loginSectionBG',
-          color: 'primaryTextColor',
-          transition: '350ms ease',
-          _focus: {
-            borderColor: 'primaryTextColor',
-            boxShadow: '0 0 1px 1px #D3D3D333',
-          },
-        },
-      },
-    },
-  },
-
+  Input: inputTheme,
   Button: buttonTheme,
   Popover: popoverTheme,
 };

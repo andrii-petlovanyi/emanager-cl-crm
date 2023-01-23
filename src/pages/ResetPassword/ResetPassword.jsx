@@ -77,7 +77,7 @@ const ResetPassword = () => {
               <Stack spacing={4}>
                 <FormControl id="text">
                   <FormLabel>Email address</FormLabel>
-                  <Input type="text" name="email" />
+                  <Input type="text" name="email" variant="auth" />
                 </FormControl>
                 <Stack spacing={8}>
                   <Link as={NavLink} alignSelf="end" to="/login">
