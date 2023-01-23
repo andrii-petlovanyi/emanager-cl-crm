@@ -26,6 +26,7 @@ const usePagination = () => {
 
   return {
     page,
+    setPage,
     nextPage,
     prevPage,
     setTotalData,

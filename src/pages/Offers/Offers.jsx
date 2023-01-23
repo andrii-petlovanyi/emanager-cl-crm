@@ -9,9 +9,10 @@ import { useEffect } from 'react';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 
 const Offers = () => {
-  const limit = 3;
+  const limit = 6;
   const {
     page,
+    setPage,
     nextPage,
     prevPage,
     setTotalData,
@@ -58,10 +59,11 @@ const Offers = () => {
           )}
         </SimpleGrid>
       </SectionAnim>
-      <SectionAnim delay={0.2}>
+      <SectionAnim delay={0.2} justify="center">
         {isPagination && (
           <Pagination
             page={page}
+            setPage={setPage}
             totalPage={totalPage}
             nextPage={nextPage}
             prevPage={prevPage}

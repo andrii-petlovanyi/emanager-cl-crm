@@ -7,7 +7,8 @@ const OfferLoader = () => {
         position="relative"
         maxW={{ base: '420px', lg: '320px' }}
         mx={{ base: 'auto', md: '0' }}
-        boxShadow="lg"
+        width="100%"
+        boxShadow="cardShadow"
         bg="sectionBG"
         display="flex"
         borderRadius="10px"

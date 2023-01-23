@@ -80,6 +80,36 @@ const clearBtn = defineStyle({
   },
 });
 
+const paginationBtn = defineStyle({
+  backgroundColor: '',
+  border: '1px solid',
+  borderRadius: '5px',
+  borderColor: 'sectionBG',
+  fontSize: '16px',
+  fontWeight: '700',
+
+  _hover: {
+    borderColor: 'borderColor',
+  },
+});
+
+const paginationActiveBtn = defineStyle({
+  backgroundColor: 'sidebarActiveLinkBG',
+  color: 'secondaryTextColor',
+  fontSize: '16px',
+  fontWeight: '700',
+
+  _hover: {},
+});
+
+const paginationDelimiter = defineStyle({
+  backgroundColor: '',
+  fontSize: '20px',
+  fontWeight: '700',
+  padding: '0',
+  cursor: 'default',
+});
+
 export const buttonTheme = defineStyleConfig({
   variants: {
     customIB,
@@ -88,5 +118,8 @@ export const buttonTheme = defineStyleConfig({
     customOptIB,
     submitBtn,
     clearBtn,
+    paginationBtn,
+    paginationActiveBtn,
+    paginationDelimiter,
   },
 });

@@ -16,6 +16,7 @@ const PostLoader = () => {
         height="150px"
       >
         <Skeleton
+          display={{ base: 'none', msm: 'block' }}
           flex="1"
           borderLeftRadius="10px"
           startColor="gray.600"

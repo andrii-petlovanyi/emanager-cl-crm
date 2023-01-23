@@ -14,6 +14,7 @@ const MyPosts = () => {
   const [search, setSearch] = useState('');
   const {
     page,
+    setPage,
     nextPage,
     prevPage,
     setTotalData,
@@ -68,10 +69,11 @@ const MyPosts = () => {
           )}
         </SimpleGrid>
       </SectionAnim>
-      <SectionAnim delay={0.2}>
+      <SectionAnim delay={0.2} justify="center">
         {isPagination && (
           <Pagination
             page={page}
+            setPage={setPage}
             totalPage={totalPage}
             nextPage={nextPage}
             prevPage={prevPage}
