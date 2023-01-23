@@ -9,6 +9,7 @@ import { useLogOutUserMutation } from 'redux/auth/authApiSlice';
 import Logo from 'components/Logo/Logo';
 import Toast from 'components/Toast/Toast';
 import LogOutPopover from './LogOutPopover';
+import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 const Header = ({ onOpen, ...rest }) => {
   const dispatch = useDispatch();
@@ -39,11 +40,13 @@ const Header = ({ onOpen, ...rest }) => {
         position={{ base: 'relative' }}
       />
       <Box display="flex" gridGap={{ base: '0', lg: '5px' }}>
-        <IconButton
-          variant="customIB"
-          aria-label="Notification"
-          icon={<FiBell />}
-        />
+        <BtnClickAnim>
+          <IconButton
+            variant="customIB"
+            aria-label="Notification"
+            icon={<FiBell />}
+          />
+        </BtnClickAnim>
         <LogOutPopover handleLogOut={handleLogOut} isLoading={isLoading} />
         <IconButton
           variant="customIB"

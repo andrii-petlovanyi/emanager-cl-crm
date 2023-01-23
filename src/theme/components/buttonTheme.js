@@ -10,6 +10,7 @@ const customIB = defineStyle({
 
   _hover: {
     color: 'hoverColor',
+    transform: 'scale(1.1)',
   },
 });
 
@@ -37,6 +38,7 @@ const tabArrowIB = defineStyle({
 
   _hover: {
     color: 'hoverColor',
+    transform: 'scale(1.1)',
   },
 });
 
@@ -52,6 +54,7 @@ const customOutIB = defineStyle({
 
   _hover: {
     color: 'hoverColor',
+    transform: 'scale(1.1)',
   },
 });
 

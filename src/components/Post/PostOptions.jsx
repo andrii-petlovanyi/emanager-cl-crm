@@ -93,7 +93,10 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
             onClick={editPostHandler}
             bg=""
             transition="350ms ease"
-            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+            _hover={{
+              backgroundColor: 'tooltipHoverBG',
+              color: 'hoverColor',
+            }}
           >
             Edit
           </MenuItem>
@@ -101,7 +104,10 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
             onClick={addPostToArchiveHandler}
             bg=""
             transition="350ms ease"
-            _hover={{ backgroundColor: 'tooltipHoverBG', color: 'hoverColor' }}
+            _hover={{
+              backgroundColor: 'tooltipHoverBG',
+              color: 'hoverColor',
+            }}
           >
             Add to archive
           </MenuItem>

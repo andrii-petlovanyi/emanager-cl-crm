@@ -18,6 +18,7 @@ import { logIn } from 'redux/auth/authSlice';
 import Toast from 'components/Toast/Toast';
 import Logo from 'components/Logo/Logo';
 import Footer from 'components/Footer/Footer';
+import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 const Login = () => {
   const [userCred, setUserCred] = useState({
@@ -108,18 +109,21 @@ const Login = () => {
                 <Link as={NavLink} alignSelf="end" to="/reset-pass">
                   Forgot password?
                 </Link>
-                <Button
-                  type="submit"
-                  bg="sidebarActiveLinkBG"
-                  color="secondaryTextColor"
-                  isLoading={isLoading}
-                  _hover={{
-                    bg: 'buttonHover',
-                    color: 'hoverColor',
-                  }}
-                >
-                  Sign in
-                </Button>
+                <BtnClickAnim>
+                  <Button
+                    width="100%"
+                    type="submit"
+                    bg="sidebarActiveLinkBG"
+                    color="secondaryTextColor"
+                    isLoading={isLoading}
+                    _hover={{
+                      bg: 'buttonHover',
+                      color: 'hoverColor',
+                    }}
+                  >
+                    Sign in
+                  </Button>
+                </BtnClickAnim>
               </Stack>
             </Stack>
           </form>

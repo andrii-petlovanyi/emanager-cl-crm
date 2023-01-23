@@ -1,4 +1,5 @@
 import { Box, Divider, SimpleGrid } from '@chakra-ui/react';
+import SectionAnim from 'components/Animations/SectionAnim';
 import PostLoader from 'components/Loaders/PostLoader';
 import Pagination from 'components/Pagination/Pagination';
 import Post from 'components/Post/Post';
@@ -43,38 +44,42 @@ const MyPosts = () => {
         <PostSearch setSearch={setSearch} />
       </Box>
       <Divider my="20px" />
-      <SimpleGrid
-        minChildWidth={{ base: '240px', msm: '320px' }}
-        spacing="20px"
-        justifyContent="center"
-        width="100%"
-      >
-        {!isLoaded &&
-          (posts?.length > 0
-            ? posts.map(post => (
-                <Post key={post._id} post={post} type={'post'} />
-              ))
-            : 'Sorry, no posts in database')}
-        {isLoaded && (
-          <>
-            {Array(limit)
-              .fill(0)
-              .map((_, index) => (
-                <PostLoader key={index} />
-              ))}
-          </>
+      <SectionAnim delay={0.1}>
+        <SimpleGrid
+          minChildWidth={{ base: '240px', msm: '320px' }}
+          spacing="20px"
+          justifyContent="center"
+          width="100%"
+        >
+          {!isLoaded &&
+            (posts?.length > 0
+              ? posts.map(post => (
+                  <Post key={post._id} post={post} type={'post'} />
+                ))
+              : 'Sorry, no posts in database')}
+          {isLoaded && (
+            <>
+              {Array(limit)
+                .fill(0)
+                .map((_, index) => (
+                  <PostLoader key={index} />
+                ))}
+            </>
+          )}
+        </SimpleGrid>
+      </SectionAnim>
+      <SectionAnim delay={0.2}>
+        {isPagination && (
+          <Pagination
+            page={page}
+            totalPage={totalPage}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            prevDisabled={prevDisabled}
+            nextDisabled={nextDisabled}
+          />
         )}
-      </SimpleGrid>
-      {isPagination && (
-        <Pagination
-          page={page}
-          totalPage={totalPage}
-          nextPage={nextPage}
-          prevPage={prevPage}
-          prevDisabled={prevDisabled}
-          nextDisabled={nextDisabled}
-        />
-      )}
+      </SectionAnim>
     </>
   );
 };

@@ -10,6 +10,7 @@ import {
   Button,
   Portal,
 } from '@chakra-ui/react';
+import BtnClickAnim from 'components/Animations/BtnClickAnim';
 import { FiLogOut } from 'react-icons/fi';
 
 const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
@@ -18,13 +19,15 @@ const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
       <Popover placement="bottom" variant="custom">
         {({ onClose }) => (
           <>
-            <PopoverTrigger>
-              <IconButton
-                variant="customIB"
-                aria-label="Log out user"
-                icon={<FiLogOut />}
-              />
-            </PopoverTrigger>
+            <BtnClickAnim>
+              <PopoverTrigger>
+                <IconButton
+                  variant="customIB"
+                  aria-label="Log out user"
+                  icon={<FiLogOut />}
+                />
+              </PopoverTrigger>
+            </BtnClickAnim>
             <Portal>
               <PopoverContent>
                 <PopoverBody

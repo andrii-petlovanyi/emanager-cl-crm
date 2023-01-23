@@ -5,6 +5,7 @@ import { usePrefetch } from 'redux/archive/archiveApiSlice';
 import PostsTab from 'components/Dashboard/PostsTab';
 import OffersTab from 'components/Dashboard/OffersTab';
 import StatsTab from 'components/Dashboard/StatsTab';
+import SectionAnim from 'components/Animations/SectionAnim';
 
 const Dashboard = () => {
   const prefetchPost = prefPost('getPosts');
@@ -17,9 +18,15 @@ const Dashboard = () => {
 
   return (
     <Box p="10px" pt="0" display="flex" flexDirection="column" gap="20px">
-      <StatsTab />
-      <PostsTab />
-      <OffersTab />
+      <SectionAnim delay="0.1">
+        <StatsTab />
+      </SectionAnim>
+      <SectionAnim delay="0.1">
+        <PostsTab />
+      </SectionAnim>
+      <SectionAnim delay="0.1">
+        <OffersTab />
+      </SectionAnim>
     </Box>
   );
 };

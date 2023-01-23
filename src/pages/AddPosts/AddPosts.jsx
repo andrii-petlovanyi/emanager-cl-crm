@@ -1,4 +1,5 @@
 import { Box, Text } from '@chakra-ui/react';
+import SectionAnim from 'components/Animations/SectionAnim';
 import OfferLoader from 'components/Loaders/OfferLoader';
 import Offer from 'components/Offer/Offer';
 import PostForm from 'components/Post/PostForm';
@@ -24,73 +25,77 @@ const AddPosts = () => {
 
   return (
     <Box display="flex" gap="40px">
-      <Box
-        flex="2"
-        p="20px"
-        pt="30px"
-        position="relative"
-        border="1px solid"
-        borderRadius="10px"
-        borderColor="borderColor"
-      >
-        <Text
-          position="absolute"
-          top="-17px"
-          left="10px"
-          bg="bodyBG"
-          px="10px"
-          fontSize="22px"
-          fontWeight="700"
+      <SectionAnim delay={0.2} flex="2">
+        <Box
+          // flex="2"
+          p="20px"
+          pt="30px"
+          position="relative"
+          border="1px solid"
+          borderRadius="10px"
+          borderColor="borderColor"
         >
-          Add new post
-        </Text>
-        <PostForm
-          submitPost={submitPost}
-          isLoading={isLoading}
-          resetForm={resetForm}
-        />
-      </Box>
-      <Box
-        position="relative"
-        flex="1"
-        display={{ base: 'none', lg: 'flex' }}
-        flexDirection="column"
-        width="100%"
-        pt="30px"
-        gap="30px"
-        borderTop="1px solid"
-        borderColor="borderColor"
-      >
-        <Text
-          position="absolute"
-          top="-17px"
-          left="50%"
-          bg="bodyBG"
-          px="10px"
-          fontSize="22px"
-          fontWeight="700"
-          transform="translateX(-50%)"
+          <Text
+            position="absolute"
+            top="-17px"
+            left="10px"
+            bg="bodyBG"
+            px="10px"
+            fontSize="22px"
+            fontWeight="700"
+          >
+            Add new post
+          </Text>
+          <PostForm
+            submitPost={submitPost}
+            isLoading={isLoading}
+            resetForm={resetForm}
+          />
+        </Box>
+      </SectionAnim>
+      <SectionAnim delay={0.3} flex="1">
+        <Box
+          // flex="1"
+          position="relative"
+          display={{ base: 'none', lg: 'flex' }}
+          flexDirection="column"
+          width="100%"
+          pt="30px"
+          gap="30px"
+          borderTop="1px solid"
+          borderColor="borderColor"
         >
-          Last offers
-        </Text>
-        {!isLoadingOffers &&
-          (offers?.length ? (
+          <Text
+            position="absolute"
+            top="-17px"
+            left="50%"
+            bg="bodyBG"
+            px="10px"
+            fontSize="22px"
+            fontWeight="700"
+            transform="translateX(-50%)"
+          >
+            Last offers
+          </Text>
+          {!isLoadingOffers &&
+            (offers?.length ? (
+              <>
+                {offers?.map(offer => (
+                  <Offer key={offer._id} offer={offer} />
+                ))}
+              </>
+            ) : (
+              <>Sorry, no offers is database...</>
+            ))}
+          {isLoadingOffers && (
             <>
-              {offers?.map(offer => (
-                <Offer key={offer._id} offer={offer} />
-              ))}
+              <OfferLoader />
+              <OfferLoader />
+              <OfferLoader />
             </>
-          ) : (
-            <>Sorry, no offers is database...</>
-          ))}
-        {isLoadingOffers && (
-          <>
-            <OfferLoader />
-            <OfferLoader />
-            <OfferLoader />
-          </>
-        )}
-      </Box>
+          )}
+        </Box>
+      </SectionAnim>
     </Box>
   );
 };

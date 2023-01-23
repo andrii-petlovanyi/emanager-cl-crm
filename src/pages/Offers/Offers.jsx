@@ -1,4 +1,5 @@
 import { SimpleGrid } from '@chakra-ui/react';
+import SectionAnim from 'components/Animations/SectionAnim';
 import OfferLoader from 'components/Loaders/OfferLoader';
 // import OfferLoader from 'components/Loaders/OfferLoader';
 import Offer from 'components/Offer/Offer';
@@ -33,38 +34,42 @@ const Offers = () => {
 
   return (
     <>
-      <SimpleGrid
-        minChildWidth={{ base: '240px', msm: '300px' }}
-        spacing="20px"
-        justifyContent="center"
-        width="100%"
-      >
-        {!isLoaded &&
-          (offers?.length ? (
-            offers.map(offer => <Offer key={offer._id} offer={offer} />)
-          ) : (
-            <>Sorry, no offers in database...</>
-          ))}
-        {isLoaded && (
-          <>
-            {Array(limit)
-              .fill(0)
-              .map((_, index) => (
-                <OfferLoader key={index} />
-              ))}
-          </>
+      <SectionAnim delay={0.1}>
+        <SimpleGrid
+          minChildWidth={{ base: '240px', msm: '300px' }}
+          spacing="20px"
+          justifyContent="center"
+          width="100%"
+        >
+          {!isLoaded &&
+            (offers?.length ? (
+              offers.map(offer => <Offer key={offer._id} offer={offer} />)
+            ) : (
+              <>Sorry, no offers in database...</>
+            ))}
+          {isLoaded && (
+            <>
+              {Array(limit)
+                .fill(0)
+                .map((_, index) => (
+                  <OfferLoader key={index} />
+                ))}
+            </>
+          )}
+        </SimpleGrid>
+      </SectionAnim>
+      <SectionAnim delay={0.2}>
+        {isPagination && (
+          <Pagination
+            page={page}
+            totalPage={totalPage}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            prevDisabled={prevDisabled}
+            nextDisabled={nextDisabled}
+          />
         )}
-      </SimpleGrid>
-      {isPagination && (
-        <Pagination
-          page={page}
-          totalPage={totalPage}
-          nextPage={nextPage}
-          prevPage={prevPage}
-          prevDisabled={prevDisabled}
-          nextDisabled={nextDisabled}
-        />
-      )}
+      </SectionAnim>
     </>
   );
 };

@@ -15,6 +15,7 @@ import { useResetUserPassMutation } from 'redux/auth/authApiSlice';
 import Toast from 'components/Toast/Toast';
 import Logo from 'components/Logo/Logo';
 import Footer from 'components/Footer/Footer';
+import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -82,18 +83,21 @@ const ResetPassword = () => {
                   <Link as={NavLink} alignSelf="end" to="/login">
                     Back to sign in?
                   </Link>
-                  <Button
-                    type="submit"
-                    bg="sidebarActiveLinkBG"
-                    color="secondaryTextColor"
-                    _hover={{
-                      bg: 'buttonHover',
-                      color: 'hoverColor',
-                    }}
-                    isLoading={isLoading}
-                  >
-                    Reset password
-                  </Button>
+                  <BtnClickAnim>
+                    <Button
+                      width="100%"
+                      type="submit"
+                      bg="sidebarActiveLinkBG"
+                      color="secondaryTextColor"
+                      _hover={{
+                        bg: 'buttonHover',
+                        color: 'hoverColor',
+                      }}
+                      isLoading={isLoading}
+                    >
+                      Reset password
+                    </Button>
+                  </BtnClickAnim>
                 </Stack>
               </Stack>
             </form>

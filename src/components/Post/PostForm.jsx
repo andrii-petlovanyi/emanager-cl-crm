@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useEffect } from 'react';
+import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 const schema = yup
   .object({
@@ -122,23 +123,27 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
           </FormErrorMessage>
         </FormControl>
         <Box display="flex" justifyContent="space-between">
-          <Button
-            mt={4}
-            variant="submitBtn"
-            isLoading={isSubmitting || isLoading}
-            type="submit"
-          >
-            Submit
-          </Button>
-          {!Object.keys(post).length && (
+          <BtnClickAnim>
             <Button
               mt={4}
-              variant="clearBtn"
-              type="button"
-              onClick={() => reset()}
+              variant="submitBtn"
+              isLoading={isSubmitting || isLoading}
+              type="submit"
             >
-              Clear form
+              Submit
             </Button>
+          </BtnClickAnim>
+          {!Object.keys(post).length && (
+            <BtnClickAnim>
+              <Button
+                mt={4}
+                variant="clearBtn"
+                type="button"
+                onClick={() => reset()}
+              >
+                Clear form
+              </Button>
+            </BtnClickAnim>
           )}
         </Box>
       </Box>
