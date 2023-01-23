@@ -1,14 +1,15 @@
-import { Box, IconButton, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, SimpleGrid, Text } from '@chakra-ui/react';
 import PostLoader from 'components/Loaders/PostLoader';
+import TabPagination from 'components/Pagination/TabPagination';
 import Post from 'components/Post/Post';
 import { useState } from 'react';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 
 const PostsTab = () => {
+  const limit = 2;
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching } = useGetPostsQuery({ page, limit: 2 });
+  const { data, isLoading, isFetching } = useGetPostsQuery({ page, limit });
   const { posts, totalPosts } = data || {};
 
   const totalPage = Math.ceil(totalPosts / 2);
@@ -24,6 +25,8 @@ const PostsTab = () => {
     if (decrDisabled) return;
     setPage(prev => prev - 1);
   };
+
+  const isLoaded = isLoading || isFetching;
 
   return (
     <>
@@ -55,35 +58,29 @@ const PostsTab = () => {
           justifyContent="center"
           width="100%"
         >
-          {!isLoading &&
-            !isFetching &&
+          {!isLoaded &&
             (posts?.length
               ? posts.map(post => (
                   <Post key={post._id} post={post} type="post" />
                 ))
               : 'Sorry, no posts available...')}
 
-          {(isLoading || isFetching) && (
+          {isLoaded && (
             <>
-              <PostLoader />
-              <PostLoader />
+              {Array(limit)
+                .fill(0)
+                .map((_, index) => (
+                  <PostLoader key={index} />
+                ))}
             </>
           )}
         </SimpleGrid>
         <Box display="flex" justifyContent="flex-end" mt="10px">
-          <IconButton
-            isDisabled={decrDisabled}
-            onClick={decrementHandler}
-            icon={<MdKeyboardArrowLeft />}
-            variant="tabArrowIB"
-            _hover={{ transform: `${decrDisabled ? 'none' : 'scale(1.1)'}` }}
-          />
-          <IconButton
-            isDisabled={incrDisabled}
-            onClick={incrementHandler}
-            icon={<MdKeyboardArrowRight />}
-            variant="tabArrowIB"
-            _hover={{ transform: `${incrDisabled ? 'none' : 'scale(1.1)'}` }}
+          <TabPagination
+            decrDisabled={decrDisabled}
+            incrDisabled={incrDisabled}
+            decrementHandler={decrementHandler}
+            incrementHandler={incrementHandler}
           />
         </Box>
       </Box>

@@ -11,6 +11,7 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
+import BtnClickAnim from 'components/Animations/BtnClickAnim';
 import { MdOutlineTextsms } from 'react-icons/md';
 
 const PostInfoModal = ({ postInfo = '', model = '' }) => {
@@ -18,14 +19,16 @@ const PostInfoModal = ({ postInfo = '', model = '' }) => {
   const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
   return (
     <>
-      <Tooltip hasArrow label="Post text">
-        <IconButton
-          onClick={onOpen}
-          icon={<MdOutlineTextsms />}
-          aria-label="Post text"
-          variant="customOutIB"
-        />
-      </Tooltip>
+      <BtnClickAnim>
+        <Tooltip hasArrow label="Post text">
+          <IconButton
+            onClick={onOpen}
+            icon={<MdOutlineTextsms />}
+            aria-label="Post text"
+            variant="customOutIB"
+          />
+        </Tooltip>
+      </BtnClickAnim>
       <Modal
         isOpen={isOpen}
         isCentered={isLargerThan480}

@@ -5,7 +5,8 @@ const OfferLoader = () => {
     <>
       <Box
         position="relative"
-        maxW="320px"
+        maxW={{ base: '420px', lg: '320px' }}
+        mx={{ base: 'auto', md: '0' }}
         boxShadow="lg"
         bg="sectionBG"
         display="flex"

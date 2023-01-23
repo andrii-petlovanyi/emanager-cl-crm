@@ -10,7 +10,6 @@ const customIB = defineStyle({
 
   _hover: {
     color: 'hoverColor',
-    transform: 'scale(1.1)',
   },
 });
 
@@ -25,7 +24,6 @@ const customOptIB = defineStyle({
 
   _hover: {
     color: 'hoverColor',
-    // transform: 'rotate(90deg)',
   },
 });
 
@@ -39,7 +37,6 @@ const tabArrowIB = defineStyle({
 
   _hover: {
     color: 'hoverColor',
-    transform: 'scale(1.1)',
   },
 });
 
@@ -55,7 +52,6 @@ const customOutIB = defineStyle({
 
   _hover: {
     color: 'hoverColor',
-    transform: 'scale(1.1)',
   },
 });
 

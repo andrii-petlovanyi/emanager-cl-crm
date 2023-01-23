@@ -18,6 +18,7 @@ import PostOptions from './PostOptions';
 import moment from 'moment';
 import PostEdit from './PostEdit';
 import { useState } from 'react';
+import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 // eslint-disable-next-line no-unused-vars
 const Post = ({ post = {}, type = '' }) => {
@@ -29,13 +30,14 @@ const Post = ({ post = {}, type = '' }) => {
     <>
       <Card
         position="relative"
+        height="150px"
         display="flex"
         flexWrap="wrap"
         flexDirection={{ base: 'column', msm: 'row' }}
-        maxW={{ base: '100%', md: '480px' }}
+        maxW={{ base: '100%', md: '490px' }}
         borderRadius="10px"
         bgColor="sectionBG"
-        height="150px"
+        boxShadow="cardShadow"
       >
         <CardHeader p="0" flex={{ base: '0', msm: '1' }}>
           <PostOptions post={post} type={type} setOpen={setOpen} />
@@ -86,26 +88,30 @@ const Post = ({ post = {}, type = '' }) => {
                 postInfo={info ? info : {}}
                 model={model ? model : ''}
               />
-              <Tooltip hasArrow label="Link to card product on official site">
-                <IconButton
-                  as={Link}
-                  href={urlOffSite ? urlOffSite : 'https://google.com'}
-                  isExternal
-                  icon={<MdBookmark />}
-                  aria-label="Link to card model on official site"
-                  variant="customOutIB"
-                />
-              </Tooltip>
-              <Tooltip hasArrow label="Link to product documentations">
-                <IconButton
-                  as={Link}
-                  href={urlBook ? urlBook : 'https://google.com'}
-                  isExternal
-                  icon={<MdMenuBook />}
-                  aria-label="Link to documentations"
-                  variant="customOutIB"
-                />
-              </Tooltip>
+              <BtnClickAnim>
+                <Tooltip hasArrow label="Link to card product on official site">
+                  <IconButton
+                    as={Link}
+                    href={urlOffSite ? urlOffSite : 'https://google.com'}
+                    isExternal
+                    icon={<MdBookmark />}
+                    aria-label="Link to card model on official site"
+                    variant="customOutIB"
+                  />
+                </Tooltip>
+              </BtnClickAnim>
+              <BtnClickAnim>
+                <Tooltip hasArrow label="Link to product documentations">
+                  <IconButton
+                    as={Link}
+                    href={urlBook ? urlBook : 'https://google.com'}
+                    isExternal
+                    icon={<MdMenuBook />}
+                    aria-label="Link to documentations"
+                    variant="customOutIB"
+                  />
+                </Tooltip>
+              </BtnClickAnim>
             </Box>
           </CardBody>
           <Box

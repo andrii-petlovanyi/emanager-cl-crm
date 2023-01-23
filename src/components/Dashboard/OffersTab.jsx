@@ -1,14 +1,8 @@
-import {
-  Box,
-  IconButton,
-  SimpleGrid,
-  Text,
-  useMediaQuery,
-} from '@chakra-ui/react';
+import { Box, SimpleGrid, Text, useMediaQuery } from '@chakra-ui/react';
 import OfferLoader from 'components/Loaders/OfferLoader';
 import Offer from 'components/Offer/Offer';
+import TabPagination from 'components/Pagination/TabPagination';
 import { useState } from 'react';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 
 const OffersTab = () => {
@@ -32,6 +26,8 @@ const OffersTab = () => {
     if (decrDisabled) return;
     setPage(prev => prev - 1);
   };
+
+  const isLoaded = isLoading || isFetching;
 
   return (
     <>
@@ -60,33 +56,27 @@ const OffersTab = () => {
           width="100%"
           // columns={{ base: 1, md: 2, lg: 3 }}
         >
-          {!isLoading &&
-            !isFetching &&
+          {!isLoaded &&
             (offers?.length
               ? offers.map(offer => <Offer key={offer._id} offer={offer} />)
               : 'Sorry, no posts available...')}
-          {(isLoading || isFetching) && (
+
+          {isLoaded && (
             <>
-              <OfferLoader />
-              <OfferLoader />
-              <OfferLoader />
+              {Array(limit)
+                .fill(0)
+                .map((_, index) => (
+                  <OfferLoader key={index} />
+                ))}
             </>
           )}
         </SimpleGrid>
         <Box display="flex" justifyContent="flex-end" mt="10px">
-          <IconButton
-            isDisabled={decrDisabled}
-            onClick={decrementHandler}
-            icon={<MdKeyboardArrowLeft />}
-            variant="tabArrowIB"
-            _hover={{ transform: `${decrDisabled ? 'none' : 'scale(1.1)'}` }}
-          />
-          <IconButton
-            isDisabled={incrDisabled}
-            onClick={incrementHandler}
-            icon={<MdKeyboardArrowRight />}
-            variant="tabArrowIB"
-            _hover={{ transform: `${incrDisabled ? 'none' : 'scale(1.1)'}` }}
+          <TabPagination
+            decrDisabled={decrDisabled}
+            incrDisabled={incrDisabled}
+            decrementHandler={decrementHandler}
+            incrementHandler={incrementHandler}
           />
         </Box>
       </Box>

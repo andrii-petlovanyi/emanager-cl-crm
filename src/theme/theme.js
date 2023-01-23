@@ -15,8 +15,8 @@ const breakpoints = {
   xl: '1280px',
 };
 
-const boxShadow = {
-  sidebarActiveLink: '0px 2px 4px rgba(138, 146, 166, 0.3)',
+const shadows = {
+  cardShadow: 'rgba(0, 0, 0, 0.3) 0px 1px 4px',
 };
 
 const colors = {
@@ -60,7 +60,6 @@ const components = {
         _focus: { boxShadow: 'none' },
         _activeLink: {
           color: '#fff',
-          boxShadow: 'sidebarActiveLink',
         },
       },
       secondary: {
@@ -84,7 +83,7 @@ const components = {
 
 const theme = extendTheme({
   colors,
-  boxShadow,
+  shadows,
   styles,
   components,
   breakpoints,

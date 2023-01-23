@@ -10,12 +10,13 @@ const StatCard = ({ stat = {} }) => {
       //   maxW="260px"
       height="117px"
       bg="sectionBG"
-      boxShadow="0px 10px 30px rgba(0, 0, 6, 0.15)"
+      // boxShadow="0px 10px 30px rgba(0, 0, 6, 0.15)"
       borderRadius="8px"
       display="flex"
       alignItems="center"
       justifyContent="center"
       gridGap="24px"
+      boxShadow="cardShadow"
     >
       <Box
         width="68px"

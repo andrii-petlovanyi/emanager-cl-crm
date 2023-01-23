@@ -3,16 +3,17 @@ import { Box, IconButton, Text } from '@chakra-ui/react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 const Pagination = ({
-  page = 1,
+  page,
   totalPage,
   nextPage,
   prevPage,
   prevDisabled = false,
   nextDisabled = false,
 }) => {
+  const isVisible = page > 0 && totalPage > 0;
+
   return (
-    totalPage &&
-    page && (
+    isVisible && (
       <Box
         display="flex"
         mt="20px"

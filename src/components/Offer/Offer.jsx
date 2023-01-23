@@ -28,6 +28,7 @@ const Offer = ({ offer = {} }) => {
         color="primaryTextColor"
         mx={{ base: 'auto', md: '0' }}
         width="100%"
+        boxShadow="cardShadow"
       >
         <CardHeader>
           <Flex spacing="4">

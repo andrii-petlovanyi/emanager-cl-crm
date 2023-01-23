@@ -17,7 +17,6 @@ const NavItem = ({ icon, to, children, ...rest }) => {
         role="group"
         fontSize="16px"
         cursor="pointer"
-        boxShadow={isActive ? 'sidebarActiveLink' : 'none'}
         bg={isActive ? 'sidebarActiveLinkBG' : 'none'}
         {...rest}
       >
