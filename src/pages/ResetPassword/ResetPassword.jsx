@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -10,6 +11,9 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useResetUserPassMutation } from 'redux/auth/authApiSlice';
 import Toast from 'components/Toast/Toast';
@@ -17,27 +21,38 @@ import Logo from 'components/Logo/Logo';
 import Footer from 'components/Footer/Footer';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
+const schema = yup.object({
+  email: yup
+    .string()
+    .min(6, 'Minimal email length is 6 symbols')
+    .max(30, 'Maximal email length is 6 symbols')
+    .email('Invalid email format')
+    .required('Email is required'),
+});
+
 const ResetPassword = () => {
   const navigate = useNavigate();
   const { addToast } = Toast();
   const [resetUserPass, { isLoading }] = useResetUserPassMutation();
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-    const form = e.target;
-    const email = form.elements.email.value.trim();
-
-    if (!email.length)
-      return addToast({ message: 'Please enter your email', type: 'error' });
-
+  const onSubmit = async formData => {
+    console.log(formData.email);
     try {
-      const { data, error } = await resetUserPass(email);
+      const { data, error } = await resetUserPass(formData.email);
       if (!data)
         return addToast({ message: error.data.message, type: 'error' });
 
       addToast({ message: data.message, type: 'success' });
-      form.reset();
+      reset();
       navigate('/login');
     } catch (error) {
       addToast({ message: error.message, type: 'error' });
@@ -73,11 +88,19 @@ const ResetPassword = () => {
             </Heading>
           </Stack>
           <Box rounded={'lg'} bg="loginSectionBG" boxShadow={'lg'} p={8}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={4}>
-                <FormControl id="text">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text" name="email" variant="auth" />
+                <FormControl isInvalid={errors.email}>
+                  <FormLabel htmlFor="email">Email address</FormLabel>
+                  <Input
+                    type="text"
+                    id="email"
+                    variant="auth"
+                    {...register('email')}
+                  />
+                  <FormErrorMessage>
+                    {errors.email && errors.email.message}
+                  </FormErrorMessage>
                 </FormControl>
                 <Stack spacing={8}>
                   <Link as={NavLink} alignSelf="end" to="/login">
@@ -87,7 +110,7 @@ const ResetPassword = () => {
                     <Button
                       width="100%"
                       type="submit"
-                      isLoading={isLoading}
+                      isLoading={isLoading || isSubmitting}
                       variant="submitBtn"
                     >
                       Reset password

@@ -68,7 +68,7 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box display="flex" flexDirection="column" gap="20px" width="100%">
         <FormControl isInvalid={errors.model}>
-          <FormLabel htmlFor="firstName">Product model</FormLabel>
+          <FormLabel htmlFor="model">Product model</FormLabel>
           <Input
             id="model"
             variant="custom"

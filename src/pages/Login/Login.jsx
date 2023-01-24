@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Flex,
   Box,
@@ -11,7 +14,12 @@ import {
   Button,
   Heading,
   Link,
+  FormErrorMessage,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from '@chakra-ui/react';
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 import { useLogInUserMutation } from 'redux/auth/authApiSlice';
 import { logIn } from 'redux/auth/authSlice';
@@ -20,28 +28,44 @@ import Logo from 'components/Logo/Logo';
 import Footer from 'components/Footer/Footer';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .min(6, 'Minimal email length is 6 symbols')
+      .max(30, 'Maximal email length is 6 symbols')
+      .email('Invalid email format')
+      .required('Email is required'),
+    password: yup
+      .string()
+      .min(6, 'Minimal password length is 6 symbols')
+      .max(12, 'Maximal password length is 12 symbols')
+      .required('Password is required'),
+  })
+  .required();
+
 const Login = () => {
-  const [userCred, setUserCred] = useState({
-    email: '',
-    password: '',
-  });
+  const [show, setShow] = useState(false);
   const { addToast } = Toast();
   const dispatch = useDispatch();
   const [logInUser, { isLoading }] = useLogInUserMutation();
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    if (userCred.email === '' || userCred.password === '')
-      return addToast({
-        message: 'All fields is required!',
-        type: 'error',
-      });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async formData => {
     try {
-      const { data, error } = await logInUser(userCred);
+      const { data, error } = await logInUser(formData);
       if (!data)
         return addToast({ message: error.data.message, type: 'error' });
       dispatch(logIn(data));
-      setUserCred({ email: '', password: '' });
+      reset();
       addToast({
         message: `${data.user.name}, welcome back!`,
         type: 'success',
@@ -52,11 +76,6 @@ const Login = () => {
         type: 'error',
       });
     }
-  };
-
-  const handleInputChange = e => {
-    const { name, value } = e.currentTarget;
-    setUserCred(state => ({ ...state, [name]: value }));
   };
 
   return (
@@ -85,27 +104,38 @@ const Login = () => {
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
         </Stack>
         <Box rounded={'lg'} bg="loginSectionBG" boxShadow={'lg'} p={8}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4}>
-              <FormControl id="text">
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  type="text"
-                  name="email"
-                  variant="auth"
-                  value={userCred.email}
-                  onChange={handleInputChange}
-                />
+              <FormControl isInvalid={errors.email}>
+                <FormLabel htmlFor="email">Email address</FormLabel>
+                <Input id="email" variant="auth" {...register('email')} />
+                <FormErrorMessage>
+                  {errors.email && errors.email.message}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <Input
-                  type="password"
-                  name="password"
-                  variant="auth"
-                  value={userCred.password}
-                  onChange={handleInputChange}
-                />
+
+              <FormControl isInvalid={errors.password}>
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    id="password"
+                    type={show ? 'text' : 'password'}
+                    variant="auth"
+                    {...register('password')}
+                  />
+                  <InputRightElement>
+                    <BtnClickAnim>
+                      <IconButton
+                        variant="customIB"
+                        onClick={() => setShow(!show)}
+                        icon={show ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                      />
+                    </BtnClickAnim>
+                  </InputRightElement>
+                </InputGroup>
+                <FormErrorMessage>
+                  {errors.password && errors.password.message}
+                </FormErrorMessage>
               </FormControl>
               <Stack spacing={8}>
                 <Link as={NavLink} alignSelf="end" to="/reset-pass">
@@ -116,7 +146,7 @@ const Login = () => {
                     width="100%"
                     type="submit"
                     variant="submitBtn"
-                    isLoading={isLoading}
+                    isLoading={isLoading || isSubmitting}
                   >
                     Sign in
                   </Button>
