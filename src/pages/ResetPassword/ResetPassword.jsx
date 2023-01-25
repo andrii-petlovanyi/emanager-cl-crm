@@ -65,6 +65,7 @@ const ResetPassword = () => {
         minH={'calc(100vh)'}
         align={'center'}
         justify={'center'}
+        flexDirection="column"
         bg="sectionBG"
       >
         <Logo
@@ -121,7 +122,13 @@ const ResetPassword = () => {
             </form>
           </Box>
         </Stack>
-        <Footer display={{ base: 'flex', lg: 'none' }} mx="auto" />
+        <Flex display={{ base: 'flex', lg: 'none' }}>
+          <Footer
+            display={{ base: 'flex', lg: 'none' }}
+            mx="auto"
+            transform="translateX(-50%)"
+          />
+        </Flex>
       </Flex>
     </>
   );
