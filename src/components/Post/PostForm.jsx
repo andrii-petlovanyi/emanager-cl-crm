@@ -120,6 +120,7 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
           <Textarea
             id="info"
             placeholder="Info about product"
+            borderColor="borderColor"
             _focus={{
               borderColor: 'primaryTextColor',
               boxShadow: '0 0 1px 1px #D3D3D333',

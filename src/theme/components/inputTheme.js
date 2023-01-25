@@ -4,7 +4,7 @@ const custom = defineStyle({
   field: {
     border: '1px solid',
     borderColor: 'borderColor',
-    backgroundColor: 'bodyBG',
+    backgroundColor: 'inherit',
     color: 'primaryTextColor',
     transition: '350ms ease',
     _focus: {
