@@ -9,11 +9,12 @@ import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 import { useAddPostMutation } from 'redux/posts/postsApiSlice';
 
 const AddPosts = () => {
+  const limit = 3;
   const [addPost, { isLoading }] = useAddPostMutation();
   const [resetForm, setResetForm] = useState(false);
   const { addToast } = Toast();
 
-  const { data, isLoading: isLoadingOffers } = useGetOffersQuery({ limit: 3 });
+  const { data, isLoading: isLoadingOffers } = useGetOffersQuery({ limit });
   const { offers } = data || {};
 
   const submitPost = async data => {
@@ -25,7 +26,7 @@ const AddPosts = () => {
 
   return (
     <SectionAnim delay={0.2}>
-      <Box display="flex" gap="40px">
+      <Box display="flex" gap="20px">
         <Box
           flex="2"
           p="20px"
@@ -87,9 +88,11 @@ const AddPosts = () => {
             ))}
           {isLoadingOffers && (
             <>
-              <OfferLoader />
-              <OfferLoader />
-              <OfferLoader />
+              {Array(limit)
+                .fill(0)
+                .map((_, index) => (
+                  <OfferLoader key={index} />
+                ))}
             </>
           )}
         </Box>
