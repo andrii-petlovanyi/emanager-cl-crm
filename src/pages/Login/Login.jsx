@@ -44,7 +44,7 @@ const schema = yup
   })
   .required();
 
-const Login = () => {
+export const Login = () => {
   const [show, setShow] = useState(false);
   const { addToast } = Toast();
   const dispatch = useDispatch();
@@ -170,5 +170,3 @@ const Login = () => {
     </Flex>
   );
 };
-
-export default Login;

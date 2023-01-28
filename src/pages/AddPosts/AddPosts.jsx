@@ -26,7 +26,7 @@ const AddPosts = () => {
 
   return (
     <SectionAnim delay={0.2}>
-      <Box display="flex" gap="20px">
+      <Box display="flex" gap="20px" mt="10px">
         <Box
           flex="2"
           p="20px"

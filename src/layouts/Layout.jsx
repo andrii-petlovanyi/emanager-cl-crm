@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import authSelectors from 'redux/auth/auth-selectors';
 import { useGetUserQuery } from 'redux/auth/authApiSlice';
+import { Suspense } from 'react';
 
 const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -93,7 +94,9 @@ const Layout = () => {
           ml={isAuth ? { base: 0, lg: '250px' } : { base: 0, lg: '300px' }}
           px={isAuth ? '20px' : '0'}
         >
-          <Outlet />
+          <Suspense fallback={false}>
+            <Outlet />
+          </Suspense>
         </Box>
         <Footer />
       </Box>

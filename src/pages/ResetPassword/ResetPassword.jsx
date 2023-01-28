@@ -30,7 +30,7 @@ const schema = yup.object({
     .required('Email is required'),
 });
 
-const ResetPassword = () => {
+export const ResetPassword = () => {
   const navigate = useNavigate();
   const { addToast } = Toast();
   const [resetUserPass, { isLoading }] = useResetUserPassMutation();
@@ -133,5 +133,3 @@ const ResetPassword = () => {
     </>
   );
 };
-
-export default ResetPassword;
