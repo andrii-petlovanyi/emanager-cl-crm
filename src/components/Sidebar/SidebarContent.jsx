@@ -24,12 +24,12 @@ const SidebarContent = ({ ...rest }) => {
       display={{ base: 'block', lg: 'none' }}
       mr={{ base: '20px' }}
       ml={{ base: 'auto', lg: '20px' }}
-      mt={{ base: '120px', lg: '190px' }}
+      mt={{ base: '300px', lg: '370px' }}
       w="230px"
       p="20px 5px"
       transition="1s ease"
       bg="sectionBG"
-      borderRadius="20px"
+      borderRadius="10px"
       {...rest}
     >
       {LinkItems.map(link => (

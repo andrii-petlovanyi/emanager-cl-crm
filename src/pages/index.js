@@ -12,3 +12,4 @@ export const Offers = lazy(() => import('pages/Offers/Offers'));
 export const ArchivePosts = lazy(() =>
   import('pages/ArchivePosts/ArchivePosts')
 );
+export const NotFound = lazy(() => import('pages/NotFound/NotFound'));

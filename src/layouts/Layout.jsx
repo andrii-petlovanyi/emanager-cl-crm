@@ -14,12 +14,16 @@ import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import authSelectors from 'redux/auth/auth-selectors';
 import { useGetUserQuery } from 'redux/auth/authApiSlice';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
+import UserSettings from 'components/Sidebar/UserSettings';
 
 const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isAuth = useSelector(authSelectors.isAuth);
   const { isLoading } = useGetUserQuery();
+
+  const [openSetting, setOpenSetting] = useState(false);
+
   return (
     <Box
       minH="100vh"
@@ -34,13 +38,22 @@ const Layout = () => {
             <UserProfile
               display={{ base: 'none', lg: 'block' }}
               onClose={onClose}
+              setOpenSetting={setOpenSetting}
+              openSetting={openSetting}
             />
-            <SidebarContent
-              onClose={onClose}
-              display={{ base: 'none', lg: 'flex' }}
-              flexDirection="column"
-              gridGap="8px"
-            />
+            {openSetting ? (
+              <UserSettings
+                display={{ base: 'none', lg: 'flex' }}
+                flexDirection="column"
+                gridGap="8px"
+              />
+            ) : (
+              <SidebarContent
+                display={{ base: 'none', lg: 'flex' }}
+                flexDirection="column"
+                gridGap="8px"
+              />
+            )}
             <Drawer
               autoFocus={false}
               isOpen={isOpen}
@@ -65,8 +78,11 @@ const Layout = () => {
                   border
                   padding="20px"
                 >
-                  <UserProfile />
-                  <SidebarContent onClose={onClose} />
+                  <UserProfile
+                    setOpenSetting={setOpenSetting}
+                    openSetting={openSetting}
+                  />
+                  {openSetting ? <UserSettings /> : <SidebarContent />}
                 </Box>
               </DrawerContent>
             </Drawer>

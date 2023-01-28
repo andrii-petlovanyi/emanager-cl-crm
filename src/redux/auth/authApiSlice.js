@@ -62,10 +62,19 @@ const authApiSlice = createApi({
     changeUserPass: builder.mutation({
       query: user => ({
         url: `/${user.id}/password`,
-        method: 'POST',
+        method: 'PATCH',
         body: { email: user.email, password: user.password },
       }),
       providesTags: ['users'],
+    }),
+
+    updateNote: builder.mutation({
+      query: data => ({
+        url: `/${data.userId}`,
+        method: 'PATCH',
+        body: { notes: data.note },
+      }),
+      invalidatesTags: ['users'],
     }),
   }),
 });
@@ -77,6 +86,7 @@ export const {
   useChangeUserPassMutation,
   useResetUserPassMutation,
   useGetUserQuery,
+  useUpdateNoteMutation,
 } = authApiSlice;
 
 export default authApiSlice;

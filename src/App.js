@@ -16,6 +16,7 @@ import {
   ArchivePosts,
   Login,
   ResetPassword,
+  NotFound,
 } from 'pages';
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
                 <Route path="add" element={<AddPosts />} />
                 <Route path="offers" element={<Offers />} />
                 <Route path="archive" element={<ArchivePosts />} />
+                <Route path="*" element={<NotFound />} />
               </Route>
               <Route element={<PublicRoute />}>
                 <Route path="login" element={<Login />} />
