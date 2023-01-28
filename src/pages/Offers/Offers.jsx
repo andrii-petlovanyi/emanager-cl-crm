@@ -41,13 +41,13 @@ const Offers = () => {
           justifyContent="center"
           width="100%"
         >
-          {!isLoaded &&
-            (offers?.length ? (
+          {!isLoaded ? (
+            offers?.length ? (
               offers.map(offer => <Offer key={offer._id} offer={offer} />)
             ) : (
               <>Sorry, no offers in database...</>
-            ))}
-          {isLoaded && (
+            )
+          ) : (
             <>
               {Array(limit)
                 .fill(0)

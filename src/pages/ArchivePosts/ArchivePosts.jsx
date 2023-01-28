@@ -44,12 +44,15 @@ const ArchivePosts = () => {
           justifyContent="center"
           width="100%"
         >
-          {!isLoaded && archivePosts?.length > 0
-            ? archivePosts?.map(post => (
+          {!isLoaded ? (
+            archivePosts?.length > 0 ? (
+              archivePosts?.map(post => (
                 <Post key={post._id} post={post} type={'archive'} />
               ))
-            : 'Sorry, no posts in archive'}
-          {isLoaded && (
+            ) : (
+              'Sorry, no posts in archive'
+            )
+          ) : (
             <>
               {Array(limit)
                 .fill(0)

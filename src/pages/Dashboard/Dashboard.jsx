@@ -1,7 +1,7 @@
 import { Box, SimpleGrid, useMediaQuery } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { usePrefetch as usePrefetchPost } from 'redux/posts/postsApiSlice';
-import { usePrefetch as usePrefetchOffer } from 'redux/archive/archiveApiSlice';
+import { usePrefetch as usePrefetchOffer } from 'redux/offers/offersApiSlice';
 import StatsTab from 'components/Dashboard/StatsTab';
 import SectionAnim from 'components/Animations/SectionAnim';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
@@ -15,7 +15,7 @@ import OfferLoader from 'components/Loaders/OfferLoader';
 
 const Dashboard = () => {
   const prefetchPost = usePrefetchPost('getPosts');
-  const prefetchArchive = usePrefetchOffer('getArchiveList');
+  const prefetchOffer = usePrefetchOffer('getOffers');
 
   const [postsPage, setPostsPage] = useState(1);
   const [offersPage, setOffersPage] = useState(1);
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     prefetchPost({});
-    prefetchArchive({});
+    prefetchOffer({});
   }, []);
 
   return (

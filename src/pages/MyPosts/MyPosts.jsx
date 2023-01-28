@@ -52,13 +52,15 @@ const MyPosts = () => {
           justifyContent="center"
           width="100%"
         >
-          {!isLoaded &&
-            (posts?.length > 0
-              ? posts.map(post => (
-                  <Post key={post._id} post={post} type={'post'} />
-                ))
-              : 'Sorry, no posts in database')}
-          {isLoaded && (
+          {!isLoaded ? (
+            posts?.length > 0 ? (
+              posts.map(post => (
+                <Post key={post._id} post={post} type={'post'} />
+              ))
+            ) : (
+              'Sorry, no posts in database'
+            )
+          ) : (
             <>
               {Array(limit)
                 .fill(0)

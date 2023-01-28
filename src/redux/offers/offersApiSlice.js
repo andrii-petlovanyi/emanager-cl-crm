@@ -44,6 +44,7 @@ export const {
   useDeleteOfferMutation,
   useGetOffersByIdQuery,
   useGetOffersQuery,
+  usePrefetch,
 } = offersApiSlice;
 
 export default offersApiSlice;
