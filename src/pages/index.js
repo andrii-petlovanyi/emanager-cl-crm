@@ -1,10 +1,5 @@
 import { lazy } from 'react';
 
-// export const Login = lazy(() => import('pages/Login/Login'));
-// export const ResetPassword = lazy(() =>
-//   import('pages/ResetPassword/ResetPassword')
-// );
-
 export const Layout = lazy(() => import('layouts/Layout'));
 
 export { Login } from 'pages/Login/Login';
