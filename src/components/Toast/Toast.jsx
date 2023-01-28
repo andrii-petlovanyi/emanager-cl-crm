@@ -2,12 +2,12 @@ import { useToast } from '@chakra-ui/react';
 
 const Toast = () => {
   const toast = useToast();
-  // types: "success", "info", "warning", "error"
+  // types toasts: "success", "info", "warning", "error"
 
-  const addToast = res => {
+  const addToast = ({ type, message }) => {
     toast({
-      description: res.message,
-      status: res.type,
+      description: message,
+      status: type,
       duration: 5000,
       position: 'bottom',
       isClosable: true,

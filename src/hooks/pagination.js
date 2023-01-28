@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const usePagination = () => {
-  const [page, setPage] = useState(1);
+  const location = useLocation();
   const [totalData, setTotalData] = useState();
   const [limit, setLimit] = useState();
   const [prevDisabled, setPrevDisabled] = useState(false);
   const [nextDisabled, setNextDisabled] = useState(false);
 
+  const pageNumber = Number(location.search.split('=').at(-1));
   const totalPage = Math.ceil(Number(totalData) / Number(limit));
+  const isPageInParams = pageNumber && pageNumber <= totalPage;
+
+  const [page, setPage] = useState(isPageInParams ? pageNumber : 1);
 
   useEffect(() => {
     page === 1 ? setPrevDisabled(true) : setPrevDisabled(false);

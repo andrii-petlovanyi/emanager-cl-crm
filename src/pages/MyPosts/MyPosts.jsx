@@ -30,6 +30,7 @@ const MyPosts = () => {
   });
   const { posts, totalPosts } = data || [];
 
+
   useEffect(() => {
     if (!totalPosts) return;
     setTotalData(totalPosts);

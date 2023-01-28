@@ -30,9 +30,11 @@ const StatsTab = () => {
           stats.map(stat => <StatCard key={stat.title} stat={stat} />)
         ) : (
           <>
-            <StatLoader />
-            <StatLoader />
-            <StatLoader />
+            {Array(3)
+              .fill(0)
+              .map((_, index) => (
+                <StatLoader key={index} />
+              ))}
           </>
         )}
       </SimpleGrid>

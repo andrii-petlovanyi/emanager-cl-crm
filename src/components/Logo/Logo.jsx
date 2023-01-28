@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { Text } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const Logo = ({ ...res }) => {
   return (
     <Text
+      as={Link}
+      to={'/'}
       position={{ lg: 'fixed' }}
       mt={{ lg: '20px' }}
       ml={{ lg: '20px' }}

@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from 'react-router-dom';
 import { Box, Button, IconButton, Text, useMediaQuery } from '@chakra-ui/react';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
@@ -44,6 +45,8 @@ const Pagination = ({
         >
           <BtnClickAnim disabled={prevDisabled}>
             <IconButton
+              as={Link}
+              to={`?page=${page - 1}`}
               isDisabled={prevDisabled}
               onClick={prevPage}
               icon={<MdKeyboardArrowLeft />}
@@ -106,6 +109,8 @@ const Pagination = ({
           )}
           <BtnClickAnim disabled={nextDisabled}>
             <IconButton
+              as={Link}
+              to={`?page=${page + 1}`}
               isDisabled={nextDisabled}
               onClick={nextPage}
               icon={<MdKeyboardArrowRight />}

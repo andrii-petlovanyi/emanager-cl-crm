@@ -50,6 +50,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const [logInUser, { isLoading }] = useLogInUserMutation();
 
+  //ATTENTION: if need clear last path in admin Dashboard after logout - please use next code
+  // Cookies.remove('privateRoute', { path: '' });
+
   const {
     register,
     handleSubmit,
