@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 
 const MyPosts = () => {
-  const limit = 4;
+  const limit = 6;
   const [search, setSearch] = useState('');
   const {
     page,
@@ -29,7 +29,6 @@ const MyPosts = () => {
     search,
   });
   const { posts, totalPosts } = data || [];
-
 
   useEffect(() => {
     if (!totalPosts) return;
