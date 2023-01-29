@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   userName: null,
   userId: null,
-  notes: null,
+  note: null,
   token: null,
   isLoggedIn: false,
 };
@@ -16,7 +16,7 @@ const authSlice = createSlice({
     register(state, { payload }) {
       state.userName = payload.user.name;
       state.userId = payload.user.id;
-      state.notes = payload.user.notes;
+      state.note = payload.user.note;
       state.token = payload.token;
       state.isLoggedIn = true;
     },
@@ -24,20 +24,20 @@ const authSlice = createSlice({
       state.userName = payload.user.name;
       state.userId = payload.user.id;
       state.token = payload.token;
-      state.notes = payload.notes;
+      state.note = payload.note;
       state.isLoggedIn = true;
     },
     logOut: state => {
       state.userName = null;
       state.userId = null;
-      state.notes = null;
+      state.note = null;
       state.token = null;
       state.isLoggedIn = false;
     },
     refresh: (state, { payload }) => {
       state.userName = payload.user.name;
       state.userId = payload.user.id;
-      state.notes = payload.user.notes;
+      state.note = payload.user.note;
       state.isLoggedIn = true;
     },
   },

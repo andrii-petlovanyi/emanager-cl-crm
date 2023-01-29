@@ -20,7 +20,7 @@ const UserNote = () => {
 
   const [edit, setEdit] = useState(false);
   const [note, setNote] = useState(userNote || '');
-  const [count, setCount] = useState(limit);
+  const [count, setCount] = useState(limit - note?.length || limit);
   const { addToast } = Toast();
 
   const [updateNote, { isLoading }] = useUpdateNoteMutation();
@@ -41,7 +41,7 @@ const UserNote = () => {
       addToast({ message: data.message, type: 'success' });
       setEdit(false);
     } catch (error) {
-      console.log(error);
+      addToast({ message: error.message, type: 'error' });
     }
   };
 

@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 import { Box, Divider, Heading, IconButton, Tooltip } from '@chakra-ui/react';
+import { useState } from 'react';
 import { MdOutlineSettings } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import authSelectors from 'redux/auth/auth-selectors';
 import UserNote from './UserNote';
+import UserSettings from './UserSettings';
 
-const UserProfile = ({ openSetting, setOpenSetting, ...rest }) => {
+const UserProfile = ({ ...rest }) => {
   const username = useSelector(authSelectors.userName);
+
+  const [openSetting, setOpenSetting] = useState(false);
 
   return (
     <>
@@ -29,7 +33,13 @@ const UserProfile = ({ openSetting, setOpenSetting, ...rest }) => {
           Hello, {username ? username : 'Admin'}
         </Heading>
 
-        <Tooltip hasArrow label="User Settings" bg="gray.300" color="black">
+        <Tooltip
+          isDisabled={{ base: false, lg: true }}
+          hasArrow
+          label="User Settings"
+          bg="gray.300"
+          color="black"
+        >
           <IconButton
             position="absolute"
             top="0"
@@ -44,7 +54,7 @@ const UserProfile = ({ openSetting, setOpenSetting, ...rest }) => {
           />
         </Tooltip>
         <Divider my="15px" />
-        <UserNote />
+        {openSetting ? <UserSettings /> : <UserNote />}
       </Box>
     </>
   );

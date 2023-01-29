@@ -9,20 +9,17 @@ import Footer from 'components/Footer/Footer';
 import Logo from 'components/Logo/Logo';
 import Header from 'components/Header/Header';
 import SidebarContent from 'components/Sidebar/SidebarContent';
-import UserProfile from 'components/Sidebar/UserProfile';
+import UserProfile from 'components/User/UserProfile';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import authSelectors from 'redux/auth/auth-selectors';
 import { useGetUserQuery } from 'redux/auth/authApiSlice';
-import { Suspense, useState } from 'react';
-import UserSettings from 'components/Sidebar/UserSettings';
+import { Suspense } from 'react';
 
 const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isAuth = useSelector(authSelectors.isAuth);
   const { isLoading } = useGetUserQuery();
-
-  const [openSetting, setOpenSetting] = useState(false);
 
   return (
     <Box
@@ -35,31 +32,17 @@ const Layout = () => {
         <Logo />
         {isAuth && !isLoading && (
           <>
-            <UserProfile
-              display={{ base: 'none', lg: 'block' }}
-              onClose={onClose}
-              setOpenSetting={setOpenSetting}
-              openSetting={openSetting}
+            <UserProfile display={{ base: 'none', lg: 'block' }} />
+            <SidebarContent
+              display={{ base: 'none', lg: 'flex' }}
+              flexDirection="column"
+              gridGap="8px"
             />
-            {openSetting ? (
-              <UserSettings
-                display={{ base: 'none', lg: 'flex' }}
-                flexDirection="column"
-                gridGap="8px"
-              />
-            ) : (
-              <SidebarContent
-                display={{ base: 'none', lg: 'flex' }}
-                flexDirection="column"
-                gridGap="8px"
-              />
-            )}
             <Drawer
-              autoFocus={false}
               isOpen={isOpen}
               placement="right"
               onClose={onClose}
-              returnFocusOnClose={true}
+              // returnFocusOnClose={true}
               onOverlayClick={onClose}
             >
               <DrawerContent
@@ -75,14 +58,10 @@ const Layout = () => {
                   borderTopLeftRadius="20px"
                   backgroundColor="#ffffff02"
                   backdropFilter="blur(10px)"
-                  border
                   padding="20px"
                 >
-                  <UserProfile
-                    setOpenSetting={setOpenSetting}
-                    openSetting={openSetting}
-                  />
-                  {openSetting ? <UserSettings /> : <SidebarContent />}
+                  <UserProfile />
+                  <SidebarContent />
                 </Box>
               </DrawerContent>
             </Drawer>

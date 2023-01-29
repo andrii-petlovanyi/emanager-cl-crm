@@ -39,7 +39,7 @@ const schema = yup
     password: yup
       .string()
       .min(6, 'Minimal password length is 6 symbols')
-      .max(12, 'Maximal password length is 12 symbols')
+      .max(20, 'Maximal password length is 20 symbols')
       .required('Password is required'),
   })
   .required();
