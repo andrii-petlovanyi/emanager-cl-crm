@@ -11,7 +11,7 @@ import NavItem from './NavItem';
 
 const LinkItems = [
   { name: 'Dashboard', icon: MdDashboard, to: '/' },
-  { name: 'My Posts', icon: MdOutlineArticle, to: 'my' },
+  { name: 'All Posts', icon: MdOutlineArticle, to: 'posts' },
   { name: 'Add Posts', icon: MdPostAdd, to: 'add' },
   { name: 'Offers', icon: MdOutlineLocalOffer, to: 'offers' },
   { name: 'Archive Posts', icon: MdOutlineArchive, to: 'archive' },

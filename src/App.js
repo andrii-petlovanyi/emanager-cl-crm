@@ -11,7 +11,7 @@ import {
   Layout,
   AddPosts,
   Dashboard,
-  MyPosts,
+  AllPosts,
   Offers,
   ArchivePosts,
   Login,
@@ -40,7 +40,7 @@ const App = () => {
             <Route path="/" element={<Layout />}>
               <Route element={<PrivateRoute />}>
                 <Route index element={<Dashboard />} />
-                <Route path="my" element={<MyPosts />} />
+                <Route path="posts" element={<AllPosts />} />
                 <Route path="add" element={<AddPosts />} />
                 <Route path="offers" element={<Offers />} />
                 <Route path="archive" element={<ArchivePosts />} />

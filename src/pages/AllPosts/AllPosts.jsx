@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 
-const MyPosts = () => {
+const AllPosts = () => {
   const limit = 6;
   const [search, setSearch] = useState('');
   const {
@@ -88,4 +88,4 @@ const MyPosts = () => {
   );
 };
 
-export default MyPosts;
+export default AllPosts;

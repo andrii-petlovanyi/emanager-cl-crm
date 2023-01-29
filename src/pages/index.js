@@ -6,7 +6,7 @@ export { Login } from 'pages/Login/Login';
 export { ResetPassword } from 'pages/ResetPassword/ResetPassword';
 
 export const Dashboard = lazy(() => import('pages/Dashboard/Dashboard'));
-export const MyPosts = lazy(() => import('pages/MyPosts/MyPosts'));
+export const AllPosts = lazy(() => import('pages/AllPosts/AllPosts'));
 export const AddPosts = lazy(() => import('pages/AddPosts/AddPosts'));
 export const Offers = lazy(() => import('pages/Offers/Offers'));
 export const ArchivePosts = lazy(() =>
