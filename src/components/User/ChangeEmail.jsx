@@ -5,8 +5,8 @@ const schema = yup
   .object({
     email: yup
       .string()
-      .min(6, 'Minimal email length is 6 symbols')
-      .max(30, 'Maximal email length is 6 symbols')
+      .min(6, 'Minimal length is 6 symbols')
+      .max(30, 'Maximal length is 6 symbols')
       .email('Invalid email format')
       .required('Email is required'),
   })
@@ -25,11 +25,11 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react';
-import { MdCheck, MdDriveFileRenameOutline } from 'react-icons/md';
+import { MdCheck, MdClose, MdDriveFileRenameOutline } from 'react-icons/md';
 import { useChangeUserEmailMutation } from 'redux/auth/authApiSlice';
 
 const ChangeEmail = () => {
-  const [emailInput, setEmailInput] = useState(false);
+  const [showInput, setShowInput] = useState(false);
   const userId = useSelector(authSelectors.userId);
   const { addToast } = Toast();
 
@@ -51,7 +51,7 @@ const ChangeEmail = () => {
         return addToast({ message: error.data.message, type: 'error' });
 
       addToast({ message: data.message, type: 'success' });
-      setEmailInput(false);
+      setShowInput(false);
       reset();
     } catch (error) {
       addToast({ message: error.message, type: 'error' });
@@ -61,16 +61,29 @@ const ChangeEmail = () => {
   return (
     <>
       <Flex alignItems="center" justifyContent="space-between" gap="10px">
-        {emailInput ? (
+        {showInput ? (
           <>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Flex gap="10px">
-                <FormControl isInvalid={errors.email}>
+              <Flex gap="10px" py="4px">
+                <FormControl position="relative" isInvalid={errors.email}>
                   <Input
                     id="email"
                     size="sm"
                     variant="auth"
                     {...register('email')}
+                  />
+                  <IconButton
+                    position="absolute"
+                    top="-10px"
+                    left="-10px"
+                    icon={<MdClose />}
+                    fontSize="18px"
+                    size="xs"
+                    borderRadius="full"
+                    aria-label="Close form change password button"
+                    color="secondaryTextColor"
+                    variant="customIB"
+                    onClick={() => setShowInput(false)}
                   />
                   <FormErrorMessage>
                     {errors.email && errors.email.message}
@@ -98,7 +111,7 @@ const ChangeEmail = () => {
               fontSize="22px"
               icon={<MdDriveFileRenameOutline />}
               isLoading={isSubmitting}
-              onClick={() => setEmailInput(true)}
+              onClick={() => setShowInput(true)}
             />
           </>
         )}

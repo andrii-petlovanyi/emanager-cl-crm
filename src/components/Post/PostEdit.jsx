@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,6 +10,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import Toast from 'components/Toast/Toast';
 import { useEffect } from 'react';
@@ -21,6 +21,8 @@ const PostEdit = ({ openModal = false, setOpen, post = {} }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [updatePost, { isLoading }] = useUpdatePostMutation();
   const { addToast } = Toast();
+
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   useEffect(() => {
     if (!openModal) return;
@@ -47,7 +49,12 @@ const PostEdit = ({ openModal = false, setOpen, post = {} }) => {
   };
   return (
     <>
-      <Modal isOpen={isOpen} isCentered onClose={closeModal} size="xl">
+      <Modal
+        isOpen={isOpen}
+        isCentered={isLargerThan480}
+        onClose={closeModal}
+        size="xl"
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Edit post</ModalHeader>

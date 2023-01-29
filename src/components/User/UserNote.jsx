@@ -1,5 +1,6 @@
 import {
   Box,
+  Divider,
   Flex,
   IconButton,
   Text,
@@ -47,18 +48,24 @@ const UserNote = () => {
 
   return (
     <Box position="relative">
-      <Text mb="10px" textAlign="start">
+      <Text mb="15px" textAlign="start">
         Reminder:
       </Text>
-      <Tooltip hasArrow label="Edit reminder" bg="gray.300" color="black">
+      <Tooltip
+        hasArrow
+        label={edit ? 'Close edit reminder' : 'Edit reminder'}
+        bg="gray.300"
+        color="black"
+      >
         <IconButton
           isLoading={isLoading}
           position="absolute"
           top="-8px"
           right="-5px"
           variant="customIB"
-          icon={<MdModeEdit />}
-          onClick={() => setEdit(true)}
+          aria-label="Edit reminder button"
+          icon={edit ? <MdClose /> : <MdModeEdit />}
+          onClick={() => setEdit(!edit)}
         />
       </Tooltip>
       {edit ? (
@@ -83,6 +90,7 @@ const UserNote = () => {
               size="sm"
               bg="green.700"
               borderRadius="5px"
+              aria-label="Save reminder button"
               color="secondaryTextColor"
               variant="customIB"
               onClick={updateNoteHandler}
@@ -101,6 +109,7 @@ const UserNote = () => {
               size="sm"
               bg="red.700"
               borderRadius="5px"
+              aria-label="Close editor button"
               color="secondaryTextColor"
               variant="customIB"
               onClick={() => setEdit(false)}
@@ -108,20 +117,42 @@ const UserNote = () => {
           </Flex>
         </>
       ) : (
-        <Box
-          border="1px solid"
-          borderColor="borderColor"
-          borderRadius="5px"
-          p="5px 10px"
-          position="relative"
-          w="100%"
-          height="120px"
-          overflowY="scroll"
-        >
-          <Text textAlign="start" color="primaryTextColor">
-            {userNote}
-          </Text>
-        </Box>
+        <>
+          <Box
+            border="1px solid"
+            borderColor="borderColor"
+            borderRadius="5px"
+            p="5px 10px"
+            position="relative"
+            w="100%"
+            height="122px"
+            overflowY="scroll"
+          >
+            <Text textAlign="start" color="primaryTextColor">
+              {userNote}
+            </Text>
+          </Box>
+          <Box
+            position="absolute"
+            top="39px"
+            right="0"
+            bg="sectionBG"
+            // borderBottomLeftRadius="5px"
+            borderLeft="1px solid"
+            borderBottom="1px solid"
+            borderColor="borderColor"
+            width="25px"
+            height="25px"
+          />
+          <Divider
+            position="absolute"
+            width="33px"
+            top="50px"
+            right="-4px"
+            opacity="1"
+            transform="rotate(45deg)"
+          />
+        </>
       )}
     </Box>
   );

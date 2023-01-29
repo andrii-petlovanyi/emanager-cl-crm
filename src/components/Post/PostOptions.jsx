@@ -75,7 +75,7 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
         position="absolute"
         top="0"
         right="0"
-        aria-label="Post menu"
+        aria-label="Post options menu button"
         variant="customOptIB"
         fontSize="22px"
         isLoading={typePost ? postOptLoading : archOptLoading}

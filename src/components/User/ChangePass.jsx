@@ -29,10 +29,10 @@ import {
 } from '@chakra-ui/react';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
-import { MdCheck, MdDriveFileRenameOutline } from 'react-icons/md';
+import { MdCheck, MdClose, MdDriveFileRenameOutline } from 'react-icons/md';
 
 const ChangePass = () => {
-  const [passInput, setPassInput] = useState(false);
+  const [showInput, setShowInput] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const userId = useSelector(authSelectors.userId);
   const { addToast } = Toast();
@@ -55,7 +55,7 @@ const ChangePass = () => {
         return addToast({ message: error.data.message, type: 'error' });
 
       addToast({ message: data.message, type: 'success' });
-      setPassInput(false);
+      setShowInput(false);
       reset();
     } catch (error) {
       addToast({ message: error.message, type: 'error' });
@@ -65,10 +65,10 @@ const ChangePass = () => {
   return (
     <>
       <Flex alignItems="center" justifyContent="space-between" gap="10px">
-        {passInput ? (
+        {showInput ? (
           <>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Flex gap="10px">
+              <Flex gap="10px" py="4px">
                 <FormControl isInvalid={errors.password}>
                   <InputGroup size="sm">
                     <Input
@@ -81,6 +81,7 @@ const ChangePass = () => {
                       <BtnClickAnim>
                         <IconButton
                           variant="customIB"
+                          aria-label="Show password button"
                           onClick={() => setShowPass(!showPass)}
                           icon={
                             showPass ? <IoEyeOffOutline /> : <IoEyeOutline />
@@ -88,6 +89,19 @@ const ChangePass = () => {
                         />
                       </BtnClickAnim>
                     </InputRightElement>
+                    <IconButton
+                      position="absolute"
+                      top="-10px"
+                      left="-10px"
+                      icon={<MdClose />}
+                      fontSize="18px"
+                      size="xs"
+                      borderRadius="full"
+                      aria-label="Close form change password button"
+                      color="secondaryTextColor"
+                      variant="customIB"
+                      onClick={() => setShowInput(false)}
+                    />
                   </InputGroup>
                   <FormErrorMessage>
                     {errors.password && errors.password.message}
@@ -100,6 +114,7 @@ const ChangePass = () => {
                   size="sm"
                   bg="green.700"
                   borderRadius="5px"
+                  aria-label="Change password button"
                   color="secondaryTextColor"
                   variant="customIB"
                   type="submit"
@@ -115,7 +130,7 @@ const ChangePass = () => {
               fontSize="22px"
               icon={<MdDriveFileRenameOutline />}
               isLoading={isSubmitting}
-              onClick={() => setPassInput(true)}
+              onClick={() => setShowInput(true)}
             />
           </>
         )}

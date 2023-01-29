@@ -37,17 +37,27 @@ const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
                   justifyContent="center"
                   textAlign="center"
                 >
-                  <Text fontSize="16px">Are you sure?</Text>
+                  <Text fontSize="16px" color="secondaryTextColor">
+                    Are you sure?
+                  </Text>
                   <Box display="flex" justifyContent="space-around">
                     <Button
                       colorScheme="red"
                       isLoading={isLoading}
                       size="sm"
+                      color="secondaryTextColor"
+                      bg="red.700"
                       onClick={handleLogOut}
                     >
                       Yes
                     </Button>
-                    <Button colorScheme="green" size="sm" onClick={onClose}>
+                    <Button
+                      colorScheme="green"
+                      color="secondaryTextColor"
+                      bg="green.700"
+                      size="sm"
+                      onClick={onClose}
+                    >
                       No
                     </Button>
                   </Box>

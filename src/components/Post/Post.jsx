@@ -87,9 +87,15 @@ const Post = ({ post = {}, type = '' }) => {
               <PostInfoModal
                 postInfo={info ? info : {}}
                 model={model ? model : ''}
+                setOpen={setOpen}
               />
               <BtnClickAnim>
-                <Tooltip hasArrow label="Link to card product on official site">
+                <Tooltip
+                  hasArrow
+                  color="black"
+                  bg="gray.300"
+                  label="Link to card product on official site"
+                >
                   <IconButton
                     as={Link}
                     href={urlOffSite ? urlOffSite : 'https://google.com'}
@@ -101,7 +107,12 @@ const Post = ({ post = {}, type = '' }) => {
                 </Tooltip>
               </BtnClickAnim>
               <BtnClickAnim>
-                <Tooltip hasArrow label="Link to product documentations">
+                <Tooltip
+                  hasArrow
+                  bg="gray.300"
+                  color="black"
+                  label="Link to product documentations"
+                >
                   <IconButton
                     as={Link}
                     href={urlBook ? urlBook : 'https://google.com'}

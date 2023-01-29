@@ -24,7 +24,7 @@ const SidebarContent = ({ ...rest }) => {
       display={{ base: 'block', lg: 'none' }}
       mr={{ base: '20px' }}
       ml={{ base: 'auto', lg: '20px' }}
-      mt={{ base: '300px', lg: '370px' }}
+      mt={{ base: '305px', lg: '375px' }}
       w="230px"
       p="20px 5px"
       transition="1s ease"
