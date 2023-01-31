@@ -1,6 +1,7 @@
-import { Box, Divider, SimpleGrid } from '@chakra-ui/react';
+import { Divider, Flex, SimpleGrid } from '@chakra-ui/react';
 import SectionAnim from 'components/Animations/SectionAnim';
 import PostLoader from 'components/Loaders/PostLoader';
+import LimitPerPage from 'components/Pagination/LimitPerPage';
 import Pagination from 'components/Pagination/Pagination';
 import Post from 'components/Post/Post';
 import PostSearch from 'components/Post/PostSearch';
@@ -9,8 +10,10 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 
+const limitPostsList = [{ limit: 6 }, { limit: 12 }, { limit: 18 }];
+
 const AllPosts = () => {
-  const limit = 6;
+  const [limitPerPage, setLimitPerPage] = useState(6);
   const [search, setSearch] = useState('');
   const {
     page,
@@ -25,7 +28,7 @@ const AllPosts = () => {
   } = usePagination();
   const { data, isLoading, isFetching } = useGetPostsQuery({
     page,
-    limit,
+    limit: limitPerPage,
     search,
   });
   const { posts, totalPosts } = data || [];
@@ -33,17 +36,22 @@ const AllPosts = () => {
   useEffect(() => {
     if (!totalPosts) return;
     setTotalData(totalPosts);
-    setLimit(limit);
-  }, [totalPosts]);
+    setLimit(limitPerPage);
+  }, [totalPosts, limitPerPage]);
 
   const isLoaded = isLoading || isFetching;
-  const isPagination = totalPosts > limit;
+  const isPagination = totalPosts > limitPerPage;
 
   return (
     <>
-      <Box width={{ base: '100%', md: '30%' }}>
-        <PostSearch setSearch={setSearch} />
-      </Box>
+      <Flex display="flex" gap="30px" justifyContent="space-between">
+        <PostSearch setSearch={setSearch} width={{ base: '100%', md: '30%' }} />
+        <LimitPerPage
+          limitPerPage={limitPerPage}
+          setLimitPerPage={setLimitPerPage}
+          limitList={limitPostsList}
+        />
+      </Flex>
       <Divider my="20px" />
       <SectionAnim delay={0.1}>
         <SimpleGrid
@@ -62,7 +70,7 @@ const AllPosts = () => {
             )
           ) : (
             <>
-              {Array(limit)
+              {Array(limitPerPage)
                 .fill(0)
                 .map((_, index) => (
                   <PostLoader key={index} />

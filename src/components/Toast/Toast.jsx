@@ -11,6 +11,7 @@ const Toast = () => {
       duration: 5000,
       position: 'bottom',
       isClosable: true,
+      color: 'green',
     });
   };
 

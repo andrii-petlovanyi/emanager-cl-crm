@@ -16,7 +16,7 @@ const authApiSlice = createApi({
     },
   }),
 
-  tagTypes: ['users'],
+  tagTypes: ['users', 'notifi'],
   endpoints: builder => ({
     signUpUser: builder.mutation({
       query: user => ({
@@ -85,6 +85,23 @@ const authApiSlice = createApi({
       }),
       invalidatesTags: ['users'],
     }),
+
+    getNotifi: builder.query({
+      query: () => ({
+        url: '/notification',
+      }),
+      keepUnusedDataFor: 10,
+      providesTags: ['notifi'],
+    }),
+
+    clearNotifi: builder.mutation({
+      query: () => ({
+        url: `/notification`,
+        method: 'PATCH',
+        body: {},
+      }),
+      invalidatesTags: ['notifi'],
+    }),
   }),
 });
 
@@ -97,6 +114,9 @@ export const {
   useResetUserPassMutation,
   useGetUserQuery,
   useUpdateNoteMutation,
+  useGetNotifiQuery,
+  useClearNotifiMutation,
+  usePrefetch,
 } = authApiSlice;
 
 export default authApiSlice;

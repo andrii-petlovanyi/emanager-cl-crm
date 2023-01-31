@@ -40,32 +40,52 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
   };
 
   const deletePostHandler = async () => {
-    const { data, error } = await deletePost(postId);
-    if (error) return addToast({ message: error.data.message, type: 'error' });
-    addToast({ message: data.message, type: 'success' });
+    try {
+      const { data, error } = await deletePost(postId);
+      if (error)
+        return addToast({ message: error.data.message, type: 'error' });
+      addToast({ message: data.message, type: 'success' });
+    } catch (error) {
+      addToast({ message: error.message, type: 'error' });
+    }
   };
 
   const addPostToArchiveHandler = async () => {
-    const { data, error } = await addToArchive({ postId });
-    if (error) return addToast({ message: error.data.message, type: 'error' });
-    addToast({ message: data.message, type: 'success' });
+    try {
+      const { data, error } = await addToArchive({ postId });
+      if (error)
+        return addToast({ message: error.data.message, type: 'error' });
+      addToast({ message: data.message, type: 'success' });
 
-    //TODO: notify and good validation result
-    if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
+      //TODO: notify and good validation result
+      if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
+    } catch (error) {
+      addToast({ message: error.message, type: 'error' });
+    }
   };
 
   const deleteArchivePostHandler = async () => {
-    const { data, error } = await deleteFromArchive(postId);
-    if (error) return addToast({ message: error.data.message, type: 'error' });
-    addToast({ message: data.message, type: 'success' });
+    try {
+      const { data, error } = await deleteFromArchive(postId);
+      if (error)
+        return addToast({ message: error.data.message, type: 'error' });
+      addToast({ message: data.message, type: 'success' });
+    } catch (error) {
+      addToast({ message: error.message, type: 'error' });
+    }
   };
 
   const moveFromArchiveHandler = async () => {
-    const { data, error } = await moveFromArchive(postId);
-    if (error) return addToast({ message: error.data.message, type: 'error' });
-    addToast({ message: data.message, type: 'success' });
+    try {
+      const { data, error } = await moveFromArchive(postId);
+      if (error)
+        return addToast({ message: error.data.message, type: 'error' });
+      addToast({ message: data.message, type: 'success' });
 
-    if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
+      if (data) dispatch(postsApiSlice.util.invalidateTags(['posts']));
+    } catch (error) {
+      addToast({ message: error.message, type: 'error' });
+    }
   };
 
   return (
@@ -88,6 +108,8 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
           borderColor="borderColor"
           color="primaryTextColor"
           fontSize="15px"
+          minW={'0'}
+          width={'140px'}
         >
           <MenuItem
             onClick={editPostHandler}
@@ -130,6 +152,8 @@ const PostOptions = ({ setOpen, post = {}, type = '' }) => {
           color="primaryTextColor"
           borderColor="borderColor"
           fontSize="15px"
+          minW={'0'}
+          width={'170px'}
         >
           <MenuItem
             onClick={moveFromArchiveHandler}

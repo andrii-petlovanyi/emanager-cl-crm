@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from 'react-redux';
-import { FiMenu, FiBell } from 'react-icons/fi';
+import { FiMenu } from 'react-icons/fi';
 import { Flex, IconButton, Box } from '@chakra-ui/react';
 
 import { logOut } from 'redux/auth/authSlice';
@@ -9,7 +9,7 @@ import { useLogOutUserMutation } from 'redux/auth/authApiSlice';
 import Logo from 'components/Logo/Logo';
 import Toast from 'components/Toast/Toast';
 import LogOutPopover from './LogOutPopover';
-import BtnClickAnim from 'components/Animations/BtnClickAnim';
+import NotifiPopover from './NotifiPopover';
 
 const Header = ({ onOpen, ...rest }) => {
   const dispatch = useDispatch();
@@ -40,13 +40,7 @@ const Header = ({ onOpen, ...rest }) => {
         position={{ base: 'relative' }}
       />
       <Box display="flex" gridGap={{ base: '0', lg: '5px' }}>
-        <BtnClickAnim>
-          <IconButton
-            variant="customIB"
-            aria-label="Notification"
-            icon={<FiBell />}
-          />
-        </BtnClickAnim>
+        <NotifiPopover />
         <LogOutPopover handleLogOut={handleLogOut} isLoading={isLoading} />
         <IconButton
           variant="customIB"

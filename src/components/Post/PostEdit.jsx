@@ -40,12 +40,17 @@ const PostEdit = ({ openModal = false, setOpen, post = {} }) => {
 
     const updatedPost = { model, info, urlBook, urlImg, urlOffSite };
 
-    const { data, error } = await updatePost({ postId, updatedPost });
-    if (error) return addToast({ message: error.data.message, type: 'error' });
-    addToast({ message: data.message, type: 'success' });
+    try {
+      const { data, error } = await updatePost({ postId, updatedPost });
+      if (error)
+        return addToast({ message: error.data.message, type: 'error' });
+      addToast({ message: data.message, type: 'success' });
 
-    setOpen(false);
-    onClose();
+      setOpen(false);
+      onClose();
+    } catch (error) {
+      addToast({ message: error.message, type: 'error' });
+    }
   };
   return (
     <>

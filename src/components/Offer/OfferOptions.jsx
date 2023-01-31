@@ -15,9 +15,14 @@ const OfferOptions = ({ id }) => {
   const { addToast } = Toast();
 
   const deleteOfferHandler = async () => {
-    const { data, error } = await deleteOffer(id);
-    if (error) return addToast({ message: error.data.message, type: 'error' });
-    addToast({ message: data.message, type: 'success' });
+    try {
+      const { data, error } = await deleteOffer(id);
+      if (error)
+        return addToast({ message: error.data.message, type: 'error' });
+      addToast({ message: data.message, type: 'success' });
+    } catch (error) {
+      addToast({ message: error.message, type: 'error' });
+    }
   };
   return (
     <>
@@ -39,6 +44,8 @@ const OfferOptions = ({ id }) => {
           borderColor="borderColor"
           color="primaryTextColor"
           fontSize="15px"
+          minW={'0'}
+          width={'140px'}
         >
           <MenuItem
             onClick={deleteOfferHandler}

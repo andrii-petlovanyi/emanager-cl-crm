@@ -12,10 +12,13 @@ import ContentTab from 'components/Dashboard/ContentTab';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 import Offer from 'components/Offer/Offer';
 import OfferLoader from 'components/Loaders/OfferLoader';
+import { useDispatch } from 'react-redux';
+import authApiSlice from 'redux/auth/authApiSlice';
 
 const Dashboard = () => {
   const prefetchPost = usePrefetchPost('getPosts');
   const prefetchOffer = usePrefetchOffer('getOffers');
+  const dispatch = useDispatch();
 
   const [postsPage, setPostsPage] = useState(1);
   const [offersPage, setOffersPage] = useState(1);
@@ -46,6 +49,7 @@ const Dashboard = () => {
   useEffect(() => {
     prefetchPost({});
     prefetchOffer({});
+    dispatch(authApiSlice.util.invalidateTags(['notifi']));
   }, []);
 
   return (

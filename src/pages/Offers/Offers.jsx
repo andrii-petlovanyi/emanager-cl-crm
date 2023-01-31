@@ -8,7 +8,8 @@ import { useEffect } from 'react';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 
 const Offers = () => {
-  const limit = 12;
+  const limitPerPage = 12;
+
   const {
     page,
     setPage,
@@ -20,17 +21,20 @@ const Offers = () => {
     setLimit,
     totalPage,
   } = usePagination();
-  const { data, isLoading, isFetching } = useGetOffersQuery({ page, limit });
+  const { data, isLoading, isFetching } = useGetOffersQuery({
+    page,
+    limit: limitPerPage,
+  });
   const { offers, totalOffers } = data || [];
 
   useEffect(() => {
     if (!totalOffers) return;
     setTotalData(totalOffers);
-    setLimit(limit);
-  }, [totalOffers]);
+    setLimit(limitPerPage);
+  }, [totalOffers, limitPerPage]);
 
   const isLoaded = isLoading || isFetching;
-  const isPagination = totalOffers > limit;
+  const isPagination = totalOffers > limitPerPage;
 
   return (
     <>
@@ -49,7 +53,7 @@ const Offers = () => {
             )
           ) : (
             <>
-              {Array(limit)
+              {Array(limitPerPage)
                 .fill(0)
                 .map((_, index) => (
                   <OfferLoader key={index} />

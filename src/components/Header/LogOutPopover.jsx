@@ -11,7 +11,7 @@ import {
   Portal,
 } from '@chakra-ui/react';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
-import { FiLogOut } from 'react-icons/fi';
+import { MdOutlineExitToApp } from 'react-icons/md';
 
 const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
   return (
@@ -24,7 +24,8 @@ const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
                 <IconButton
                   variant="customIB"
                   aria-label="Log out user"
-                  icon={<FiLogOut />}
+                  fontSize="24px"
+                  icon={<MdOutlineExitToApp />}
                 />
               </PopoverTrigger>
             </BtnClickAnim>
