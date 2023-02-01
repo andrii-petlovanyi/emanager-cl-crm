@@ -8,7 +8,7 @@ The idea of this project was born at my previous job when the number of newbie s
 
 Once the bot started working with the database, the next task was to develop a platform that would help manage the information the bot outputs and process offers from sellers, and much more.
 
-Therefore, first of all, I developed a small microservice (API), which is based on **Node.js/Express/Mongoose**. You can read more about the API itself at the [link](https://github.com/andrii-petlovanyi/emanager-server-crm "Repository with EManager microservice API").
+Therefore, first of all, I developed a small RESTFull API, which is based on **Node.js/Express/Mongoose**. You can read more about the API itself at the [link](https://github.com/andrii-petlovanyi/emanager-server-crm "Repository with EManager RESTFull API").
 
 I developed the portal for bot management in tandem with the following libraries - ***React.js, ChakraUI, RTK Query, and ReactHookForm***. The functionality of these libraries will be enough for the future expansion of the functionality of this small CRM.
 
