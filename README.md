@@ -11,7 +11,7 @@ Once the bot started working with the database, the next task was to develop a p
 
 Therefore, first of all, I developed a small RESTFull API, which is based on **Node.js/Express/Mongoose**. You can read more about the API itself at the [link](https://github.com/andrii-petlovanyi/emanager-server-crm "Repository with EManager RESTFull API").
 
-... and after that, I developed the portal for bot management in tandem with the following libraries - ***React.js, ChakraUI, RTK Query, and ReactHookForm***. The functionality of these libraries will be enough for the future expansion of this small CRM.
+... and after that, I developed the site for bot management in tandem with the following libraries - ***React.js, ChakraUI, RTK Query, and ReactHookForm***. The functionality of these libraries will be enough for the future expansion of this small CRM.
 
 Now I will tell a little more about the capabilities of the portal:
 
