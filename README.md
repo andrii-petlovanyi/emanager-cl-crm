@@ -28,6 +28,7 @@ If new offers have been added while you've been gone, this will also be indicate
 ![image](https://user-images.githubusercontent.com/33178699/216049948-38106978-8499-499e-8da6-6e33d0f58929.png)
 
 In the user block, you can see a greeting with your initials, as well as note to remind you of everything you have planned.
+
 ![image](https://user-images.githubusercontent.com/33178699/216051771-4cb20ea2-543b-47f0-a7e0-fa36e2661fc2.png)
 
 To change a reminder, just click on the icon, after which the editing form will appear.
