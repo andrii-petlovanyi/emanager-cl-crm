@@ -2,6 +2,7 @@
 
 
 ***Hey hey hey!!!***
+
 Let me introduce you to my little pet project written on the MERN stack.
 
 The idea of this project was born at my previous job when the number of newbie sellers was growing rapidly, and it was difficult to quickly train everyone, and most importantly for them, to remember all the useful information themselves, from just one webinar. It was then that the idea arose to create a small Telegram bot assistant, which could quickly and concisely provide all the characteristics according to the desired model. So I developed the first [small Telegram Bot](https://github.com/andrii-petlovanyi/emanager-bot "Repository with EManagerBot").
