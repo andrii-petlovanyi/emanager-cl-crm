@@ -45,7 +45,6 @@ export const ResetPassword = () => {
   });
 
   const onSubmit = async formData => {
-    console.log(formData.email);
     try {
       const { data, error } = await resetUserPass(formData.email);
       if (!data)

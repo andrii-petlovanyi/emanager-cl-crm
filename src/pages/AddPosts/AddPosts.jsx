@@ -18,10 +18,15 @@ const AddPosts = () => {
   const { offers } = data || {};
 
   const submitPost = async data => {
-    const { data: res, error } = await addPost(data);
-    if (error) return addToast({ message: error.data.message, type: 'error' });
-    addToast({ message: res.message, type: 'success' });
-    setResetForm(true);
+    try {
+      const { data: res, error } = await addPost(data);
+      if (error)
+        return addToast({ message: error.data.message, type: 'error' });
+      addToast({ message: res.message, type: 'success' });
+      setResetForm(true);
+    } catch (error) {
+      addToast({ message: error.message, type: 'error' });
+    }
   };
 
   return (

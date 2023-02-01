@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import Toast from 'components/Toast/Toast';
+import { useLayoutEffect } from 'react';
 import { useState } from 'react';
 import { MdCheck, MdClose, MdModeEdit } from 'react-icons/md';
 import { useSelector } from 'react-redux';
@@ -20,8 +21,8 @@ const UserNote = () => {
   const userId = useSelector(authSelectors.userId);
 
   const [edit, setEdit] = useState(false);
-  const [note, setNote] = useState(userNote || '');
-  const [count, setCount] = useState(limit - note?.length);
+  const [note, setNote] = useState('');
+  const [count, setCount] = useState(null);
   const { addToast } = Toast();
 
   const [updateNote, { isLoading }] = useUpdateNoteMutation();
@@ -31,6 +32,13 @@ const UserNote = () => {
     setNote(note);
     setCount(limit - note.length);
   };
+
+  useLayoutEffect(() => {
+    if (userNote) {
+      setNote(userNote);
+      setCount(limit - userNote?.length);
+    }
+  }, [userNote]);
 
   const updateNoteHandler = async () => {
     try {
