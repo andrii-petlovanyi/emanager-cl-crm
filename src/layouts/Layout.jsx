@@ -74,7 +74,7 @@ const Layout = () => {
             maxW="200px"
             top="50%"
             left="35px"
-            transform="translate(0, -50%)"
+            transform="translateY(-50%)"
           >
             <Text
               fontSize="34px"
@@ -86,7 +86,7 @@ const Layout = () => {
           </Box>
         )}
         <Box
-          ml={isAuth ? { base: 0, lg: '250px' } : { base: 0, lg: '300px' }}
+          ml={isAuth ? { base: 0, lg: '250px' } : { base: 0, lg: '25%' }}
           px={isAuth ? '20px' : '0'}
         >
           <Suspense fallback={false}>
