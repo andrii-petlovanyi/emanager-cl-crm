@@ -10,7 +10,6 @@ import {
   Button,
   Portal,
 } from '@chakra-ui/react';
-import BtnClickAnim from 'components/Animations/BtnClickAnim';
 import { MdOutlineExitToApp } from 'react-icons/md';
 
 const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
@@ -19,16 +18,14 @@ const LogOutPopover = ({ handleLogOut, isLoading = false }) => {
       <Popover placement="bottom" variant="custom">
         {({ onClose }) => (
           <>
-            <BtnClickAnim>
-              <PopoverTrigger>
-                <IconButton
-                  variant="customIB"
-                  aria-label="Log out user"
-                  fontSize="24px"
-                  icon={<MdOutlineExitToApp />}
-                />
-              </PopoverTrigger>
-            </BtnClickAnim>
+            <PopoverTrigger>
+              <IconButton
+                variant="customIB"
+                aria-label="Log out user"
+                fontSize="24px"
+                icon={<MdOutlineExitToApp />}
+              />
+            </PopoverTrigger>
             <Portal>
               <PopoverContent>
                 <PopoverBody
