@@ -7,7 +7,7 @@ Let me introduce you to my little pet project written on the MERN stack.
 
 The idea of this project was born at my previous job when the number of newbie sellers was growing rapidly, and it was difficult to quickly train everyone, and most importantly for them, to remember all the useful information themselves, from just one webinar. It was then that the idea arose to create a small Telegram bot assistant, which could quickly and concisely provide all the characteristics according to the desired model. So I developed the first [small Telegram Bot](https://github.com/andrii-petlovanyi/emanager-bot "Repository with EManagerBot").
 
-Once the bot started working with the database, the next task was to develop a platform that would help manage the information the bot outputs and process offers from sellers, and much more.
+Once the bot started working with the database, the next task was to develop a platform that would help manage the information the bot outputs, process offers from sellers, and much more.
 
 Therefore, first of all, I developed a small RESTFull API, which is based on **Node.js/Express/Mongoose**. You can read more about the API itself at the [link](https://github.com/andrii-petlovanyi/emanager-server-crm "Repository with EManager RESTFull API").
 
