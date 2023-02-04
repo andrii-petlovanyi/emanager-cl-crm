@@ -30,7 +30,7 @@ const AllPosts = () => {
     page,
     limit: limitPerPage,
     search,
-  });
+  }, {skip: page == undefined});
   const { posts, totalPosts } = data || [];
 
   useEffect(() => {

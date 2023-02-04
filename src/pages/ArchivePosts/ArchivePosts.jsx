@@ -23,7 +23,7 @@ const ArchivePosts = () => {
   const { data, isLoading, isFetching } = useGetArchiveListQuery({
     page,
     limit,
-  });
+  }, {skip: page == undefined});
   const { archivePosts, totalArchivePosts } = data || [];
 
   useEffect(() => {

@@ -12,7 +12,6 @@ import {
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useEffect } from 'react';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 const schema = yup
@@ -45,7 +44,7 @@ const schema = yup
   .required();
 
 /* eslint-disable no-unused-vars */
-const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
+const PostForm = ({ submitPost, post = {}, isLoading }) => {
   const {
     register,
     handleSubmit,
@@ -56,12 +55,8 @@ const PostForm = ({ submitPost, post = {}, isLoading, resetForm = false }) => {
     defaultValues: post,
   });
 
-  useEffect(() => {
-    if (resetForm) reset();
-  }, [resetForm]);
-
   const onSubmit = data => {
-    submitPost(data);
+    submitPost(data, reset);
   };
 
   return (

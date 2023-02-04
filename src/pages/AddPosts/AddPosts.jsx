@@ -4,26 +4,24 @@ import OfferLoader from 'components/Loaders/OfferLoader';
 import Offer from 'components/Offer/Offer';
 import PostForm from 'components/Post/PostForm';
 import Toast from 'components/Toast/Toast';
-import { useState } from 'react';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 import { useAddPostMutation } from 'redux/posts/postsApiSlice';
 
 const AddPosts = () => {
   const limit = 3;
   const [addPost, { isLoading }] = useAddPostMutation();
-  const [resetForm, setResetForm] = useState(false);
   const { addToast } = Toast();
 
   const { data, isLoading: isLoadingOffers } = useGetOffersQuery({ limit });
   const { offers } = data || {};
 
-  const submitPost = async data => {
+  const submitPost = async (data, reset) => {
     try {
       const { data: res, error } = await addPost(data);
       if (error)
         return addToast({ message: error.data.message, type: 'error' });
       addToast({ message: res.message, type: 'success' });
-      setResetForm(true);
+      reset();
     } catch (error) {
       addToast({ message: error.message, type: 'error' });
     }
@@ -55,7 +53,6 @@ const AddPosts = () => {
           <PostForm
             submitPost={submitPost}
             isLoading={isLoading}
-            resetForm={resetForm}
           />
         </Box>
         <Box

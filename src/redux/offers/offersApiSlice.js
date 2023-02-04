@@ -19,7 +19,7 @@ const offersApiSlice = createApi({
   tagTypes: ['offers'],
   endpoints: builder => ({
     getOffers: builder.query({
-      query: ({ page, limit }) => `/?page=${page}&limit=${limit}`,
+      query: ({ page = 1, limit = 3 }) => `/?page=${page}&limit=${limit}`,
       keepUnusedDataFor: 5,
       providesTags: ['offers'],
     }),
