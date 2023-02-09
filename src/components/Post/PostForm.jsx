@@ -115,11 +115,7 @@ const PostForm = ({ submitPost, post = {}, isLoading }) => {
           <Textarea
             id="info"
             placeholder="Info about product"
-            borderColor="borderColor"
-            _focus={{
-              borderColor: 'primaryTextColor',
-              boxShadow: '0 0 1px 1px #D3D3D333',
-            }}
+            variant="custom"
             {...register('info')}
           />
           <FormErrorMessage>

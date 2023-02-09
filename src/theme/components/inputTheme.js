@@ -11,6 +11,9 @@ const custom = defineStyle({
       borderColor: 'primaryTextColor',
       boxShadow: '0 0 1px 1px #D3D3D333',
     },
+    _hover: {
+      borderColor: 'primaryTextColor',
+    },
   },
 });
 

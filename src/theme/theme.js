@@ -2,6 +2,7 @@ import { extendTheme } from '@chakra-ui/react';
 import { buttonTheme } from './components/buttonTheme';
 import { inputTheme } from './components/inputTheme';
 import { popoverTheme } from './components/popoverTheme';
+import { textareaTheme } from './components/textareaTheme';
 
 // const config = {
 //   initialColorMode: 'white',
@@ -85,6 +86,7 @@ const components = {
   },
 
   Input: inputTheme,
+  Textarea: textareaTheme,
   Button: buttonTheme,
   Popover: popoverTheme,
 };
