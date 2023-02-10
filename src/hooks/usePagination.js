@@ -1,23 +1,34 @@
+import Toast from 'components/Toast/Toast';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const usePagination = () => {
   const location = useLocation();
+  const [, setSearchParams] = useSearchParams();
   const [totalData, setTotalData] = useState();
   const [limit, setLimit] = useState();
   const [prevDisabled, setPrevDisabled] = useState(false);
   const [nextDisabled, setNextDisabled] = useState(false);
+  const { addToast } = Toast();
 
   const pageNumber = Number(location.search.split('=').at(-1));
   const totalPage = Math.ceil(Number(totalData) / Number(limit));
-  const isPageInParams = pageNumber && pageNumber <= totalPage;
+  // const isPageInParams = pageNumber && pageNumber <= totalPage;
 
-  const [page, setPage] = useState(isPageInParams ? pageNumber : 1);
+  const [page, setPage] = useState(pageNumber ? pageNumber : 1);
 
   useEffect(() => {
+    if (totalData && pageNumber > totalPage) {
+      addToast({
+        message: `Sorry, but page with number ${pageNumber} not found`,
+        type: 'error',
+      });
+      setPage(totalPage);
+      setSearchParams(() => `page=` + totalPage);
+    }
     page === 1 ? setPrevDisabled(true) : setPrevDisabled(false);
     page === totalPage ? setNextDisabled(true) : setNextDisabled(false);
-  }, [page]);
+  }, [page, totalData]);
 
   const nextPage = () => {
     if (page === totalPage) return;

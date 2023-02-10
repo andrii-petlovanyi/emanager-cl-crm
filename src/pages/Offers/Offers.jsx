@@ -3,7 +3,7 @@ import SectionAnim from 'components/Animations/SectionAnim';
 import OfferLoader from 'components/Loaders/OfferLoader';
 import Offer from 'components/Offer/Offer';
 import Pagination from 'components/Pagination/Pagination';
-import usePagination from 'hooks/pagination';
+import usePagination from 'hooks/usePagination';
 import { useEffect } from 'react';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 

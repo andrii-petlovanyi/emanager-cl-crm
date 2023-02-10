@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { Flex, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Flex, IconButton, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import debounce from 'lodash.debounce';
 import { useCallback } from 'react';
 import { MdSearch } from 'react-icons/md';
 
-const PostSearch = ({ setSearch, ...rest }) => {
+const PostSearch = ({ setSearch, isFetching = false, search, ...rest }) => {
   const searchHandler = e => {
     e.preventDefault();
     setSearch(() => e.target.value.trim().toLowerCase());
@@ -17,8 +17,11 @@ const PostSearch = ({ setSearch, ...rest }) => {
       <Flex {...rest}>
         <InputGroup size="md">
           <InputLeftElement
+            as={IconButton}
             pointerEvents="none"
             fontSize="22px"
+            variant='customIB'
+            isLoading={search && isFetching}
             // eslint-disable-next-line react/no-children-prop
             children={<MdSearch color="secondaryTextColor" />}
           />
