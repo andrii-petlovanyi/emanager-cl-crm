@@ -13,7 +13,6 @@ const usePagination = () => {
 
   const pageNumber = Number(location.search.split('=').at(-1));
   const totalPage = Math.ceil(Number(totalData) / Number(limit));
-  // const isPageInParams = pageNumber && pageNumber <= totalPage;
 
   const [page, setPage] = useState(pageNumber ? pageNumber : 1);
 

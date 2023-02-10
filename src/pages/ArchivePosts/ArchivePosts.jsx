@@ -14,6 +14,7 @@ const limitPostsList = [{ limit: 6 }, { limit: 12 }, { limit: 18 }];
 const ArchivePosts = () => {
   const [limitPerPage, setLimitPerPage] = useState(6);
   const [search, setSearch] = useState('');
+  const [fetch, setFetch] = useState(false);
 
   const {
     page,
@@ -39,7 +40,16 @@ const ArchivePosts = () => {
     setLimit(limitPerPage);
   }, [totalArchivePosts, limitPerPage]);
 
+  useEffect(() => {
+    if (isFetching) {
+      setFetch(true)
+    } else {
+      setFetch(false)
+    }
+  }, [page])
+
   const isPagination = totalArchivePosts > limitPerPage;
+  const isLoad = isLoading || (isFetching && fetch)
 
   return (
     <>
@@ -59,7 +69,7 @@ const ArchivePosts = () => {
           justifyContent="center"
           width="100%"
         >
-          {!isLoading ? (
+          {!isLoad ? (
             archivePosts?.length > 0 ? (
               archivePosts?.map(post => (
                 <Post key={post._id} post={post} type={'archive'} />

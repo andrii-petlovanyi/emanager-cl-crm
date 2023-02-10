@@ -14,6 +14,7 @@ const limitPostsList = [{ limit: 6 }, { limit: 12 }, { limit: 18 }];
 const AllPosts = () => {
   const [limitPerPage, setLimitPerPage] = useState(6);
   const [search, setSearch] = useState('');
+  const [fetch, setFetch] = useState(false);
   const {
     page,
     setPage,
@@ -38,7 +39,16 @@ const AllPosts = () => {
     setLimit(limitPerPage);
   }, [totalPosts, limitPerPage]);
 
+  useEffect(() => {
+    if (isFetching) {
+      setFetch(true)
+    } else {
+      setFetch(false)
+    }
+  }, [page])
+
   const isPagination = totalPosts > limitPerPage;
+  const isLoad = isLoading || (isFetching && fetch)
 
   return (
     <>
@@ -58,7 +68,7 @@ const AllPosts = () => {
           justifyContent="center"
           width="100%"
         >
-          {!isLoading ? (
+          {!isLoad ? (
             posts?.length > 0 ? (
               posts.map(post => (
                 <Post key={post._id} post={post} type={'post'} />
