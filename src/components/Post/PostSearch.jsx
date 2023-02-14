@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Flex, IconButton, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import debounce from 'lodash.debounce';
-import { useCallback } from 'react';
 import { MdSearch } from 'react-icons/md';
 
 const PostSearch = ({ setSearch, isFetching = false, search, ...rest }) => {
@@ -10,7 +9,7 @@ const PostSearch = ({ setSearch, isFetching = false, search, ...rest }) => {
     setSearch(() => e.target.value.trim().toLowerCase());
   };
 
-  const debouncedChangeHandler = useCallback(debounce(searchHandler, 400), []);
+  const debouncedChangeHandler = debounce(searchHandler, 400);
 
   return (
     <>
