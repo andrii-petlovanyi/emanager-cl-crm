@@ -21,7 +21,7 @@ import { useState } from 'react';
 import BtnClickAnim from 'components/Animations/BtnClickAnim';
 
 // eslint-disable-next-line no-unused-vars
-const Post = ({ post = {}, type = '' }) => {
+const PostCard = ({ post = {}, type = '' }) => {
   // eslint-disable-next-line no-unused-vars
   const { model, urlOffSite, urlBook, urlImg, info, author, updatedAt } = post;
   const [open, setOpen] = useState(false);
@@ -161,4 +161,4 @@ const Post = ({ post = {}, type = '' }) => {
   );
 };
 
-export default Post;
+export default PostCard;

@@ -6,11 +6,11 @@ import StatsTab from 'components/Dashboard/StatsTab';
 import SectionAnim from 'components/Animations/SectionAnim';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
 import { useState } from 'react';
-import Post from 'components/Post/Post';
+import PostCard from 'components/PostCard/PostCard';
 import PostLoader from 'components/Loaders/PostLoader';
 import ContentTab from 'components/Dashboard/ContentTab';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
-import Offer from 'components/Offer/Offer';
+import OfferCard from 'components/OfferCard/OfferCard';
 import OfferLoader from 'components/Loaders/OfferLoader';
 import { useDispatch } from 'react-redux';
 import authApiSlice from 'redux/auth/authApiSlice';
@@ -74,8 +74,8 @@ const Dashboard = () => {
             {!isLoadedPosts &&
               (posts?.length
                 ? posts.map(post => (
-                    <Post key={post._id} post={post} type="post" />
-                  ))
+                  <PostCard key={post._id} post={post} type="post" />
+                ))
                 : 'Sorry, no posts available...')}
 
             {isLoadedPosts && (
@@ -105,7 +105,7 @@ const Dashboard = () => {
           >
             {!isLoadedOffers &&
               (offers?.length
-                ? offers.map(offer => <Offer key={offer._id} offer={offer} />)
+                ? offers.map(offer => <OfferCard key={offer._id} offer={offer} />)
                 : 'Sorry, no posts available...')}
 
             {isLoadedOffers && (

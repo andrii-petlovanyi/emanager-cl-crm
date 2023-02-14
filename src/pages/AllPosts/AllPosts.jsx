@@ -3,8 +3,8 @@ import SectionAnim from 'components/Animations/SectionAnim';
 import PostLoader from 'components/Loaders/PostLoader';
 import LimitPerPage from 'components/Pagination/LimitPerPage';
 import Pagination from 'components/Pagination/Pagination';
-import Post from 'components/Post/Post';
-import PostSearch from 'components/Post/PostSearch';
+import PostCard from 'components/PostCard/PostCard';
+import PostSearch from 'components/PostCard/PostSearch';
 import usePagination from 'hooks/usePagination';
 import { useEffect, useState } from 'react';
 import { useGetPostsQuery } from 'redux/posts/postsApiSlice';
@@ -71,7 +71,7 @@ const AllPosts = () => {
           {!isLoad ? (
             posts?.length > 0 ? (
               posts.map(post => (
-                <Post key={post._id} post={post} type={'post'} />
+                <PostCard key={post._id} post={post} type={'post'} />
               ))
             ) : (
               'Sorry, no posts in database'

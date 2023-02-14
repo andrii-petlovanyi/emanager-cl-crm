@@ -13,7 +13,7 @@ import moment from 'moment';
 import OfferOptions from './OfferOptions';
 
 /* eslint-disable no-unused-vars */
-const Offer = ({ offer = {} }) => {
+const OfferCard = ({ offer = {} }) => {
   const { _id: id, model, date, firstName, lastName, username } = offer;
 
   const firstNameLetter = firstName ? firstName.charAt(0).toUpperCase() : '';
@@ -114,4 +114,4 @@ const Offer = ({ offer = {} }) => {
   );
 };
 
-export default Offer;
+export default OfferCard;

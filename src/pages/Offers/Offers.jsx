@@ -1,7 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/react';
 import SectionAnim from 'components/Animations/SectionAnim';
 import OfferLoader from 'components/Loaders/OfferLoader';
-import Offer from 'components/Offer/Offer';
+import OfferCard from 'components/OfferCard/OfferCard';
 import Pagination from 'components/Pagination/Pagination';
 import usePagination from 'hooks/usePagination';
 import { useEffect } from 'react';
@@ -47,7 +47,7 @@ const Offers = () => {
         >
           {!isLoaded ? (
             offers?.length ? (
-              offers.map(offer => <Offer key={offer._id} offer={offer} />)
+              offers.map(offer => <OfferCard key={offer._id} offer={offer} />)
             ) : (
               <>Sorry, no offers in database...</>
             )

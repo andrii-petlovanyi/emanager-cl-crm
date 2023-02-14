@@ -1,8 +1,8 @@
 import { Box, Text } from '@chakra-ui/react';
 import SectionAnim from 'components/Animations/SectionAnim';
 import OfferLoader from 'components/Loaders/OfferLoader';
-import Offer from 'components/Offer/Offer';
-import PostForm from 'components/Post/PostForm';
+import OfferCard from 'components/OfferCard/OfferCard';
+import PostForm from 'components/PostCard/PostForm';
 import Toast from 'components/Toast/Toast';
 import { useGetOffersQuery } from 'redux/offers/offersApiSlice';
 import { useAddPostMutation } from 'redux/posts/postsApiSlice';
@@ -74,7 +74,7 @@ const AddPosts = () => {
             px="10px"
             fontSize="22px"
             fontWeight="700"
-            // transform="translateX(-50%)"
+          // transform="translateX(-50%)"
           >
             Last offers
           </Text>
@@ -82,7 +82,7 @@ const AddPosts = () => {
             (offers?.length ? (
               <>
                 {offers?.map(offer => (
-                  <Offer key={offer._id} offer={offer} />
+                  <OfferCard key={offer._id} offer={offer} />
                 ))}
               </>
             ) : (

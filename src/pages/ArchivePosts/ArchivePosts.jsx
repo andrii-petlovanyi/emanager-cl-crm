@@ -3,8 +3,8 @@ import SectionAnim from 'components/Animations/SectionAnim';
 import PostLoader from 'components/Loaders/PostLoader';
 import LimitPerPage from 'components/Pagination/LimitPerPage';
 import Pagination from 'components/Pagination/Pagination';
-import Post from 'components/Post/Post';
-import PostSearch from 'components/Post/PostSearch';
+import PostCard from 'components/PostCard/PostCard';
+import PostSearch from 'components/PostCard/PostSearch';
 import usePagination from 'hooks/usePagination';
 import { useEffect, useState } from 'react';
 import { useGetArchiveListQuery } from 'redux/archive/archiveApiSlice';
@@ -72,7 +72,7 @@ const ArchivePosts = () => {
           {!isLoad ? (
             archivePosts?.length > 0 ? (
               archivePosts?.map(post => (
-                <Post key={post._id} post={post} type={'archive'} />
+                <PostCard key={post._id} post={post} type={'archive'} />
               ))
             ) : (
               'Sorry, no posts in archive'
