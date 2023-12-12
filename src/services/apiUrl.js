@@ -1,1 +1,1 @@
-export const API_URL = 'https://emanager.tryapi.site/api';
+export const API_URL = 'https://emanager.tryapp.pp.ua/api';
